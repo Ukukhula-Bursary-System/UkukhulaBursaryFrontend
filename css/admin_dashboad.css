@@ -21,6 +21,16 @@ body {
     background-color: #7e7c7c;
 }
 
+
+.error {
+    background-color: red;
+    color: #fff;
+}
+
+.success {
+    background-color: green;
+    color: #fff;
+}
 .application, .fund, .viewdetails{
     text-decoration: none;
     color: #fff;
@@ -38,6 +48,20 @@ body {
 .fund {
     background-color: rgb(10, 164, 10);
     padding: 0.34rem 1rem;
+}
+
+#popup {
+    margin: 0 auto;
+    margin-top: 8rem;
+    margin-left: 2rem;
+    border: 1px solid #333;
+    width: 70%;
+    padding: 1rem;
+    position: fixed;
+    text-align: center;
+    border-radius: 0.2rem;
+    z-index: 3;
+    display: none;
 }
 
 #navbar {
