@@ -6,6 +6,28 @@ function isLoggedIn() {
     return  loginDetails.userEmail !== null 
             && loginDetails.loginToken !== null
             && loginDetails.role !== null;
+            // && loginDetails.role.toLowerCase() !== "admin"; //remember to uncomment line
+}
+
+
+function setLoggedInUser() {
+    let user = document.getElementById("logged-user");
+    let loginDetails = getLoginDetails();
+    user.innerText = loginDetails.userEmail;
+}
+
+
+function redirectToLoginPage() {
+    window.location.replace("/");
+}
+
+
+function ifNotloggedInRedirectToLoginPage() {
+    if (!isLoggedIn()) {
+        redirectToLoginPage()
+    } else {
+        setLoggedInUser()
+    }
 }
 
 
@@ -18,21 +40,23 @@ function getLoginDetails() {
 }
 
 
-function fetchAllInstitutes(statusId) {
-    let loginDetails = getLoginDetails();
+function showMessage(message, status) {
+    let popup = document.getElementById("popup");
+    popup.classList.remove("success");
+    popup.classList.remove("error");
 
-    apiBaseUrl += "/institute";
-    if (statusId !== "" && statusId !== undefined) {
-        apiBaseUrl += "/" + statusId;
+    if (status === "error") {
+        popup.classList.add("error");
+    } else {
+        popup.classList.add("success");
     }
 
-    fetch(apiBaseUrl, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            Accept: 'application/json',
-            Authorization: `Bearer ${loginDetails.loginToken}`
-        }
-    })
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 2000);
+
+    popup.innerText = message;
+    popup.style.display = "block";
 }
 
+export { apiBaseUrl, getLoginDetails, ifNotloggedInRedirectToLoginPage, showMessage }
