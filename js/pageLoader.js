@@ -276,9 +276,48 @@ function loadFundingPage() {
 
 function loadStudentsPage() {
     activeNav("students");
+
+    let main = document.getElementById("main-section");
+    main.innerHTML =`
+        <section id="header" class="students">
+        <section id="filter-section">
+            <h2>Students Application</h2>
+            <a href="#">
+                <i class="fa fa-sliders fa-2x"></i>
+            </a>
+        </section>
+        <section id="students">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">FirstName</th>
+                        <th scope="col">LastName</th>
+                        <th scope="col">University</th>
+                        <th scope="col">BursaryAmount</th>
+                        <th scope="col">status</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="results">
+                    <tr>
+                        <td data-label="FirstName">John</td>
+                        <input type="hidden" value="1">
+                        <td data-label="LastName">Doe</td>
+                        <td data-label="University">UCT</td>
+                        <td data-label="BursaryAmount">R10000</td>
+                        <td data-label="status" class="approved">Approved</td>
+                        <td class="viewButton">
+                            <a class="viewdetails" href="#">View Details</a>
+                        </td>
+                </tbody>
+            </table>
+        </section>
+    `;
 }
 
 
 function loadAdminsPage() {
     activeNav("admins");
+
+  
 }
