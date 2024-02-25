@@ -1,0 +1,221 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+}
+
+.nav-text {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-text i {
+    float: left;
+    margin-left: 2rem;
+}
+
+.active {
+    background-color: #7e7c7c;
+}
+
+.application, .fund {
+    text-decoration: none;
+    color: #fff;
+    background-color: rgb(27, 82, 116);
+    padding: 0.34rem;
+    margin: 0.5rem;
+    border-radius: 0.15rem;
+    box-shadow: 1px 1px 1px #334;
+}
+
+.fund {
+    background-color: rgb(10, 164, 10);
+    padding: 0.34rem 1rem;
+}
+
+#navbar {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    position: fixed;
+    width: 15vw;
+    height: 100vh;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+}
+
+#navbar img {
+    width: 80%;
+    margin: 1rem auto;
+}
+
+#navbar p {
+    margin-bottom: 1rem;
+}
+
+#navbar ul {
+    list-style: none;
+    margin-top: 4rem;
+}
+
+#navbar ul li {
+    width: 100%;
+    border-bottom: #7e7c7c solid 1px;
+    padding: 2.5rem 0;
+}
+
+#navbar ul li:hover {
+    background-color: #334;
+}
+
+main {
+    width: 85vw;
+    margin-left: 15vw;
+}
+
+main #add-institute-section {
+    margin: 2rem 2rem;
+}
+
+main #add-institute-section #add-institute-button {
+    background-color: red;
+    border: none;
+    padding: 1rem;
+    box-shadow: 1px 1px 1px #334;
+    cursor: pointer;
+    border-radius: 0.2rem;
+}
+
+main #add-institute-section #add-institute-button:hover {
+    background-color: rgb(153, 59, 59);
+}
+
+main #filter-section {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: #7e7c7c 1px solid;
+}
+
+main #filter-section a {
+    color: rgb(153, 59, 59);;
+}
+
+
+main #institutes {
+    width: 95%;
+    margin: 0 auto;
+}
+
+table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+  
+table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+
+table tr:nth-child(even) {
+    background-color: #fff;
+}
+  
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+}
+  
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    background-color: #333;
+    color: #fff;
+}
+  
+@media screen and (max-width: 700px) {
+    main {
+        width: 100vw;
+        margin-left: 0;
+    }
+
+    main #add-institute-section {
+        margin-top: 3.7rem;
+        margin-left: 0.5rem;
+    }
+
+    #navbar {
+        display: none; 
+        width: 100vw;
+        z-index: 5;
+    }
+
+    main #header {
+        width: 100%;
+        background-color: #333;
+        position: fixed;
+        height: 3rem;
+        box-shadow: 2px 2px 2px #ccc;
+    }
+
+    .application, .fund {
+        padding: 0.34rem 3rem;
+    }
+
+    table {
+        border: 0;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }    
+
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    table tr td:nth-child(4), table tr td:nth-child(5) {
+        text-align: center;
+    }
+
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
+}
