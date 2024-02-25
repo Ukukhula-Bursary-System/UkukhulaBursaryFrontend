@@ -21,7 +21,7 @@ body {
     background-color: #7e7c7c;
 }
 
-.application, .fund {
+.application, .fund, .viewdetails{
     text-decoration: none;
     color: #fff;
     background-color: rgb(27, 82, 116);
@@ -29,6 +29,10 @@ body {
     margin: 0.5rem;
     border-radius: 0.15rem;
     box-shadow: 1px 1px 1px #334;
+}
+
+.viewButton {
+   text-align: center;
 }
 
 .fund {
@@ -104,12 +108,20 @@ main #filter-section {
     border-bottom: #7e7c7c 1px solid;
 }
 
+main .students {
+    margin-top: 5rem;
+}
+
 main #filter-section a {
     color: rgb(153, 59, 59);;
 }
 
 
 main #institutes {
+    width: 95%;
+    margin: 0 auto;
+}
+main #students {
     width: 95%;
     margin: 0 auto;
 }
@@ -171,6 +183,11 @@ table th {
         height: 3rem;
         box-shadow: 2px 2px 2px #ccc;
     }
+    main #students {
+        width: 95%;
+        margin: 0 auto;
+    }
+    
 
     .application, .fund {
         padding: 0.34rem 3rem;
@@ -199,6 +216,13 @@ table th {
 
     table tr td:nth-child(4), table tr td:nth-child(5) {
         text-align: center;
+    }
+    #students tr td:nth-child(7) {
+        text-align: center;
+    }
+
+    #students tr td:nth-child(4), #students tr td:nth-child(5) {
+        text-align: right;
     }
 
     table td {
