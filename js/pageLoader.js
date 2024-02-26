@@ -153,6 +153,29 @@ function loadStudentsPage() {
 
 function loadAdminsPage() {
     activeNav("admins");
-
-  
+    let main = document.getElementById("main-section");
+    main.innerHTML = `
+        <section id="header">
+        </section>
+        <section id="add-institute-section">
+            <button id="add-admin-button" class="add-button"><i class="fa fa-plus" aria-hidden="true"></i> ADMIN</button>
+        </section>
+        <section id="filter-section">
+            <h2>ADMINS AND REVIEWERS</h2>
+        </section>
+        <section id="institutes">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Fullname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Active</th>
+                        <th scope="col">Role</th>
+                    </tr>
+                </thead>
+                <tbody id="results">
+                </tbody>
+            </table>
+        </section>
+    `;
 }
