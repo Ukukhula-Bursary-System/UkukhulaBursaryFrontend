@@ -284,4 +284,129 @@ table th {
     table td:last-child {
         border-bottom: 0;
     }
+
+
+  
+
+      
 }
+
+  /* student view css */
+  .studentDetails {
+    margin: 3rem;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  .documents {
+   margin: 10px;
+   padding: 20px;
+   border-radius: 5px;
+   border:  1px solid #ccc;
+  }
+
+  i {
+    margin: 10px;
+
+  }
+
+  .documentSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  margin: 10px;
+  padding: 0;
+    
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+  }
+
+  li:last-child {
+    border-bottom: none;
+  }
+  li :only-child{
+      text-align: center;
+  }
+
+  li::before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: inline-block;
+    width: 150px; 
+  
+  }
+
+
+  
+
+  li.span {
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: green;
+    border: #ccc  2px solid;
+    border-radius: 5px;
+    
+  }
+
+  li.span {
+  text-align: right; 
+  }
+
+  article {
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border:  1px solid #ccc;
+  }
+
+  button.view, button.download {
+    
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  button.view {
+      background-color: #4CAF50; 
+  }
+
+  button.download {
+      background-color: #008CBA; 
+  }
+
+  #Approve, #reject {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border:  1px solid #ccc;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  #Approve {
+    background-color: #4CAF50; 
+  }
+
+  #reject {
+    background-color: #f44336; 
+  }

@@ -128,6 +128,13 @@ document.addEventListener('DOMContentLoaded', () => {
     studentsNav.addEventListener("click", (e) => {
         loadStudentsPage();
         fetchStudents();
+        let view = document.querySelectorAll(".viewdetails");
+
+        view.forEach((element) => {
+            element.addEventListener("click", function() {
+               Student.StudentDetailsView();
+            });
+        });
     });
 
     let fundingNav = document.getElementById("funding-nav");
@@ -135,4 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
         loadFundingPage();
         fetchAllInstitutesAllocatedFunds();
     })
+   
+
+    
+
 });
+
