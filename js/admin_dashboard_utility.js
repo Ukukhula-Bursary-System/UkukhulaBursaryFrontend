@@ -5,8 +5,8 @@ function isLoggedIn() {
     const loginDetails = getLoginDetails();
     return  loginDetails.userEmail !== null 
             && loginDetails.loginToken !== null
-            && loginDetails.role !== null;
-            // && loginDetails.role.toLowerCase() !== "admin"; //remember to uncomment line
+            && loginDetails.role !== null
+            && loginDetails.role.toLowerCase() === "admin";
 }
 
 
@@ -42,8 +42,11 @@ function getLoginDetails() {
 
 function showMessage(message, status) {
     let popup = document.getElementById("popup");
-    popup.classList.remove("success");
-    popup.classList.remove("error");
+
+    if (popup.classList !== null) {
+        popup.classList.remove("success");
+        popup.classList.remove("error");
+    }
 
     if (status === "error") {
         popup.classList.add("error");
