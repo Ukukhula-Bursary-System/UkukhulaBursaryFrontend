@@ -33,7 +33,7 @@ function redirectAfterLogin(role) {
         alert("Reviewer redirect!");
     } else if (role == "Admin") {
         //redirect to admin dashboard
-        alert("Admin redirect!")
+        window.location.replace("/admin_dashboard.html");
     } else {
         console.log(role);
         alert("Uknown role!");
