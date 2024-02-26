@@ -7,9 +7,11 @@ function activeNav(nav) {
                     .classList
                     .add("active");
         } else {
-            document.getElementById(`${navs[i]}-nav`)
-                    .classList
-                    .remove("active");
+            let nav =  document.getElementById(`${navs[i]}-nav`);
+            
+            if (nav !== null) {
+                nav.classList.remove("active");
+            }
         }
     }
 }
@@ -217,5 +219,41 @@ function loadAddNewAdmin() {
             </select>
             <input type="submit" value="SAVE"/>
         </form>
+    `;
+}
+
+
+function loadHeadOfDepartmentFundingPage() {
+    activeNav("funding");
+    let main = document.getElementById("main-section");
+    main.innerHTML = `
+        <section id="popup">
+        </section> 
+        <section id="header">
+        </section>
+        <section id="add-institute-section">
+            <span></span>
+            <article id="amount">
+                <h3>Fund Amount: <span id="fund-amount">R 1 000 000.00</span></h3>
+                <h3>Remainning: <span id="remaining-fund">R 2 000.00</span></h3>
+            </article>
+        </section>
+        <section id="filter-section">
+            <h2 id="institute-name"></h2>
+        </section>
+        <section id="institutes">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Institute</th>
+                        <th scope="col">Allocated Amount</th>
+                        <th scope="col">Remaining Amount</th>
+                        <th scope="col">Financial Date</th>
+                    </tr>
+                </thead>
+                <tbody id="results">
+                </tbody>
+            </table>
+        </section>
     `;
 }
