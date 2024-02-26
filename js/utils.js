@@ -28,13 +28,14 @@ function redirectAfterLogin(role) {
     if (role == "HOD") {
         //redirect to HOD dashboard
         alert("HOD redirect!");
-    } else if (role == "Reviewer") {
+    } else if (role == "reviewer") {
         //redirect to Reviewer dashboard
         alert("Reviewer redirect!");
     } else if (role == "Admin") {
         //redirect to admin dashboard
         alert("Admin redirect!")
     } else {
+        console.log(role);
         alert("Uknown role!");
     }
 }
