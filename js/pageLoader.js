@@ -15,6 +15,20 @@ function activeNav(nav) {
 }
 
 
+function dropdown() {
+    let dropdown = document.getElementById("filter-dropdown");
+    let filterSection = document.getElementById("dropdown-icon");
+
+    dropdown.style.display = "block";
+    dropdown.style.height="22%";
+
+    dropdown.addEventListener("click", () => {
+        dropdown.style.display = "none";
+        dropdown.style.height = "0%";
+    });
+}
+
+
 function loadInstitutesPage() {
     activeNav("institutes");
     let main = document.getElementById("main-section");
@@ -26,8 +40,14 @@ function loadInstitutesPage() {
         </section>
         <section id="filter-section">
             <h2>INSTITUTES</h2>
-            <a href="#">
+            <a id="dropdown-icon" href="#" onclick="dropdown()">
                 <i class="fa fa-sliders fa-2x"></i>
+                <ul id="filter-dropdown">
+                    <li><a href="#">All</a></li>
+                    <li><a href="#">Approved</a></li>
+                    <li><a href="#">Rejected</a></li>
+                    <li><a href="#">Pending</a></li>
+                </ul>
             </a>
         </section>
         <section id="institutes">
@@ -64,8 +84,14 @@ function loadFundingPage() {
         </section>
         <section id="filter-section">
             <h2>FUNDED INSTITUTES</h2>
-            <a href="#">
+            <a id="dropdown-icon" href="#" onclick="dropdown()">
                 <i class="fa fa-sliders fa-2x"></i>
+                <ul id="filter-dropdown">
+                    <li><a href="#">All</a></li>
+                    <li><a href="#">Approved</a></li>
+                    <li><a href="#">Rejected</a></li>
+                    <li><a href="#">Pending</a></li>
+                </ul>
             </a>
         </section>
         <section id="institutes">
@@ -94,8 +120,14 @@ function loadStudentsPage() {
         <section id="header" class="students">
         <section id="filter-section">
             <h2>Students Application</h2>
-            <a href="#">
+            <a id="dropdown-icon" href="#" onclick="dropdown()">
                 <i class="fa fa-sliders fa-2x"></i>
+                <ul id="filter-dropdown">
+                    <li><a href="#">All</a></li>
+                    <li><a href="#">Approved</a></li>
+                    <li><a href="#">Rejected</a></li>
+                    <li><a href="#">Pending</a></li>
+                </ul>
             </a>
         </section>
         <section id="students">
@@ -121,6 +153,29 @@ function loadStudentsPage() {
 
 function loadAdminsPage() {
     activeNav("admins");
-
-  
+    let main = document.getElementById("main-section");
+    main.innerHTML = `
+        <section id="header">
+        </section>
+        <section id="add-institute-section">
+            <button id="add-admin-button" class="add-button"><i class="fa fa-plus" aria-hidden="true"></i> ADMIN</button>
+        </section>
+        <section id="filter-section">
+            <h2>ADMINS AND REVIEWERS</h2>
+        </section>
+        <section id="institutes">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Fullname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Active</th>
+                        <th scope="col">Role</th>
+                    </tr>
+                </thead>
+                <tbody id="results">
+                </tbody>
+            </table>
+        </section>
+    `;
 }
