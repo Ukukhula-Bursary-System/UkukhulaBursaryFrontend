@@ -9,10 +9,11 @@ function isLoggedIn() {
 }
 
 
-function saveLoginDetails(token, email, role) {
+function saveLoginDetails(token, email, role, institute) {
     localStorage.setItem("loginToken", token);
     localStorage.setItem("userEmail", email);
     localStorage.setItem("role", role)
+    localStorage.setItem("institute", institute)
 }
 
 
@@ -27,7 +28,7 @@ function getLoginDetails() {
 function redirectAfterLogin(role) {
     if (role == "HOD") {
         //redirect to HOD dashboard
-        alert("HOD redirect!");
+        window.location.replace("/head_of_department_dashboard.html");
     } else if (role == "Reviewer") {
         //redirect to Reviewer dashboard
         alert("Reviewer redirect!");
