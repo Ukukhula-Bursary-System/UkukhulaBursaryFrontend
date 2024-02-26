@@ -291,69 +291,60 @@ table th {
       
 }
 
-  /* student view css */
-  .studentDetails {
+.studentDetails {
     margin: 3rem;
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     border-radius: 5px;
+    max-width: 600px;
   }
 
   .documents {
    margin: 10px;
    padding: 20px;
    border-radius: 5px;
-   border:  1px solid #ccc;
+   border:  1px solid green;
+   box-shadow: 0 0 3px grey;
   }
 
-  i {
+  section.documents i {
     margin: 10px;
 
   }
 
   .documentSection {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
   flex-wrap: wrap;
-  margin: 10px;
   padding: 0;
+  margin: auto;
+  text-align: center;
     
   }
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+
+  
+
+  .listitem {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+
   }
 
-  li {
-    margin-bottom: 5px;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 5px;
-  }
 
-  li:last-child {
-    border-bottom: none;
-  }
-  li :only-child{
-      text-align: center;
-  }
-
-  li::before {
+  .listitem::before {
     content: attr(data-label);
     font-weight: bold;
     display: inline-block;
-    width: 150px; 
-  
+    width: 150px;
+   
+    text-align: left;
+    
   }
 
-
-  
-
-  li.span {
+  .span {
     font-weight: bold;
     font-size: 1.8rem;
     color: green;
@@ -362,9 +353,6 @@ table th {
     
   }
 
-  li.span {
-  text-align: right; 
-  }
 
   article {
     margin: 10px;
@@ -387,6 +375,20 @@ table th {
       background-color: #4CAF50; 
   }
 
+  .ulist{
+    margin: auto;
+    border-radius: 5px;
+    border:  1px solid #ccc;
+    padding: 10px;
+    
+  }
+
+  .custom-color{
+    color : green;
+    font-size: 150px;
+    margin-bottom: 0;
+  }
+
   button.download {
       background-color: #008CBA; 
   }
@@ -401,7 +403,7 @@ table th {
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
-  }
+  } 
   
   #Approve {
     background-color: #4CAF50; 
@@ -409,4 +411,5 @@ table th {
 
   #reject {
     background-color: #f44336; 
-  }
+    
+  } 

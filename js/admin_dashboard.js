@@ -18,7 +18,7 @@ function fetchAllInstitutes(statusId) {
         headers: {
             "Content-Type": "application/json",
             Accept: 'application/json',
-            Authorization0: `Bearer ${loginDetails.loginToken}`
+            Authorization: `Bearer ${loginDetails.loginToken}`
         }
     }).then(response => {
         if (response.status == 403 || response.status == 401) {
@@ -52,7 +52,7 @@ function fetchStudents(){
         headers: {
             "Content-Type": "application/json",
             Accept: 'application/json',
-            Authorization0: `Bearer ${loginDetails.loginToken}`
+            Authorization: `Bearer ${loginDetails.loginToken}`
         }
     }).then(response => {
         if (response.status == 403 || response.status == 401) {
@@ -90,7 +90,7 @@ function fetchAllInstitutesAllocatedFunds(year) {
         headers: {
             "Content-Type": "application/json",
             Accept: 'application/json',
-            Authorization0: `Bearer ${loginDetails.loginToken}`
+            Authorization: `Bearer ${loginDetails.loginToken}`
         }
     }).then(response => {
         if (response.status == 403 || response.status == 401) {
@@ -111,6 +111,7 @@ function fetchAllInstitutesAllocatedFunds(year) {
         Utility.showMessage(error.message, "error");
     })
 }
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -147,4 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
 });
+
+
+
+
 
