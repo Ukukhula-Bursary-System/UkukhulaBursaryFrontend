@@ -33,6 +33,8 @@ function loadInstitutesPage() {
     activeNav("institutes");
     let main = document.getElementById("main-section");
     main.innerHTML = `
+        <section id="popup">
+        </section> 
         <section id="header">
         </section>
         <section id="add-institute-section">
@@ -73,6 +75,8 @@ function loadFundingPage() {
     activeNav("funding");
     let main = document.getElementById("main-section");
     main.innerHTML = `
+        <section id="popup">
+        </section> 
         <section id="header">
         </section>
         <section id="add-institute-section">
@@ -116,7 +120,9 @@ function loadStudentsPage() {
     activeNav("students");
 
     let main = document.getElementById("main-section");
-    main.innerHTML =`
+    main.innerHTML = `
+        <section id="popup">
+        </section>  
         <section id="header" class="students">
         <section id="filter-section">
             <h2>Students Application</h2>
@@ -155,6 +161,8 @@ function loadAdminsPage() {
     activeNav("admins");
     let main = document.getElementById("main-section");
     main.innerHTML = `
+        <section id="popup">
+        </section> 
         <section id="header">
         </section>
         <section id="add-institute-section">
@@ -177,5 +185,37 @@ function loadAdminsPage() {
                 </tbody>
             </table>
         </section>
+    `;
+}
+
+
+function loadAddNewAdmin() {
+    activeNav("admins");
+    let main = document.getElementById("main-section");
+    main.innerHTML = `
+        <section id="popup">
+        </section> 
+        <section id="header">
+        </section>
+        <section id="add-institute-section">
+
+        </section>
+        <section id="filter-section">
+            <h2>ADD ADMIN</h2>
+        </section>
+        <form id="add-admin-form">
+            <h3>Create new admin user.</h3>
+            <article id="name-input-fields">
+                <input id="first-name" placeholder="Firstname..." type="text"/>
+                <input id="last-name" placeholder="Lastname..." type="text"/>
+            </article>
+            <input id="phone-number" placeholder="+27731561234" type="text"/>
+            <input id="email" placeholder="email" type="email"/>
+            <select id="role">
+                <option value=2>Admin</option>
+                <option value=4>Reviewer</option>
+            </select>
+            <input type="submit" value="SAVE"/>
+        </form>
     `;
 }
