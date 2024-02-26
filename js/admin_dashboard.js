@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let view = document.querySelectorAll(".viewdetails");
 
         view.forEach((element) => {
-            element.addEventListener("click", function() {
+            element.addEventListener("click", (e)=> {
                Student.StudentDetailsView();
             });
         });
