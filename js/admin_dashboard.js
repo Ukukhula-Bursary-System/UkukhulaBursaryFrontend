@@ -22,18 +22,7 @@ function fetchAllInstitutes(statusId) {
             Authorization: `Bearer ${loginDetails.loginToken}`
         }
     }).then(response => {
-        if (response.status == 403 || response.status == 401) {
-            showMessage("Please login!", "error");
-            redirectToLoginPage();
-            return;
-        } else if (response.status == 500) {
-            showMessage("Server is offline!", "error");
-            return;
-        } else if (!response.ok) {
-            showMessage("Something went wrong!", "error");
-            return;
-        }
-        return response.json();
+       return handleErrorResponse(response);
     }).then(data => {
         Institute.appendInstitutes(data);
     }).catch(error => {
@@ -56,20 +45,27 @@ function fetchStudents(){
             Authorization: `Bearer ${loginDetails.loginToken}`
         }
     }).then(response => {
-        if (response.status == 403 || response.status == 401) {
-            showMessage("Please login!", "error");
-            redirectToLoginPage();
-            return;
-        } else if (response.status == 500) {
-            showMessage("Server is offline!", "error");
-            return;
-        } else if (!response.ok) {
-            showMessage("Something went wrong!", "error");
-            return;
-        }
-        return response.json();
+        return handleErrorResponse(response);
     }).then(data => {
         Student.appendStudents(data);
+
+        document.querySelectorAll('.viewdetails').forEach(item => {
+            item.addEventListener('click', event => {
+                event.preventDefault();
+                let studentID = item.parentElement.parentElement.querySelector('input').value;
+                let student = data.find(student => student.studentID == studentID);
+                Student.StudentDetailsView(student);
+                // after viewing student details, add event listener to approve or reject student
+                document.getElementById("Approve").addEventListener("click", function(){
+                    student.status = "Approved";
+                    approveOrDeclineStudents("Approved", studentID);
+                });
+                document.getElementById("reject").addEventListener("click", function(){
+                    student.status = "Rejected";
+                    approveOrDeclineStudents("Approved", studentID);    
+                });  
+            })
+        });
     }).catch(error => {
         Utility.showMessage(error.message, "error");
     })
@@ -93,18 +89,7 @@ function fetchAllInstitutesAllocatedFunds(year) {
             Authorization: `Bearer ${loginDetails.loginToken}`
         }
     }).then(response => {
-        if (response.status == 403 || response.status == 401) {
-            showMessage("Please login!", "error");
-            redirectToLoginPage();
-            return;
-        } else if (response.status == 500) {
-            showMessage("Server is offline!", "error");
-            return;
-        } else if (!response.ok) {
-            showMessage("Something went wrong!", "error");
-            return;
-        }
-        return response.json();
+        return handleErrorResponse(response);
     }).then(data => {
         Funding.appendFunds(data);
     }).catch(error => {
@@ -127,18 +112,7 @@ function fetchAllAdmins() {
             Authorization: `Bearer ${loginDetails.loginToken}`
         }
     }).then(response => {
-        if (response.status == 403 || response.status == 401) {
-            showMessage("Please login!", "error");
-            redirectToLoginPage();
-            return;
-        } else if (response.status == 500) {
-            showMessage("Server is offline!", "error");
-            return;
-        } else if (!response.ok) {
-            showMessage("Something went wrong!", "error");
-            return;
-        }
-        return response.json();
+        return handleErrorResponse(response);
     }).then(data => {
         Admin.appendAdmin(data);
     }).catch(error => {
@@ -163,20 +137,32 @@ function addAdmin() {
         },
         body: JSON.stringify(user)
     }).then(response => {
-        if (response.status == 403 || response.status == 401) {
-            showMessage("Please login!", "error");
-            redirectToLoginPage();
-            return;
-        } else if (response.status == 500) {
-            showMessage("Server is offline!", "error");
-            return;
-        } else if (!response.ok) {
-            showMessage("Something went wrong!", "error");
-            return;
-        }
-        return response.json();
+        return handleErrorResponse(response);
     }).then(data => {
         Utility.showMessage(`User with email '${user.email}' successfully added!`)
+    }).catch(error => {
+        Utility.showMessage(error.message, "error");
+    })
+}
+
+function approveOrDeclineStudents(status, studentID) {
+    let loginDetails = Utility.getLoginDetails();
+    let apiBaseUrl = Utility.apiBaseUrl;
+
+    apiBaseUrl += `/student/update/${studentID}/${status}`;
+    let user = Admin.getValuesForNewAdmin();
+
+    fetch(apiBaseUrl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: 'application/json',
+            Authorization: `Bearer ${loginDetails.loginToken}`
+        }
+    }).then(response => {
+        return handleErrorResponse(response);
+    }).then(data => {
+        Utility.showMessage(`S`)
     }).catch(error => {
         Utility.showMessage(error.message, "error");
     })
@@ -201,14 +187,10 @@ document.addEventListener('DOMContentLoaded', () => {
     studentsNav.addEventListener("click", (e) => {
         loadStudentsPage();
         fetchStudents();
-        let view = document.querySelectorAll(".viewdetails");
-
-        view.forEach((element) => {
-            element.addEventListener("click", (e)=> {
-               Student.StudentDetailsView();
-            });
-        });
     });
+
+
+
 
     //Funding Page
     let fundingNav = document.getElementById("funding-nav");
@@ -236,3 +218,19 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     });
 });
+
+
+function handleErrorResponse(response) {
+    if (response.status == 403 || response.status == 401) {
+        showMessage("Please login!", "error");
+        redirectToLoginPage();
+        return;
+    } else if (response.status == 500) {
+        showMessage("Server is offline!", "error");
+        return;
+    } else if (!response.ok) {
+        showMessage("Something went wrong!", "error");
+        return;
+    }
+    return response.json();
+}
