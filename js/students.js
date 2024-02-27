@@ -85,8 +85,6 @@ export function StudentDetailsView(student){
           </section>
     </section>`;
 
-    
 
-    
-    
+
 }  
