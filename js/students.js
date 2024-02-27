@@ -20,16 +20,6 @@ export function appendStudents(data) {
 
     }
 
-   document.querySelectorAll('.viewdetails').forEach(item => {
-        item.addEventListener('click', event => {
-            event.preventDefault();
-            let studentID = item.parentElement.parentElement.querySelector('input').value;
-            // get the student where the studentID is equal to the studentID
-            let student = data.find(student => student.studentID == studentID);
-            StudentDetailsView(student);
-        })
-    });
-
 
   
     }  
@@ -101,8 +91,6 @@ export function StudentDetailsView(student){
     document.getElementById("reject").addEventListener("click", function(){
        
         student.status = "Rejected";
-        alert("under construction student, please try again later!");
-    
         
     }
     )   

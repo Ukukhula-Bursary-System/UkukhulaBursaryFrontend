@@ -2,7 +2,6 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-image: url("https://bbdsoftware.com/wp-content/uploads/hero-image-1920x780.png");  
-    
 }
   
   header {
@@ -31,3 +30,13 @@ body {
   
 
     }
+    .centered {
+      width: 300px; 
+      height: 200px; 
+      border-radius: 5px;
+      margin: auto auto; 
+      margin-top: 100px; 
+      text-align: center; 
+      line-height: 200px; 
+      padding: auto;
+  }
