@@ -7,6 +7,7 @@ export function appendStudents(data) {
         results.innerHTML += 
      
         ` <tr>
+
                 <td data-label="FirstName">${student["firstName"]}</td>
                 <input type="hidden" value=${student["studentID"]}>
                 <td data-label="LastName">${student["lastName"]}</td>
@@ -28,7 +29,9 @@ export function StudentDetailsView(student){
 
         let results = document.getElementById("main-section");
         results.innerHTML =
-        `
+        ` 
+        <section id="popup">
+        </section> 
         <section id="header" class="students">
         <section id="filter-section">
             <h2>${student.firstName}  ${student.lastName} Details</h2>
@@ -82,18 +85,7 @@ export function StudentDetailsView(student){
           </section>
     </section>`;
 
-    document.getElementById("Approve").addEventListener("click", function(){
-        student.status = "Approved";
-        alert("under construction student, please try again later!");
-     
-    }
-    )
-    document.getElementById("reject").addEventListener("click", function(){
-       
-        student.status = "Rejected";
-        
-    }
-    )   
+    
 
     
     

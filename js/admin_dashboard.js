@@ -62,7 +62,7 @@ function fetchStudents(){
                 });
                 document.getElementById("reject").addEventListener("click", function(){
                     student.status = "Rejected";
-                    approveOrDeclineStudents("Approved", studentID);    
+                    approveOrDeclineStudents("Rejected", studentID);    
                 });  
             })
         });
@@ -150,7 +150,7 @@ function approveOrDeclineStudents(status, studentID) {
     let apiBaseUrl = Utility.apiBaseUrl;
 
     apiBaseUrl += `/student/update/${studentID}/${status}`;
-    let user = Admin.getValuesForNewAdmin();
+ 
 
     fetch(apiBaseUrl, {
         method: "POST",
