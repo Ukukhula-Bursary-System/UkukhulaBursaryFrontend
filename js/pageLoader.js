@@ -1,5 +1,5 @@
 function activeNav(nav) {
-    let navs = ["funding", "institutes", "students", "admins"];
+    let navs = ["funding", "institutes", "students", "admins", "applications"];
 
     for (let i=0; i < navs.length; i++) {
         if (nav === navs[i]) {
@@ -257,3 +257,45 @@ function loadHeadOfDepartmentFundingPage() {
         </section>
     `;
 }
+
+
+function loadHeadOfDepartmentApplicationPage() {
+    activeNav("applications");
+    let main = document.getElementById("main-section");
+    main.innerHTML = `
+        <section id="popup">
+        </section> 
+        <section id="header">
+        </section>
+        <section id="add-institute-section">
+            <button id="add-institute-button" class="add-button"><i class="fa fa-plus" aria-hidden="true"></i> Student Application</button>
+        </section>
+        <section id="filter-section">
+            <h2>Student Applications</h2>
+            <a id="dropdown-icon" href="#" onclick="dropdown()">
+                <i class="fa fa-sliders fa-2x"></i>
+                <ul id="filter-dropdown">
+                    <li><a href="#">All</a></li>
+                    <li><a href="#">Approved</a></li>
+                    <li><a href="#">Rejected</a></li>
+                    <li><a href="#">Pending</a></li>
+                </ul>
+            </a>
+        </section>
+        <section id="institutes">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Bursary Amount</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="results">
+                </tbody>
+            </table>
+        </section>
+    `;
+}
+
