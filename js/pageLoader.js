@@ -30,8 +30,9 @@ function dropdown() {
 
 
 function loadInstitutesPage() {
-    activeNav("institutes");
+   // activeNav("institutes");
     let main = document.getElementById("main-section");
+    console.log(main)
     main.innerHTML = `
         <section id="header">
         </section>

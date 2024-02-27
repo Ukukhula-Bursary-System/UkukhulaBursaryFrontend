@@ -4,10 +4,113 @@
 }
 
 body {
-    display: flex;
+    height: 100vh;
 }
 
-.nav-text {
+.background-image {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+nav {
+
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 20vw;
+    height: 100vh;
+    left: 0px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.19) 0%, rgba(255, 255, 255, 0.06) 100%);
+    border: 1px solid #939393;
+    box-shadow: inset 0px -7px 16px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12.5px);
+    border-radius: 0px;
+
+}
+
+.logo img {
+    width: 200px;
+}
+
+.line, .line-2 {
+    width: 100%;
+    height: 2px;
+    background: rgb(129, 129, 129);
+    background: linear-gradient(90deg, rgba(129, 129, 129, 1) 0%, rgba(255, 255, 255, 0.8295693277310925) 46%, rgba(129, 129, 129, 1) 100%);
+}
+.line-2 {
+    margin-top: 50%;
+}
+
+.logo,
+.account-details {
+    width: 80%;
+}
+
+.account-details h3,
+.account-details h6 {
+    text-align: center;
+    color: silver;
+    padding: 0.4em;
+}
+
+.menu h3 {
+    margin: 2em;
+    color: white;
+    font-size: 1.6em;
+}
+
+.menu section, .logout {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    cursor: pointer;
+    margin: 2.9em 0.5em;
+}
+.logout {
+    margin-left: 50%;
+}
+.menu section:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu section img, .logout img {
+    width: 20%;
+}
+
+.menu section h5, .logout h5 {
+    margin: 0.1em 1em;
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #CCCCCC;
+    width: 100%;
+}
+.data-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 70vw;
+    height: 80vh;
+    top: 8%;
+    right: 5%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.19) 0%, rgba(255, 255, 255, 0.06) 100%);
+    border: 1px solid #939393;
+    box-shadow: inset 0px -7px 16px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12.5px);
+    border-radius: 0px;
+}
+
+
+
+
+
+
+
+/* .nav-text {
     color: #fff;
     text-decoration: none;
 }
@@ -316,5 +419,5 @@ table th {
 
     table td:last-child {
         border-bottom: 0;
-    }
-}
+    } 
+}*/
