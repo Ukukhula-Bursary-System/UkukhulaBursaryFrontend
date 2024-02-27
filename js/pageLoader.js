@@ -38,9 +38,11 @@ function loadInstitutesPage() {
         </section>
         <section id="add-institute-section">
             <button id="add-institute-button" class="add-button"><i class="fa fa-plus" aria-hidden="true"></i> INSTITUTE</button>
+            
         </section>
         <section id="filter-section">
             <h2>INSTITUTES</h2>
+            <section class="line"></section>
             <a id="dropdown-icon" href="#" onclick="dropdown()">
                 <i class="fa fa-sliders fa-2x"></i>
                 <ul id="filter-dropdown">

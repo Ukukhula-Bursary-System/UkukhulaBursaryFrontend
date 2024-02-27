@@ -1,0 +1,101 @@
+#institutes-page-template {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* CSS code for styling the table */
+
+/* Use a dark blue color for the header */
+#filter-section {
+    width: 100%;
+    text-align: center;
+
+}
+
+
+#add-institute-button {
+    position: absolute;
+    top: -9%;
+    left: 0%;
+    padding: 1em;
+    background-color: #7cec74;
+    border-radius: 25px;
+    cursor: pointer;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 2px;
+    background: rgb(129, 129, 129);
+    background: linear-gradient(90deg, rgba(129, 129, 129, 1) 0%, rgba(255, 255, 255, 0.8295693277310925) 46%, rgba(129, 129, 129, 1) 100%);
+}
+
+#filter-section h2 {
+    padding: 1em 0;
+    color: #CCCCCC;
+}
+
+header {
+    background-color: #003366;
+    color: white;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Use a light blue color for the table background */
+table {
+    background-color: #6f6f6f;
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Use white color for the table text */
+table th,
+table td {
+    color: white;
+    padding: 15px;
+    text-align: left;
+}
+
+/* Use green color for the approved statuses */
+.approved {
+    color: limegreen;
+}
+
+/* Use orange color for the fund links */
+.fund {
+    color: orange;
+    text-decoration: none;
+}
+
+/* Add some hover effects for the table rows and fund links */
+tbody tr:hover {
+    background-color: #808080;
+}
+
+.fund:hover {
+    text-decoration: underline;
+}
+
+/* Make the table responsive by using media queries */
+@media screen and (max-width: 600px) {
+
+    /* Hide the table header on small screens */
+    table thead {
+        display: none;
+    }
+
+    /* Display the table data as block elements */
+    table td {
+        display: block;
+    }
+
+    /* Use the data-label attribute to show the column names */
+    table td:before {
+        content: attr(data-label);
+        font-weight: bold;
+    }
+}
