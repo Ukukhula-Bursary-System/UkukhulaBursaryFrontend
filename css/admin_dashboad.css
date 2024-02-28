@@ -104,27 +104,7 @@ nav {
     border-radius: 0px;
 }
 
-#filter-section {
-    width: 80%;
-    text-align: center;
-}
 
-
-#add-institute-button {
-    position: absolute;
-    top: -9%;
-    left: 0%;
-    padding: 1em;
-    background-color: #7cec74;
-    border-radius: 25px;
-    cursor: pointer;
-    border: none;
-}
-
-#filter-section h2 {
-    padding: 1em;
-    color: #CCCCCC;
-}
 
 /* .nav-text {
     color: #fff;
