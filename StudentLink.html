@@ -1,0 +1,56 @@
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload Student Documents</title>
+<link rel="stylesheet" href="./css/studentLink.css">
+<script src="js/studentLink.js"></script>
+</head>
+<body>
+
+<h2>Upload Outstanding Documents</h2>
+<form id="uploadForm" class="container">
+    <label for="cv">CV:</label>
+    <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx">
+    <label for="cv" class="custom-file-upload">Choose File</label>
+    <p id="cvStatus" class="file-status"></p>
+    
+    <label for="identity">Identity Document:</label>
+    <input type="file" id="identity" name="identity" accept=".pdf,.jpg,.png">
+    <label for="identity" class="custom-file-upload">Choose File</label>
+    <p id="identityStatus" class="file-status"></p>
+    
+    <label for="transcript">Academic Transcript:</label>
+    <input type="file" id="transcript" name="transcript" accept=".pdf">
+    <label for="transcript" class="custom-file-upload">Choose File</label>
+    <p id="transcriptStatus" class="file-status"></p>
+    
+    <button type="submit">Upload</button>
+</form>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document Upload</title>
+<link rel="stylesheet" href="./css/studentLink.css">
+<script src="js/studentLink.js"></script>
+</head>
+<body>
+<h1>Upload The Outstanding Documents</h1>
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <label for="cv">Curriculum Vitae:</label>
+    <input type="file" id="cv" name="cv" required><br><br>
+    <label for="academic">Academic Record:</label>
+    <input type="file" id="academic" name="academic" required><br><br>
+    <label for="identity">Identity Document:</label>
+    <input type="file" id="identity" name="identity" required><br><br>
+    <button type="submit">Upload</button>
+</form>
+</body>
+</html>

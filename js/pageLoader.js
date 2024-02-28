@@ -30,17 +30,14 @@ function dropdown() {
     });
 }
 
-
 function loadInstitutesPage() {
     activeNav("institutes");
     let main = document.getElementById("main-section");
     main.innerHTML = `
-        <section id="popup">
-        </section> 
         <section id="header">
         </section>
         <section id="add-institute-section">
-            <button id="add-institute-button" class="add-button"><i class="fa fa-plus" aria-hidden="true"></i> INSTITUTE</button>
+            <button id="add-institute-button" class="add-button"><i class="fa fa-plus" aria-hidden="true"></i> ADD INSTITUTE</button>
         </section>
         <section id="filter-section">
             <h2>INSTITUTES</h2>
@@ -58,10 +55,10 @@ function loadInstitutesPage() {
             <table>
                 <thead>
                     <tr>
-                        <th scope="col">Institute</th>
-                        <th scope="col">Reviewer</th>
-                        <th scope="col">Status</th>
-                        <th scope="col"></th>
+                        <th scope="col">Institute Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Financial Date</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody id="results">
@@ -70,7 +67,75 @@ function loadInstitutesPage() {
             </table>
         </section>
     `;
+
+    // Add event listener to the add institute button
+    document.getElementById("add-institute-button").addEventListener("click", function() {
+        // Create institute form
+        let instituteForm = `
+            <div id="institute-form-overlay">
+                <div id="institute-form-container">
+                    <span class="close" onclick="closeForm()">&times;</span>
+                    <form id="institute-form">
+                        <label for="institute-name">Institute Name:</label><br>
+                        <input type="text" id="institute-name" name="institute-name" required><br>
+                        <label for="email">Email:</label><br>
+                        <input type="email" id="email" name="email" required><br>
+                        <label for="financial-date">Financial Date:</label><br>
+                        <input type="date" id="financial-date" name="financial-date" required><br><br>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        `;
+
+        // Append the institute form to the main section
+        main.innerHTML += instituteForm;
+
+        // Handle form submission
+        document.getElementById("institute-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get form values
+            let instituteName = document.getElementById("institute-name").value;
+            let email = document.getElementById("email").value;
+            let financialDate = document.getElementById("financial-date").value;
+
+            // Create a new row for the table
+            let newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td>${instituteName}</td>
+                <td>${email}</td>
+                <td>${financialDate}</td>
+                <td><button class="edit-button">Edit</button> <button class="delete-button">Delete</button></td>
+            `;
+
+            // Append the new row to the results tbody
+            document.getElementById("results").appendChild(newRow);
+
+            // Reset the form
+            document.getElementById("institute-form").reset();
+
+            // Add event listeners for edit and delete buttons
+            newRow.querySelector('.edit-button').addEventListener('click', function() {
+                // Code to handle editing
+                // For example, you can populate the form with existing data for editing
+                console.log('Edit clicked');
+            });
+
+            newRow.querySelector('.delete-button').addEventListener('click', function() {
+                // Code to handle deletion
+                // For example, you can remove the row from the table
+                newRow.remove();
+            });
+        });
+    });
 }
+
+// Function to close the institute form
+function closeForm() {
+    document.getElementById("institute-form-overlay").remove();
+}
+
 
 
 function loadFundingPage() {
