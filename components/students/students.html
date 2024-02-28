@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Institutes Page</title>
+    <link rel="stylesheet" href="./students.css">
+    <link rel="stylesheet" href="../../css/admin_table.css">
+</head>
+
+<body>
+    <section id="popup">
+    </section>  
+    <section id="header" class="students">
+    <section id="filter-section">
+        <h2>Students Application</h2>
+        <a id="dropdown-icon" href="#" onclick="dropdown()">
+            <i class="fa fa-sliders fa-2x"></i>
+            <ul id="filter-dropdown">
+                <li><a href="#">All</a></li>
+                <li><a href="#">Approved</a></li>
+                <li><a href="#">Rejected</a></li>
+                <li><a href="#">Pending</a></li>
+            </ul>
+        </a>
+    </section>
+    <section id="students">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">FirstName</th>
+                    <th scope="col">LastName</th>
+                    <th scope="col">University</th>
+                    <th scope="col">BursaryAmount</th>
+                    <th scope="col">status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody id="results">
+
+            </tbody>
+        </table>
+    </section>
+    </section>
+</body>
+<script type="module">
+    import { fetchStudents } from './students.js';
+
+    document.addEventListener('DOMContentLoaded', function () {
+        fetchStudents();
+    });
+</script>
+<script>
+
+</script>
+
+</html>

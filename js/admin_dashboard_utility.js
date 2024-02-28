@@ -1,12 +1,12 @@
 let apiBaseUrl = "http://localhost:8080";
 
 
-function isLoggedIn() {
+function isLoggedIn(role) {
     const loginDetails = getLoginDetails();
     return  loginDetails.userEmail !== null 
             && loginDetails.loginToken !== null
             && loginDetails.role !== null
-            && loginDetails.role.toLowerCase() === "admin";
+            && loginDetails.role.toLowerCase() === role.toLowerCase();
 }
 
 
@@ -22,8 +22,10 @@ function redirectToLoginPage() {
 }
 
 
-function ifNotloggedInRedirectToLoginPage() {
-    if (!isLoggedIn()) {
+function ifNotloggedInRedirectToLoginPage(role) {
+    role = role === undefined ? "admin" : role;
+
+    if (!isLoggedIn(role)) {
         redirectToLoginPage()
     } else {
         setLoggedInUser()
@@ -35,7 +37,8 @@ function getLoginDetails() {
     return {
         userEmail: localStorage.getItem("userEmail"),
         loginToken: localStorage.getItem("loginToken"),
-        role: localStorage.getItem("role")
+        role: localStorage.getItem("role"),
+        institute: localStorage.getItem("institute")
     }
 }
 
@@ -61,5 +64,19 @@ function showMessage(message, status) {
     popup.innerText = message;
     popup.style.display = "block";
 }
+function handleErrorResponse(response) {
+    if (response.status == 403 || response.status == 401) {
+        showMessage("Please login!", "error");
+        redirectToLoginPage();
+        return;
+    } else if (response.status == 500) {
+        showMessage("Server is offline!", "error");
+        return;
+    } else if (!response.ok) {
+        showMessage("Something went wrong!", "error");
+        return;
+    }
+    return response.json();
+}
 
-export { apiBaseUrl, getLoginDetails, ifNotloggedInRedirectToLoginPage, showMessage }
+export { apiBaseUrl, getLoginDetails, ifNotloggedInRedirectToLoginPage, showMessage, handleErrorResponse }

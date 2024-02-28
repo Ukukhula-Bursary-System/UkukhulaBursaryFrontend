@@ -20,7 +20,7 @@ function login(response) {
         return res.json();
     }).then(data => {
         let role = data["authorities"][0]["authority"];
-        saveLoginDetails(response.credential, data["user"], data["authorities"][0]["authority"]);
+        saveLoginDetails(response.credential, data["user"], data["authorities"][0]["authority"], data["institute"]);
         redirectAfterLogin(role);
     }).catch(error => {
         alert("something went wrong!");

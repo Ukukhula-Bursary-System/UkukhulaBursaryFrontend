@@ -13,4 +13,21 @@ function appendAdmin(data) {
     }
 }
 
-export { appendAdmin }
+
+function getValuesForNewAdmin() {
+    let firstName = document.getElementById("first-name");
+    let lastName = document.getElementById("last-name");
+    let phoneNumber = document.getElementById("phone-number");
+    let email = document.getElementById("email");
+    let role = document.getElementById("role");
+
+    return {
+        firstName: firstName.value,
+        lastName: lastName.value,
+        phoneNumber: phoneNumber.value,
+        email: email.value,
+        roleId: role.value
+    }
+}
+
+export { appendAdmin, getValuesForNewAdmin }

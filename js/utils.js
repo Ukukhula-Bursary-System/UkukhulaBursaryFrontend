@@ -9,10 +9,11 @@ function isLoggedIn() {
 }
 
 
-function saveLoginDetails(token, email, role) {
+function saveLoginDetails(token, email, role, institute) {
     localStorage.setItem("loginToken", token);
     localStorage.setItem("userEmail", email);
     localStorage.setItem("role", role)
+    localStorage.setItem("institute", institute)
 }
 
 
@@ -27,8 +28,8 @@ function getLoginDetails() {
 function redirectAfterLogin(role) {
     if (role == "HOD") {
         //redirect to HOD dashboard
-        alert("HOD redirect!");
-    } else if (role == "reviewer") {
+        window.location.replace("/head_of_department_dashboard.html");
+    } else if (role == "Reviewer") {
         //redirect to Reviewer dashboard
         alert("Reviewer redirect!");
     } else if (role == "Admin") {
@@ -38,4 +39,18 @@ function redirectAfterLogin(role) {
         console.log(role);
         alert("Uknown role!");
     }
+}
+function handleErrorResponse(response) {
+    if (response.status == 403 || response.status == 401) {
+        showMessage("Please login!", "error");
+        redirectToLoginPage();
+        return;
+    } else if (response.status == 500) {
+        showMessage("Server is offline!", "error");
+        return;
+    } else if (!response.ok) {
+        showMessage("Something went wrong!", "error");
+        return;
+    }
+    return response.json();
 }

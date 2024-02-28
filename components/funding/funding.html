@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Institutes Page</title>
+    <link rel="stylesheet" href="./funding.css">
+    <link rel="stylesheet" href="../../css/admin_table.css">
+</head>
+
+<body>
+    <section id="popup">
+    </section> 
+    <section id="header">
+    </section>
+    <section id="add-institute-section">
+        <button id="add-funding-button" class="add-button"><i class="fa fa-plus" aria-hidden="true"></i> NEW FUNDING</button>
+        <article id="amount">
+            <h3>Fund Amount: <span id="fund-amount">R 1 000 000.00</span></h3>
+            <h3>Remainning: <span id="remaining-fund">R 2 000.00</span></h3>
+        </article>
+    </section>
+    <section id="filter-section">
+        <h2>FUNDED INSTITUTES</h2>
+        <a id="dropdown-icon" href="#" onclick="dropdown()">
+            <i class="fa fa-sliders fa-2x"></i>
+            <ul id="filter-dropdown">
+                <li><a href="#">All</a></li>
+                <li><a href="#">Approved</a></li>
+                <li><a href="#">Rejected</a></li>
+                <li><a href="#">Pending</a></li>
+            </ul>
+        </a>
+    </section>
+    <section id="institutes">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Institute</th>
+                    <th scope="col">Allocated Amount</th>
+                    <th scope="col">Remaining Amount</th>
+                    <th scope="col">Financial Date</th>
+                </tr>
+            </thead>
+            <tbody id="results">
+            </tbody>
+        </table>
+    </section>
+</body>
+<script type="module">
+    import { fetchAllInstitutesAllocatedFunds } from './funding.js';
+
+    document.addEventListener('DOMContentLoaded', function () {
+        fetchAllInstitutesAllocatedFunds();
+    });
+</script>
+<script>
+
+</script>
+
+</html>
