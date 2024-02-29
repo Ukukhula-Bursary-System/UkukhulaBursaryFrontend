@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="./css/landing.css">
 </head>
+
 <body>
     <header>
-        <aside>
-            <img src="https://bbdsoftware.com/wp-content/uploads/logo2.svg" alt="">
-        </aside>
+        <nav>
+            <section class="logo">
+                <img src="img/logo.png" alt="Logo">
+            </section>
+            <section class="login-buttons">
+                <a href="#" class="button-sign-in">Sign-in</a>
+                <a href="#" class="button-apply">apply</a>
+            </section>
+        </nav>
     </header>
     <main class="centered">
         <section id="g_id_onload" 
@@ -29,9 +37,24 @@
             data-logo_alignment="right",
             data-auto_prompt="false">
         </section>
+
+        <section>
+            <h1>BBD Ukukhula Bursary</h1>
+            <p>This initiative is a testament to BBD's dedication to empowering individuals through education, thereby
+                contributing to socio-economic growth and addressing the challenges of unemployment and division in the
+                country</p>
+        </section>
+        <section class="bottom-logins">
+            <button class="bottom-apply">APPLY</button>
+            <button class="bottom-signin">SIGN-IN</button>
+        </section>
+        <section class="bottom-image">
+            <img src="/front-end/UkukhulaBursaryFrontend/img/Screenshot Capture - 2024-02-26 - 12-14-34.png" alt="" srcset="">
+        </section>
     </main>
     <script src="./js/utils.js"></script>
     <script src="./js/login.js"></script>
     <script src="https://accounts.google.com/gsi/client" async></script>
 </body>
+
 </html>

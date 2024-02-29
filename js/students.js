@@ -4,9 +4,9 @@ export function appendStudents(data) {
     results.innerHTML = "";
     for (let i = 0; i < data.length; i++) {
         let student = data[i];
-        results.innerHTML += 
-     
-        ` <tr>
+        results.innerHTML +=
+
+            ` <tr>
                 <td data-label="FirstName">${student["firstName"]}</td>
                 <input type="hidden" value=${student["studentID"]}>
                 <td data-label="LastName">${student["lastName"]}</td>
@@ -19,15 +19,12 @@ export function appendStudents(data) {
             </tr>`
 
     }
+}
 
+export function StudentDetailsView(student) {
 
-  
-    }  
-   
-export function StudentDetailsView(student){
-
-        let results = document.getElementById("main-section");
-        results.innerHTML =
+    let results = document.getElementById("main-section");
+    results.innerHTML =
         `
         <section id="header" class="students">
         <section id="filter-section">
@@ -82,19 +79,19 @@ export function StudentDetailsView(student){
           </section>
     </section>`;
 
-    document.getElementById("Approve").addEventListener("click", function(){
+    document.getElementById("Approve").addEventListener("click", function () {
         student.status = "Approved";
         alert("under construction student, please try again later!");
-     
+
     }
     )
-    document.getElementById("reject").addEventListener("click", function(){
-       
-        student.status = "Rejected";
-        
-    }
-    )   
+    document.getElementById("reject").addEventListener("click", function () {
 
-    
-    
+        student.status = "Rejected";
+
+    }
+    )
+
+
+
 }  

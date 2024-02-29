@@ -64,5 +64,19 @@ function showMessage(message, status) {
     popup.innerText = message;
     popup.style.display = "block";
 }
+function handleErrorResponse(response) {
+    if (response.status == 403 || response.status == 401) {
+        showMessage("Please login!", "error");
+        redirectToLoginPage();
+        return;
+    } else if (response.status == 500) {
+        showMessage("Server is offline!", "error");
+        return;
+    } else if (!response.ok) {
+        showMessage("Something went wrong!", "error");
+        return;
+    }
+    return response.json();
+}
 
-export { apiBaseUrl, getLoginDetails, ifNotloggedInRedirectToLoginPage, showMessage }
+export { apiBaseUrl, getLoginDetails, ifNotloggedInRedirectToLoginPage, showMessage, handleErrorResponse }

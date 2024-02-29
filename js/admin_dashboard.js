@@ -5,7 +5,7 @@ import * as Funding from "./funding.js";
 import * as Admin from "./admins.js";
 
 
-function fetchAllInstitutes(statusId) {
+export function fetchAllInstitutes(statusId) {
     let loginDetails = Utility.getLoginDetails();
     let apiBaseUrl = Utility.apiBaseUrl;
 
@@ -31,7 +31,7 @@ function fetchAllInstitutes(statusId) {
 }
 
 
-function fetchStudents(){
+export function fetchStudents(){
     let loginDetails = Utility.getLoginDetails();
     let apiBaseUrl = Utility.apiBaseUrl;
 
@@ -168,7 +168,10 @@ function approveOrDeclineStudents(status, studentID) {
     })
 }
 
-
+window.fetchAllInstitutes = fetchAllInstitutes
+window.fetchStudents = fetchStudents
+window.fetchAllInstitutesAllocatedFunds = fetchAllInstitutesAllocatedFunds
+window.fetchAllAdmins = fetchAllAdmins
 
 document.addEventListener('DOMContentLoaded', () => {
     loadInstitutesPage();
@@ -176,48 +179,48 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchAllInstitutes();
     
     //Institutes Page
-    let instituteNav = document.getElementById("institutes-nav");
-    instituteNav.addEventListener("click", (e) => {
-        loadInstitutesPage();
-        fetchAllInstitutes();
-    });
+    // let instituteNav = document.getElementById("institutes-nav");
+    // instituteNav.addEventListener("click", (e) => {
+    //     loadInstitutesPage();
+    //     fetchAllInstitutes();
+    // });
 
     //Students Page
-    let studentsNav = document.getElementById("students-nav");
-    studentsNav.addEventListener("click", (e) => {
-        loadStudentsPage();
-        fetchStudents();
-    });
+//     let studentsNav = document.getElementById("students-nav");
+//     studentsNav.addEventListener("click", (e) => {
+//         loadStudentsPage();
+//         fetchStudents();
+//     });
 
 
 
 
-    //Funding Page
-    let fundingNav = document.getElementById("funding-nav");
-    fundingNav.addEventListener("click", (e) => {
-        loadFundingPage();
-        fetchAllInstitutesAllocatedFunds();
-    });
+//     //Funding Page
+//     let fundingNav = document.getElementById("funding-nav");
+//     fundingNav.addEventListener("click", (e) => {
+//         loadFundingPage();
+//         fetchAllInstitutesAllocatedFunds();
+//     });
 
-    //Admin Page
-    let adminsNav = document.getElementById("admins-nav");
-    adminsNav.addEventListener("click", (e) => {
-        loadAdminsPage();
-        fetchAllAdmins();
+//     //Admin Page
+//     let adminsNav = document.getElementById("admins-nav");
+//     adminsNav.addEventListener("click", (e) => {
+//         loadAdminsPage();
+//         fetchAllAdmins();
 
-        let addNewAdminBtn = document.getElementById("add-admin-button");
-        addNewAdminBtn.addEventListener("click", (e) => {
-            loadAddNewAdmin();
+//         let addNewAdminBtn = document.getElementById("add-admin-button");
+//         addNewAdminBtn.addEventListener("click", (e) => {
+//             loadAddNewAdmin();
 
-            //Add new admin page
-            let addAdminForm = document.getElementById("add-admin-form");
-            addAdminForm.addEventListener("submit", (e) => {
-                e.preventDefault();
-                addAdmin();
-            });
-        })
-    });
-});
+//             //Add new admin page
+//             let addAdminForm = document.getElementById("add-admin-form");
+//             addAdminForm.addEventListener("submit", (e) => {
+//                 e.preventDefault();
+//                 addAdmin();
+//             });
+//         })
+//     });
+ });
 
 
 function handleErrorResponse(response) {

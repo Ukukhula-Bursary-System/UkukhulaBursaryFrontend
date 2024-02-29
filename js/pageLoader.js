@@ -1,20 +1,20 @@
-function activeNav(nav) {
-    let navs = ["funding", "institutes", "students", "admins", "applications"];
+// function activeNav(nav) {
+//     let navs = ["funding", "institutes", "students", "admins", "applications"];
 
-    for (let i=0; i < navs.length; i++) {
-        if (nav === navs[i]) {
-            document.getElementById(`${nav}-nav`)
-                    .classList
-                    .add("active");
-        } else {
-            let nav =  document.getElementById(`${navs[i]}-nav`);
+//     for (let i=0; i < navs.length; i++) {
+//         if (nav === navs[i]) {
+//             document.getElementById(`${nav}-nav`)
+//                     .classList
+//                     .add("active");
+//         } else {
+//             let nav =  document.getElementById(`${navs[i]}-nav`);
             
-            if (nav !== null) {
-                nav.classList.remove("active");
-            }
-        }
-    }
-}
+//             if (nav !== null) {
+//                 nav.classList.remove("active");
+//             }
+//         }
+//     }
+// }
 
 
 function dropdown() {
@@ -32,8 +32,9 @@ function dropdown() {
 
 
 function loadInstitutesPage() {
-    activeNav("institutes");
+   // activeNav("institutes");
     let main = document.getElementById("main-section");
+    console.log(main)
     main.innerHTML = `
         <section id="popup">
         </section> 
@@ -41,9 +42,11 @@ function loadInstitutesPage() {
         </section>
         <section id="add-institute-section">
             <button id="add-institute-button" class="add-button"><i class="fa fa-plus" aria-hidden="true"></i> INSTITUTE</button>
+            
         </section>
         <section id="filter-section">
             <h2>INSTITUTES</h2>
+            <section class="line"></section>
             <a id="dropdown-icon" href="#" onclick="dropdown()">
                 <i class="fa fa-sliders fa-2x"></i>
                 <ul id="filter-dropdown">
@@ -74,7 +77,7 @@ function loadInstitutesPage() {
 
 
 function loadFundingPage() {
-    activeNav("funding");
+   // activeNav("funding");
     let main = document.getElementById("main-section");
     main.innerHTML = `
         <section id="popup">
@@ -119,7 +122,7 @@ function loadFundingPage() {
 
 
 function loadStudentsPage() {
-    activeNav("students");
+  //  activeNav("students");
 
     let main = document.getElementById("main-section");
     main.innerHTML = `
@@ -160,7 +163,7 @@ function loadStudentsPage() {
 
 
 function loadAdminsPage() {
-    activeNav("admins");
+ //   activeNav("admins");
     let main = document.getElementById("main-section");
     main.innerHTML = `
         <section id="popup">
@@ -192,7 +195,7 @@ function loadAdminsPage() {
 
 
 function loadAddNewAdmin() {
-    activeNav("admins");
+  //  activeNav("admins");
     let main = document.getElementById("main-section");
     main.innerHTML = `
         <section id="popup">
@@ -224,7 +227,7 @@ function loadAddNewAdmin() {
 
 
 function loadHeadOfDepartmentFundingPage() {
-    activeNav("funding");
+  //  activeNav("funding");
     let main = document.getElementById("main-section");
     main.innerHTML = `
         <section id="popup">
@@ -260,7 +263,7 @@ function loadHeadOfDepartmentFundingPage() {
 
 
 function loadHeadOfDepartmentApplicationPage() {
-    activeNav("applications");
+  //  activeNav("applications");
     let main = document.getElementById("main-section");
     main.innerHTML = `
         <section id="popup">

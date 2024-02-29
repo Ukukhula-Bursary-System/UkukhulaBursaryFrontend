@@ -36,6 +36,21 @@ function redirectAfterLogin(role) {
         //redirect to admin dashboard
         window.location.replace("/admin_dashboard.html");
     } else {
+        console.log(role);
         alert("Uknown role!");
     }
+}
+function handleErrorResponse(response) {
+    if (response.status == 403 || response.status == 401) {
+        showMessage("Please login!", "error");
+        redirectToLoginPage();
+        return;
+    } else if (response.status == 500) {
+        showMessage("Server is offline!", "error");
+        return;
+    } else if (!response.ok) {
+        showMessage("Something went wrong!", "error");
+        return;
+    }
+    return response.json();
 }
