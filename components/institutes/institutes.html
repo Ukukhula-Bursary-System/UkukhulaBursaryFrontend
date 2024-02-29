@@ -11,23 +11,24 @@
 <body>
     <section id="add-institute-section">
         <button id="add-institute-button" class="add-button">
-            <i class="fa fa-plus" aria-hidden="true"></i> INSTITUTE
+            <img src="../../img/134224_add_plus_new_icon.png" alt="plus icon" /> INSTITUTE
         </button>
     </section>
     <section id="header"></section>
 
-    <section id="filter-section">
+    <section class="filter-section">
         <h2>INSTITUTES</h2>
         <section class="line"></section>
-        <a id="dropdown-icon" href="#">
-            <i class="fa fa-sliders fa-2x"></i>
-            <ul id="filter-dropdown">
-                <li><a href="#">All</a></li>
-                <li><a href="#">Approved</a></li>
-                <li><a href="#">Rejected</a></li>
-                <li><a href="#">Pending</a></li>
-            </ul>
-        </a>
+       <section>
+        <label for="filter-options">Filter:</label>
+        <select name="filter-options" id="filter-options">
+            <option value="volvo">All</option>
+            <option value="saab">Approved</option>
+            <option value="mercedes">Rejected</option>
+            <option value="audi">Pending</option>
+        </select>
+       </section>
+        
     </section>
     <section id="institutes">
         <table>

@@ -13,23 +13,24 @@
     <section id="header">
     </section>
     <section id="add-institute-section">
-        <button id="add-funding-button" class="add-button"><i class="fa fa-plus" aria-hidden="true"></i> NEW FUNDING</button>
-        <article id="amount">
+        <button id="add-funding-button" class="add-button"><img src="../../img/134224_add_plus_new_icon.png" alt="plus icon"/> NEW FUNDING</button>
+        <!-- <article id="amount">
             <h3>Fund Amount: <span id="fund-amount">R 1 000 000.00</span></h3>
             <h3>Remainning: <span id="remaining-fund">R 2 000.00</span></h3>
-        </article>
+        </article> -->
     </section>
-    <section id="filter-section">
+    <section class="filter-section">
         <h2>FUNDED INSTITUTES</h2>
-        <a id="dropdown-icon" href="#" onclick="dropdown()">
-            <i class="fa fa-sliders fa-2x"></i>
-            <ul id="filter-dropdown">
-                <li><a href="#">All</a></li>
-                <li><a href="#">Approved</a></li>
-                <li><a href="#">Rejected</a></li>
-                <li><a href="#">Pending</a></li>
-            </ul>
-        </a>
+        <section class="line"></section>
+        <section>
+            <label for="filter-options">Filter:</label>
+            <select name="filter-options" id="filter-options">
+                <option value="volvo">All</option>
+                <option value="saab">Approved</option>
+                <option value="mercedes">Rejected</option>
+                <option value="audi">Pending</option>
+            </select>
+           </section>
     </section>
     <section id="institutes">
         <table>

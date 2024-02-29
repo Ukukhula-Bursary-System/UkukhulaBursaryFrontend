@@ -11,17 +11,18 @@
     <section id="popup">
     </section>  
     <section id="header" class="students">
-    <section id="filter-section">
+    <section class="filter-section">
         <h2>Students Application</h2>
-        <a id="dropdown-icon" href="#" onclick="dropdown()">
-            <i class="fa fa-sliders fa-2x"></i>
-            <ul id="filter-dropdown">
-                <li><a href="#">All</a></li>
-                <li><a href="#">Approved</a></li>
-                <li><a href="#">Rejected</a></li>
-                <li><a href="#">Pending</a></li>
-            </ul>
-        </a>
+        <section class="line"></section>
+        <section>
+            <label for="filter-options">Filter:</label>
+            <select name="filter-options" id="filter-options">
+                <option value="volvo">All</option>
+                <option value="saab">Approved</option>
+                <option value="mercedes">Rejected</option>
+                <option value="audi">Pending</option>
+            </select>
+           </section>
     </section>
     <section id="students">
         <table>

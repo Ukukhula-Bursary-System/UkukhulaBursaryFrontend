@@ -8,40 +8,68 @@
 </head>
 
 <body>
-    <section id="popup">
+    <section id="admin-page">
+        <section id="popup">
+        </section>
+        <section id="header">
+        </section>
+        <section id="add-institute-section">
+            <button onclick="toggleElement('add-admin')" id="add-admin-button" class="add-button"><img
+                    src="../../img/134224_add_plus_new_icon.png" alt="plus icon" /> ADMIN</button>
+        </section>
+        <section class="filter-section">
+            <h2>ADMINS AND REVIEWERS</h2>
+        </section>
+        <section class="line"></section>
+        <section id="institutes">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Fullname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Active</th>
+                        <th scope="col">Role</th>
+                    </tr>
+                </thead>
+                <tbody id="results">
+                </tbody>
+            </table>
+        </section>
     </section>
-    <section id="header">
+    <section>
+
     </section>
-    <section id="add-institute-section">
-        <button id="add-admin-button" class="add-button"><i class="fa fa-plus" aria-hidden="true"></i>ADMIN</button>
+    <section id="add-admin">
+        <section class="filter-section">
+            <h2>ADD ADMIN</h2>
+            <section class="line"></section>
+        </section>
+
+        <form id="add-admin-form">
+            <h3>Create new admin user.</h3>
+            <article id="name-input-fields">
+                <input id="first-name" placeholder="Firstname..." type="text" />
+                <input id="last-name" placeholder="Lastname..." type="text" />
+            </article>
+            <input id="phone-number" placeholder="+27731561234" type="text" />
+            <input id="email" placeholder="email" type="email" />
+            <select id="role">
+                <option value=2>Admin</option>
+                <option value=4>Reviewer</option>
+            </select>
+            <input type="submit" onclick="addAdmin()" value="SAVE" />
+        </form>
     </section>
-    <section id="filter-section">
-        <h2>ADMINS AND REVIEWERS</h2>
-    </section>
-    <section id="institutes">
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">Fullname</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Active</th>
-                    <th scope="col">Role</th>
-                </tr>
-            </thead>
-            <tbody id="results">
-            </tbody>
-        </table>
-    </section>
+
 </body>
 <script type="module">
-    import { fetchAllAdmins } from './admins.js';
+    import { fetchAllAdmins, setupPage } from './admins.js';
 
     document.addEventListener('DOMContentLoaded', function () {
+        setupPage();
         fetchAllAdmins();
     });
 </script>
-<script>
-
-</script>
+<script type="module" src="./admins.js"></script>
 
 </html>
