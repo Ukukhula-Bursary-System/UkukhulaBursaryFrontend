@@ -19,16 +19,23 @@
     <section class="filter-section">
         <h2>INSTITUTES</h2>
         <section class="line"></section>
-       <section>
-        <label for="filter-options">Filter:</label>
-        <select name="filter-options" id="filter-options">
-            <option value="volvo">All</option>
-            <option value="saab">Approved</option>
-            <option value="mercedes">Rejected</option>
-            <option value="audi">Pending</option>
-        </select>
-       </section>
-        
+        <section>
+            <label for="search-input">Search:</label>
+            <input type="text" id="search-input" placeholder="Search...">
+            <label for="money-range">Range:</label>
+            <input type="range" id="money-range" min="0" max="125000" value="50000" oninput="displayValue(this.value)">
+            <output id="display-value">R50000</output>
+            <label for="filter-options">Filter:</label>
+            <select name="filter-options" id="filter-options">
+                <option value="All">All</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Pending">Pending</option>
+            </select>
+
+        </section>
+
+
     </section>
     <section id="institutes">
         <table>
