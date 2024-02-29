@@ -8,7 +8,7 @@ export function appendStudents(data) {
         let student = data[i];
         results.innerHTML +=
 
-            ` <tr>
+            ` <tr class="table-rows">
                 <td data-label="FirstName">${student["firstName"]}</td>
                 <input type="hidden" value=${student["studentID"]}>
                 <td data-label="LastName">${student["lastName"]}</td>
