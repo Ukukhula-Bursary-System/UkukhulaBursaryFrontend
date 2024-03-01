@@ -6,7 +6,7 @@ function appendStudents(data) {
     results.innerHTML = "";
     for (let i = 0; i < data.length; i++) {
         let student = data[i];
-        results.innerHTML =
+        results.innerHTML +=
 
             ` <tr class="table-rows">
                 <td data-label="FirstName">${student["firstName"]}</td>

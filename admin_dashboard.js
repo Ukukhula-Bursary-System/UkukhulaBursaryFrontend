@@ -4,7 +4,7 @@ function toggleIframe(iframeId) {
     document.getElementById('students').style.display = 'none';
     document.getElementById('admins').style.display = 'none';
 
-
+    document.getElementById(iframeId).contentDocument.location.reload(true); //reload iframe
     document.getElementById(iframeId).style.display = 'block';
 }
 

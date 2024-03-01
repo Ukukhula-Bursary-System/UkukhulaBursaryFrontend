@@ -25,6 +25,7 @@ function fetchAllAdmins() {
 function appendAdmin(data) {
     let results = document.getElementById("results");
 
+    results.innerHTML = '';
     for (let i = 0; i < data.length; i++) {
         results.innerHTML += `
             <tr class="table-rows">

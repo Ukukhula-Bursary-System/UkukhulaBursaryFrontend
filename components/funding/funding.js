@@ -4,8 +4,9 @@ import * as Utility from "../../js/admin_dashboard_utility.js";
 function appendFunds(data) {
     let results = document.getElementById("results");
 
+    results.innerHTML = '';
     for (let i = 0; i < data.length; i++) {
-        results.innerHTML = `
+        results.innerHTML += `
             <tr class="table-rows">
                 <td data-label="Institute">${data[i]["instituteName"]}</td>
                 <td data-label="Allocated Amount">${data[i]["allocatedAmount"]}</td>
@@ -37,6 +38,8 @@ function fetchAllInstitutesAllocatedFunds(instituteId, year) {
     if (instituteId !== undefined) {
         apiBaseUrl += "/single-institute/" + instituteId;
     }
+
+    console.log(apiBaseUrl);
 
     if (year !== "" && year !== undefined) {
         apiBaseUrl += "/" + year;
