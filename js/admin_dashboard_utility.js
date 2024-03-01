@@ -44,6 +44,7 @@ function getLoginDetails() {
 
 
 function showMessage(message, status) {
+    console.log(message);
     let popup = document.getElementById("popup");
 
     if (popup.classList !== null) {
@@ -79,4 +80,4 @@ function handleErrorResponse(response) {
     return response.json();
 }
 
-export { apiBaseUrl, getLoginDetails, ifNotloggedInRedirectToLoginPage, showMessage, handleErrorResponse }
+export { apiBaseUrl, getLoginDetails, ifNotloggedInRedirectToLoginPage, showMessage, handleErrorResponse, setLoggedInUser }
