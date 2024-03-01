@@ -3,6 +3,7 @@ import * as Utility from "../../js/admin_dashboard_utility.js";
 function appendInstitutes(data) {
     let results = document.getElementById("results");
 
+    results.innerHTML = '';
     for (let i = 0; i < data.length; i++) {
         results.innerHTML += `
             <tr class="table-rows">

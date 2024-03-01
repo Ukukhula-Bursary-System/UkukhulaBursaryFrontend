@@ -1,11 +1,35 @@
 const apiBaseUrl = "http://localhost:8080"
 
 
-function isLoggedIn() {
+function isLoggedIn(role) {
     const loginDetails = getLoginDetails();
     return  loginDetails.userEmail !== null 
             && loginDetails.loginToken !== null
-            && loginDetails.role !== null;
+            && loginDetails.role !== null
+            && loginDetails.role.toLowerCase() === role.toLowerCase();
+}
+
+
+function setLoggedInUser() {
+    let user = document.getElementById("logged-user");
+    let loginDetails = getLoginDetails();
+    user.innerText = loginDetails.userEmail;
+}
+
+
+function redirectToLoginPage() {
+    window.location.replace("/");
+}
+
+
+function ifNotloggedInRedirectToLoginPage(role) {
+    role = role === undefined ? "admin" : role;
+
+    if (!isLoggedIn(role)) {
+        redirectToLoginPage()
+    } else {
+        setLoggedInUser()
+    }
 }
 
 

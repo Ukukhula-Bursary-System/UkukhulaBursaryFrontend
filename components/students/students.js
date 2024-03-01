@@ -1,8 +1,8 @@
 import * as Utility from "../../js/admin_dashboard_utility.js";
 
-export function appendStudents(data) {
+function appendStudents(data) {
     let results = document.getElementById("results");
-    console.log(results)
+
     results.innerHTML = "";
     for (let i = 0; i < data.length; i++) {
         let student = data[i];
@@ -29,6 +29,10 @@ function fetchStudents(){
 
     apiBaseUrl += "/student/all-applications";
 
+    if (loginDetails.role.toLocaleLowerCase() === "hod") {
+        apiBaseUrl += "/hod/" + loginDetails.userEmail;
+    }
+
     fetch(apiBaseUrl, {
         method: "GET",
         headers: {
@@ -39,7 +43,9 @@ function fetchStudents(){
     }).then(response => {
         return Utility.handleErrorResponse(response);
     }).then(data => {
-        appendStudents(data);
+        if (data !== undefined) {
+            appendStudents(data);
+        }
     }).catch(error => {
         Utility.showMessage(error.message, "error");
     })

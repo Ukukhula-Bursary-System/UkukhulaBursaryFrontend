@@ -12,30 +12,12 @@
     </section>
     <section id="header">
     </section>
-    <section id="add-institute-section">
-        <button id="add-funding-button" class="add-button"><img src="../../img/134224_add_plus_new_icon.png"
-                alt="plus icon" /> NEW FUNDING</button>
-        <!-- <article id="amount">
-            <h3>Fund Amount: <span id="fund-amount">R 1 000 000.00</span></h3>
-            <h3>Remainning: <span id="remaining-fund">R 2 000.00</span></h3>
-        </article> -->
-    </section>
     <section class="filter-section">
-        <h2>FUNDED INSTITUTES</h2>
+        <h2 id="institute-name"></h2>
+        <h3>Funded Amount: <span id="funded-amount"></span></h3>
+        <h3>Remaining Amount: <span id="remaining-amount"></span></h3>
         <section class="line"></section>
         <section class="filter">
-            <label for="search-input">Search:</label>
-            <input type="text" id="search-input" placeholder="Search student...">
-            <label for="money-range">Amount:</label>
-            <input type="range" id="money-range" min="0" max="125000" value="50000" oninput="displayValue(this.value)">
-            <output id="display-value">50000</output>
-            <label for="filter-options">Status:</label>
-            <select name="filter-options" id="filter-options">
-                <option value="All">All</option>
-                <option value="Approved">Approved</option>
-                <option value="Rejected">Rejected</option>
-                <option value="Pending">Pending</option>
-            </select>
         </section>
     </section>
     <section id="institutes">
@@ -61,9 +43,20 @@
 </body>
 <script type="module">
     import { fetchAllInstitutesAllocatedFunds } from './funding.js';
+    import * as Utility from "../../js/admin_dashboard_utility.js";
 
     document.addEventListener('DOMContentLoaded', function () {
-        fetchAllInstitutesAllocatedFunds();
+        let instituteId = Utility.getLoginDetails().institute;
+
+        if (instituteId === -1) {
+            fetchAllInstitutesAllocatedFunds();
+        } else {
+            fetchAllInstitutesAllocatedFunds(instituteId);
+
+            let date = new Date();
+            fetchAllInstitutesAllocatedFunds(instituteId, date.getFullYear());
+        }
+        
     });
 </script>
 <script>
