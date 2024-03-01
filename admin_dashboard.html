@@ -60,9 +60,12 @@
     </section>
 
 </body>
+<script src="./js/utils.js"></script>
 <script src="./admin_dashboard.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        ifNotloggedInRedirectToLoginPage("admin")
         setupPage();
     })
 </script>
