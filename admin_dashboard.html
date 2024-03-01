@@ -11,7 +11,9 @@
 <header>
     <nav>
         <section class="logo">
-            <img src="img/download.png" alt="Logo">
+            <section><img src="img/download.png" alt="Logo"><img onclick="toggleNav()" id="nav-close"
+                    src="./img/3671740_close_icon.png" alt=""></section>
+            <img onclick="toggleNav()" class="hamburger-menu" src="./img/134216_menu_lines_hamburger_icon.png" alt="">
             <section class="line"></section>
         </section>
         <section class="account-details">
@@ -21,26 +23,24 @@
         </section>
         <section class="menu">
             <h3>Menu</h3>
-            <section onclick="toggleIframe('institutes')"><img
-                    src="img/9113610_university_solid_icon.png" alt="University" srcset="">
+            <section onclick="toggleIframe('institutes')"><img src="img/9113610_university_solid_icon.png"
+                    alt="University">
                 <h5>University</h5>
             </section>
             <section onclick="toggleIframe('funding')"><img
-                    src="img/11019410_dollar_donation_fundraising_charity_donate money_icon.png" alt="Funding"
-                    srcset="">
+                    src="img/11019410_dollar_donation_fundraising_charity_donate money_icon.png" alt="Funding">
                 <h5>Funding</h5>
             </section>
-            <section onclick="toggleIframe('students')"><img src="img/9035473_people_outline_icon.png"
-                    alt="Students" srcset="">
+            <section onclick="toggleIframe('students')"><img src="img/9035473_people_outline_icon.png" alt="Students">
                 <h5>Students</h5>
             </section>
             <section onclick="toggleIframe('admins')"><img src="img/3209206_add_admin_create_plus_user_icon.png"
-                alt="Admin" srcset="">
-            <h5>Admin</h5>
-        </section>
+                    alt="Admin">
+                <h5>Admin</h5>
+            </section>
         </section>
         <section class="line"></section>
-        <section onclick="logout()" class="logout"><img src="img/1564506_close_exit_logout_power_icon.png" alt="Logout" srcset="">
+        <section onclick="logout()" class="logout"><img src="img/1564506_close_exit_logout_power_icon.png" alt="Logout">
             <h5>Logout</h5>
         </section>
     </nav>
@@ -50,63 +50,21 @@
     <img src="./img/12.jpg" class="background-image">
 
     <section class="data-display" id="main-section">
-        <iframe id="institutes" src="./components/institutes/institutes.html" frameborder="0" width="100%" height="100%"></iframe>
-        <iframe id="funding" src="./components/funding/funding.html" frameborder="0" width="100%" height="100%"></iframe>
-        <iframe id="students" src="./components/students/students.html" frameborder="0" width="100%" height="100%"></iframe>
+        <iframe id="institutes" src="./components/institutes/institutes.html" frameborder="0" width="100%"
+            height="100%"></iframe>
+        <iframe id="funding" src="./components/funding/funding.html" frameborder="0" width="100%"
+            height="100%"></iframe>
+        <iframe id="students" src="./components/students/students.html" frameborder="0" width="100%"
+            height="100%"></iframe>
         <iframe id="admins" src="./components/admins/admins.html" frameborder="0" width="100%" height="100%"></iframe>
     </section>
 
-
-    <!-- <nav id="navbar">
-            <img src="./img/logo2.svg" alt="BBD logo">
-            <p id="logged-user">test@email.com</p>
-            <ul>
-                <li id="funding-nav">
-                    <a class="nav-text" href="#" onclick="loadHeadOfDepartmentFundingPage()">
-                        <i class="fa fa-money" aria-hidden="true"></i>
-                        <span>FUNDING</span>
-                    </a>
-                </li>
-                <li id="institutes-nav">
-                    <a class="nav-text" href="#" onclick="loadInstitutesPage()">
-                        <i class="fa fa-university" aria-hidden="true"></i>
-                        <span>INSTITUTES</span>
-                    </a>
-                </li>
-                <li id="students-nav" onclick="loadStudentsPage()">
-                    <a class="nav-text" href="#">
-                        <i class="fa fa-users"></i>
-                        <span>STUDENTS</span>
-                    </a>
-                </li>
-                <li  id="admins-nav" onclick="loadAdminsPage()">
-                    <a class="nav-text" href="#">
-                        <i class="fa fa-users"></i>
-                        <span>ADMINS</span>
-                    </a>
-                </li>
-
-                <li id="logout-nav">
-                    <a class="nav-text" href="./index.html">
-                        <i class="fa fa-sign-out" aria-hidden="true"></i>
-                        <span>LOGOUT</span>
-                    </a>
-                </li>
-            </ul>
-        </nav> -->
-    <!-- <main id="main-section">
-        <section id="popup">
-        </section>
-    </main> -->
-    <!-- <script type="module" src="./components/institutes/institutes.js"></script> -->
-
-    <!-- <script type="module" src="./js/admin_dashboard.js"></script>
-    <script src="./js/pageLoader.js"></script> -->
 </body>
 <script src="./admin_dashboard.js"></script>
 <script>
-     document.addEventListener('DOMContentLoaded', function () {
-       setupPage();
+    document.addEventListener('DOMContentLoaded', function () {
+        setupPage();
     })
 </script>
+
 </html>
