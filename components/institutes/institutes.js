@@ -27,7 +27,7 @@ function fetchAllInstitutes(statusId) {
     if (statusId !== "" && statusId !== undefined) {
         apiBaseUrl += "/" + statusId;
     }
-    
+
 
     fetch(apiBaseUrl, {
         method: "GET",
@@ -52,9 +52,15 @@ function fetchAllInstitutes(statusId) {
     }).then(data => {
         appendInstitutes(data);
     }).catch(error => {
-     //   console.log(error)
+        //   console.log(error)
         Utility.showMessage(error.message, "error");
     })
 }
+function displayValue(value) {
+    document.getElementById('display-value').value = value;
+}
 
-export {fetchAllInstitutes}
+window.displayValue = displayValue
+
+
+export { fetchAllInstitutes }

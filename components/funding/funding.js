@@ -40,4 +40,10 @@ function fetchAllInstitutesAllocatedFunds(year) {
     })
 }
 
+function displayValue(value) {
+    document.getElementById('display-value').value = value;
+}
+
+window.displayValue = displayValue
+
 export {fetchAllInstitutesAllocatedFunds}

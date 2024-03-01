@@ -86,3 +86,23 @@ tbody tr:hover {
     border-bottom: 1px solid grey;
     border-top: 1px solid gray;
 }
+
+.filter {
+    padding: 1.2em;
+    display: flex;
+    justify-content: space-around;
+}
+#search-input {
+    padding: 0.4em;
+    border-radius: 5px;
+    border: none;
+}
+
+.filter label, .filter output {
+    color: white;
+    font-size: 1.2em;
+}
+
+.filter select {
+    padding: 0.2em 1em;
+}
