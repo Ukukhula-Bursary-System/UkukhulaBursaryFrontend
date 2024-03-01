@@ -44,5 +44,10 @@ function fetchStudents(){
         Utility.showMessage(error.message, "error");
     })
 }
+function displayValue(value) {
+    document.getElementById('display-value').value = value;
+}
+
+window.displayValue = displayValue
 
 export {fetchStudents}

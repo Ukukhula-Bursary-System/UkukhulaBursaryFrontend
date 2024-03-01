@@ -19,20 +19,16 @@
     <section class="filter-section">
         <h2>INSTITUTES</h2>
         <section class="line"></section>
-        <section>
+        <section class="filter">
             <label for="search-input">Search:</label>
-            <input type="text" id="search-input" placeholder="Search...">
-            <label for="money-range">Range:</label>
-            <input type="range" id="money-range" min="0" max="125000" value="50000" oninput="displayValue(this.value)">
-            <output id="display-value">R50000</output>
-            <label for="filter-options">Filter:</label>
+            <input type="text" id="search-input" placeholder="Search institution...">
+            <label for="filter-options">Status:</label>
             <select name="filter-options" id="filter-options">
                 <option value="All">All</option>
                 <option value="Approved">Approved</option>
                 <option value="Rejected">Rejected</option>
                 <option value="Pending">Pending</option>
             </select>
-
         </section>
 
 
@@ -59,132 +55,6 @@
     document.addEventListener('DOMContentLoaded', function () {
         fetchAllInstitutes();
     });
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // fetchAllInstitutes()
-
-        //     let apiBaseUrl = "http://localhost:8080";
-        //     function fetchAllInstitutes(statusId) {
-        //     let loginDetails = getLoginDetails();
-        //     let apiBaseUrl = "http://localhost:8080";
-
-        //     apiBaseUrl += "/institute";
-        //     if (statusId !== "" && statusId !== undefined) {
-        //         apiBaseUrl += "/" + statusId;
-        //     }
-
-        //     fetch(apiBaseUrl, {
-        //         method: "GET",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //             Accept: 'application/json',
-        //             Authorization: `Bearer ${loginDetails.loginToken}`
-        //         }
-        //     }).then(response => {
-        //         if (response.status == 403 || response.status == 401) {
-        //             showMessage("Please login!", "error");
-        //             redirectToLoginPage();
-        //             return;
-        //         } else if (response.status == 500) {
-        //             showMessage("Server is offline!", "error");
-        //             return;
-        //         } else if (!response.ok) {
-        //             showMessage("Something went wrong!", "error");
-        //             return;
-        //         }
-        //         return response.json();
-        //     }).then(data => {
-        //         appendInstitutes(data);
-        //     }).catch(error => {
-        //         showMessage(error.message, "error");
-        //     })
-        // }
-
-        // function appendInstitutes(data) {
-        //     let results = document.getElementById("results");
-
-        //     for (let i = 0; i < data.length; i++) {
-        //         results.innerHTML += `
-        //             <tr>
-        //                 <td data-label="Institute"><a href="#">${data[i]["instituteName"]}</a></td>
-        //                 <td data-label="Reviewer">${data[i]["email"]}</td>
-        //                 <td data-label="Status" class="approved">${data[i]["status"]}</td>
-        //                 <td>
-        //                     <a class="fund" href="#">Fund</a>
-        //                 </td>
-        //             </tr>
-        //         `;
-        //     }
-        // }
-
-
-
-
-        // function isLoggedIn() {
-        //     const loginDetails = getLoginDetails();
-        //     return  loginDetails.userEmail !== null 
-        //             && loginDetails.loginToken !== null
-        //             && loginDetails.role !== null
-        //             && loginDetails.role.toLowerCase() === "admin";
-        // }
-
-
-        // function setLoggedInUser() {
-        //     let user = document.getElementById("logged-user");
-        //     let loginDetails = getLoginDetails();
-        //     user.innerText = loginDetails.userEmail;
-        // }
-
-
-        // function redirectToLoginPage() {
-        //     window.location.replace("/");
-        // }
-
-
-        // function ifNotloggedInRedirectToLoginPage() {
-        //     if (!isLoggedIn()) {
-        //         redirectToLoginPage()
-        //     } else {
-        //         setLoggedInUser()
-        //     }
-        // }
-
-
-        // function getLoginDetails() {
-        //     return {
-        //         userEmail: localStorage.getItem("userEmail"),
-        //         loginToken: localStorage.getItem("loginToken"),
-        //         role: localStorage.getItem("role")
-        //     }
-        // }
-
-
-        // function showMessage(message, status) {
-        //     let popup = document.getElementById("popup");
-
-        //     if (popup.classList !== null) {
-        //         popup.classList.remove("success");
-        //         popup.classList.remove("error");
-        //     }
-
-        //     if (status === "error") {
-        //         popup.classList.add("error");
-        //     } else {
-        //         popup.classList.add("success");
-        //     }
-
-        //     setTimeout(() => {
-        //         popup.style.display = "none";
-        //     }, 2000);
-
-        //     popup.innerText = message;
-        //     popup.style.display = "block";
-        // }
-
-
-    });
-
 </script>
 
 </html>
