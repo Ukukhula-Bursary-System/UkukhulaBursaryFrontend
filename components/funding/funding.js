@@ -1,9 +1,11 @@
 import * as Utility from "../../js/admin_dashboard_utility.js";
+
+
 function appendFunds(data) {
     let results = document.getElementById("results");
 
     for (let i = 0; i < data.length; i++) {
-        results.innerHTML += `
+        results.innerHTML = `
             <tr class="table-rows">
                 <td data-label="Institute">${data[i]["instituteName"]}</td>
                 <td data-label="Allocated Amount">${data[i]["allocatedAmount"]}</td>
@@ -14,11 +16,28 @@ function appendFunds(data) {
     }
 }
 
-function fetchAllInstitutesAllocatedFunds(year) {
+
+function appendInstituteApplication(data) {
+    let fundAmount = document.getElementById("funded-amount");
+    let remainingAmount = document.getElementById("remaining-amount");
+    let instituteName = document.getElementById("institute-name");
+
+    fundAmount.innerText = `R ${data["allocatedAmount"]}`;
+    remainingAmount.innerText = `R ${data["allocatedRemainingAmount"]}`;
+    instituteName.innerText = data["instituteName"];
+}
+
+
+function fetchAllInstitutesAllocatedFunds(instituteId, year) {
     let loginDetails = Utility.getLoginDetails();
     let apiBaseUrl = Utility.apiBaseUrl;
 
     apiBaseUrl += "/institute/funds";
+
+    if (instituteId !== undefined) {
+        apiBaseUrl += "/single-institute/" + instituteId;
+    }
+
     if (year !== "" && year !== undefined) {
         apiBaseUrl += "/" + year;
     }
@@ -31,10 +50,13 @@ function fetchAllInstitutesAllocatedFunds(year) {
             Authorization: `Bearer ${loginDetails.loginToken}`
         }
     }).then(response => {
-       // console.log(response, "f")
         return Utility.handleErrorResponse(response);
     }).then(data => {
-        appendFunds(data);
+        if (year !== "" && year !== undefined) {
+            appendInstituteApplication(data[0]);
+        } else {
+            appendFunds(data);
+        }
     }).catch(error => {
         Utility.showMessage(error.message, "error");
     })

@@ -11,6 +11,10 @@
     <section id="popup">
     </section>  
     <section id="header" class="students">
+    <section id="add-institute-section">
+        <button onclick="toggleElement('add-admin')" id="add-admin-button" class="add-button"><img
+                src="../../img/134224_add_plus_new_icon.png" alt="plus icon" /> STUDENT APPLICATION</button>
+    </section>
     <section class="filter-section">
         <h2>Students Application</h2>
         <section class="line"></section>
@@ -23,9 +27,10 @@
             <label for="filter-options">Status</label>
             <select name="filter-options" id="filter-options">
                 <option value="All">All</option>
-                <option value="Approved">Approved</option>
-                <option value="Rejected">Rejected</option>
-                <option value="Pending">Pending</option>
+                <option value="2">Approved</option>
+                <option value="3">Rejected</option>
+                <option value="1">Pending</option>
+                <option value="4">Documents</option>
             </select>
         </section>
     </section>
@@ -42,7 +47,14 @@
                 </tr>
             </thead>
             <tbody id="results">
-
+                <tr class="table-rows">
+                    <td data-label="FirstName">No record was found.</td>
+                    <td data-label="LastName"></td>
+                    <td data-label="University"></td>
+                    <td data-label="BursaryAmount"></td>
+                    <td data-label="status" class="approved"></td>
+                    <td class="viewButton"></td>
+                </tr>
             </tbody>
         </table>
     </section>
@@ -53,6 +65,10 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         fetchStudents();
+
+        document.getElementById("filter-options").onchange = (e) => {
+            console.log("sup");
+        }
     });
 </script>
 <script>

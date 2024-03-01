@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Institutes Page</title>
+    <link rel="stylesheet" href="./funding.css">
+    <link rel="stylesheet" href="../../css/admin_table.css">
+</head>
+
+<body>
+    <section id="popup">
+    </section>
+    <section id="header">
+    </section>
+    <section class="filter-section">
+        <h2 id="institute-name"></h2>
+        <h3>Funded Amount: <span id="funded-amount"></span></h3>
+        <h3>Remaining Amount: <span id="remaining-amount"></span></h3>
+        <section class="line"></section>
+        <section class="filter">
+        </section>
+    </section>
+    <section id="institutes">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Institute</th>
+                    <th scope="col">Allocated Amount</th>
+                    <th scope="col">Remaining Amount</th>
+                    <th scope="col">Financial Date</th>
+                </tr>
+            </thead>
+            <tbody id="results">
+                <tr class="table-rows">
+                    <td data-label="Institute">No record was found.</td>
+                    <td data-label="Allocated Amount"></td>
+                    <td data-label="Remaining Amount"></td>
+                    <td data-label="Financial Date"></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</body>
+<script type="module">
+    import { fetchAllInstitutesAllocatedFunds } from './funding.js';
+    import * as Utility from "../../js/admin_dashboard_utility.js";
+
+    document.addEventListener('DOMContentLoaded', function () {
+        let instituteId = Utility.getLoginDetails().institute;
+
+        if (instituteId === -1) {
+            fetchAllInstitutesAllocatedFunds();
+        } else {
+            fetchAllInstitutesAllocatedFunds(instituteId);
+
+            let date = new Date();
+            fetchAllInstitutesAllocatedFunds(instituteId, date.getFullYear());
+        }
+        
+    });
+</script>
+<script>
+
+</script>
+
+</html>

@@ -44,6 +44,7 @@ function getLoginDetails() {
 
 
 function showMessage(message, status) {
+    console.log(message);
     let popup = document.getElementById("popup");
 
     if (popup.classList !== null) {
@@ -72,6 +73,8 @@ function handleErrorResponse(response) {
     } else if (response.status == 500) {
         showMessage("Server is offline!", "error");
         return;
+    } else if (response.status == 204) {
+        return;
     } else if (!response.ok) {
         showMessage("Something went wrong!", "error");
         return;
@@ -79,4 +82,4 @@ function handleErrorResponse(response) {
     return response.json();
 }
 
-export { apiBaseUrl, getLoginDetails, ifNotloggedInRedirectToLoginPage, showMessage, handleErrorResponse }
+export { apiBaseUrl, getLoginDetails, ifNotloggedInRedirectToLoginPage, showMessage, handleErrorResponse, setLoggedInUser }
