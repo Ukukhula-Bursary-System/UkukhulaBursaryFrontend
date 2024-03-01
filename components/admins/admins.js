@@ -27,8 +27,8 @@ function appendAdmin(data) {
 
     for (let i = 0; i < data.length; i++) {
         results.innerHTML += `
-            <tr>
-                <td data-label="Fullname"><a href="#">${data[i]["firstName"]} ${data[i]["lastName"]}</a></td>
+            <tr class="table-rows">
+                <td data-label="Fullname">${data[i]["firstName"]} ${data[i]["lastName"]}</td>
                 <td data-label="Email">${data[i]["email"]}</td>
                 <td data-label="Active">${data[i]["isActive"]}</td>
                 <td data-label="Role">${data[i]["role"]}</td>

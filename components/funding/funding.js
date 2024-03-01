@@ -4,8 +4,8 @@ function appendFunds(data) {
 
     for (let i = 0; i < data.length; i++) {
         results.innerHTML += `
-            <tr>
-                <td data-label="Institute"><a href="#">${data[i]["instituteName"]}</a></td>
+            <tr class="table-rows">
+                <td data-label="Institute">${data[i]["instituteName"]}</td>
                 <td data-label="Allocated Amount">${data[i]["allocatedAmount"]}</td>
                 <td data-label="Remaining Amount">${data[i]["allocatedRemainingAmount"]}</td>
                 <td data-label="Financial Date">${data[i]["financialDate"]}</td>
@@ -39,5 +39,11 @@ function fetchAllInstitutesAllocatedFunds(year) {
         Utility.showMessage(error.message, "error");
     })
 }
+
+function displayValue(value) {
+    document.getElementById('display-value').value = value;
+}
+
+window.displayValue = displayValue
 
 export {fetchAllInstitutesAllocatedFunds}

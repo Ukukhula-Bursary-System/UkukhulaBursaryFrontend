@@ -32,6 +32,7 @@
 .add-button img {
     width: 1em;
 }
+
 .line {
     width: 100%;
     height: 2px;
@@ -52,7 +53,8 @@ header {
 }
 
 table {
-    background-color: #6f6f6f;
+    background-color: rgb(0 0 0 / 70%);
+    ;
     border-collapse: collapse;
     width: 100%;
     font-family: Arial, sans-serif;
@@ -65,10 +67,43 @@ table td {
     text-align: left;
 }
 
+tbody {
+    background: rgb(255 255 255 / 95%);
+}
+tr td {
+    color: black;
+}
+
 tbody tr:hover {
-    background-color: #808080;
+    background-color: #cccccc;
 }
 
 .fund:hover {
     text-decoration: underline;
+}
+
+.table-rows {
+    border-bottom: 1px solid grey;
+    border-top: 1px solid gray;
+}
+
+.filter {
+    padding: 1.2em;
+    display: flex;
+    justify-content: space-around;
+}
+#search-input {
+    padding: 0.4em;
+    border-radius: 5px;
+    border: none;
+}
+
+.filter label, .filter output {
+    color: white;
+    font-size: 1.2em;
+}
+
+.filter select {
+    padding: 0.2em 1em;
+    font-size: 1em;
 }
