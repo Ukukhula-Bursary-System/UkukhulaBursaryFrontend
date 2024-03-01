@@ -73,6 +73,8 @@ function handleErrorResponse(response) {
     } else if (response.status == 500) {
         showMessage("Server is offline!", "error");
         return;
+    } else if (response.status == 204) {
+        return;
     } else if (!response.ok) {
         showMessage("Something went wrong!", "error");
         return;

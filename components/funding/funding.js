@@ -5,7 +5,7 @@ function appendFunds(data) {
     let results = document.getElementById("results");
 
     for (let i = 0; i < data.length; i++) {
-        results.innerHTML += `
+        results.innerHTML = `
             <tr class="table-rows">
                 <td data-label="Institute">${data[i]["instituteName"]}</td>
                 <td data-label="Allocated Amount">${data[i]["allocatedAmount"]}</td>
