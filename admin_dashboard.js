@@ -17,3 +17,15 @@ function setupPage() {
 function logout() {
     window.location.replace("/");
 }
+
+function toggleNav() {
+    const nav = document.querySelector('nav');
+    const menu = document.querySelector('.hamburger-menu')
+    if(!nav.classList.contains("open")) {
+        menu.style.display = "none"
+    }else {
+        menu.style.display = "block"
+    }
+
+    nav.classList.toggle('open');
+}
