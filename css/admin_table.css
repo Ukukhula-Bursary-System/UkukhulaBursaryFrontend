@@ -22,7 +22,7 @@
     position: absolute;
     top: 1%;
     right: 1%;
-    padding: 1em;
+    padding: 0.6em;
     background-color: #7cec74;
     border-radius: 25px;
     cursor: pointer;
@@ -57,7 +57,9 @@ table {
     border-collapse: collapse;
     width: 100%;
     font-family: Arial, sans-serif;
+    table-layout: auto;
 }
+
 
 table th,
 table td {
@@ -90,6 +92,8 @@ tbody tr:hover {
     padding: 1.2em;
     display: flex;
     justify-content: space-around;
+    flex-direction: column;
+    gap: 0.5em;
 }
 #search-input {
     padding: 0.4em;
@@ -106,3 +110,53 @@ tbody tr:hover {
     padding: 0.2em 1em;
     font-size: 1em;
 }
+
+
+@media screen and (max-width: 600px) {
+    table {
+      border: 0;
+    }
+  
+    table caption {
+      font-size: 1.3em;
+    }
+    
+    table thead {
+      border: none;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    table tr {
+      border-bottom: 3px solid #848484;
+      display: block;
+    }
+    
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .7em;
+      text-align: right;
+    }
+    
+    table td::before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    table td:last-child {
+      border-bottom: 0;
+    }
+  }
+  
+  @media screen and (min-width: 600px) {
+    .filter {
+        flex-direction: row;
+    }
+  }
