@@ -5,63 +5,100 @@
     <title>Institutes Page</title>
     <link rel="stylesheet" href="../../css/admin_table.css">
     <link rel="stylesheet" href="./institute.css">
+    <link rel="stylesheet" href="../../css/message.css">
 
 </head>
 
 <body>
-    <section id="add-institute-section">
-        <button id="add-institute-button" class="add-button">
-            <img src="../../img/134224_add_plus_new_icon.png" alt="plus icon" /> INSTITUTE
-        </button>
+    <section id="popup">
     </section>
-    <section id="header"></section>
-
-    <section class="filter-section">
-        <h2>INSTITUTES</h2>
-        <section class="line"></section>
-        <section class="filter">
-            <label for="search-input">Search:</label>
-            <input type="text" id="search-input" placeholder="Search institution...">
-            <label for="filter-options">Status:</label>
-            <select  name="filter-options" id="filter-options">
-                <option value="All">All</option>
-                <option value="Approved">Approved</option>
-                <option value="Rejected">Rejected</option>
-                <option value="Pending">Pending</option>
-            </select>
+    <section id="institute-page">
+        <section id="add-institute-section">
+            <button id="add-institute-button" onclick="toggleElement('add-institute')" class="add-button">
+                <img src="../../img/134224_add_plus_new_icon.png" alt="plus icon" /> INSTITUTE
+            </button>
         </section>
+        <section id="header"></section>
+
+        <section class="filter-section">
+            <h2>INSTITUTES</h2>
+            <section class="line"></section>
+            <section class="filter">
+                <label for="search-input">Search:</label>
+                <input type="text" id="search-input" placeholder="Search institution...">
+                <label for="filter-options">Status:</label>
+                <select  name="filter-options" id="filter-options">
+                    <option value="All">All</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Rejected">Rejected</option>
+                    <option value="Pending">Pending</option>
+                </select>
+            </section>
 
 
+        </section>
+        <section id="institutes">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Institute</th>
+                        <th scope="col">Reviewer</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="results">
+                    <!-- Static content goes here -->
+                    <tr class="table-rows">
+                        <td data-label="Institute">No record was found.</td>
+                        <td data-label="Reviewer"></td>
+                        <td data-label="Status" class="approved"></td>
+                        <td>
+                            <a class="fund" href="#"></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
     </section>
-    <section id="institutes">
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">Institute</th>
-                    <th scope="col">Reviewer</th>
-                    <th scope="col">Status</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody id="results">
-                <!-- Static content goes here -->
-                <tr class="table-rows">
-                    <td data-label="Institute">No record was found.</td>
-                    <td data-label="Reviewer"></td>
-                    <td data-label="Status" class="approved"></td>
-                    <td>
-                        <a class="fund" href="#"></a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+
+    <section id="add-institute">
+        <section class="filter-section">
+            <h2>Add an Institute</h2>
+            <section class="line"></section>
+        </section>
+            <form id="add-institute-form">
+                <input id="institute-name" placeholder="Institute name..." type="text"/>
+                <select id="status">
+                    <option value="-1">Choose Status</option>
+                    <option value=2>Approved</option>
+                    <option value=1>Pending</option>
+                    <option value=3>Rejected</option>
+                </select>
+                <select id="reviewer">
+                    <option value="-1">Choose Reviewer</option>
+                </select>
+                <input id="institute-reprentative-first-name" placeholder="Institute representative first name..." type="text"/>
+                <input id="institute-reprentative-last-name" placeholder="Institute representative last name..." type="text"/>
+                <input id="institute-reprentative-phonenumber" placeholder="Institute representative phonenumber..." type="text"/>
+                <input id="institute-reprentative-email" placeholder="Institute representative email" type="email"/>
+                <input type="submit" value="ADD" />
+            </form>
+        </section>
     </section>
 </body>
 <script type="module">
-    import { fetchAllInstitutes } from './institutes.js';
+    import { fetchAllInstitutes, setupPage, fetchAllReviewers, addInstitute } from './institutes.js';
 
     document.addEventListener('DOMContentLoaded', function () {
+        setupPage();
         fetchAllInstitutes();
+        fetchAllReviewers();
+
+        document.getElementById("add-institute-form").onsubmit = (e) => {
+            e.preventDefault();
+            addInstitute();
+        };
     });
 </script>
 
