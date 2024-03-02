@@ -4,7 +4,7 @@ function toggleIframe(iframeId) {
     document.getElementById('students').style.display = 'none';
     document.getElementById('admins').style.display = 'none';
 
-    document.getElementById(iframeId).contentDocument.location.reload(true); //reload iframe
+    document.getElementById(iframeId).contentDocument.location.reload(true);
     document.getElementById(iframeId).style.display = 'block';
 }
 
@@ -21,11 +21,36 @@ function logout() {
 function toggleNav() {
     const nav = document.querySelector('nav');
     const menu = document.querySelector('.hamburger-menu')
-    if(!nav.classList.contains("open")) {
+    const display = document.querySelector('.data-display')
+    if (!nav.classList.contains("open")) {
         menu.style.display = "none"
-    }else {
+        if (window.matchMedia("(max-width: 500px)").matches) {
+            display.style.display = "none";
+        } else {
+            display.style.width = "70vw"
+        }
+    } else {
         menu.style.display = "block"
+        display.style.display = 'block'
+        display.style.width = "90vw"
     }
 
     nav.classList.toggle('open');
+}
+
+function toggleMobileNav() {
+    const nav = document.querySelector('nav');
+    const menu = document.querySelector('.hamburger-menu')
+    const display = document.querySelector('.data-display')
+    if (window.matchMedia("(max-width: 500px)").matches) {
+        if (!nav.classList.contains("open")) {
+            menu.style.display = "none"
+            display.style.display = "none";
+        }
+        else {
+            menu.style.display = "block"
+            display.style.display = 'block'
+        }
+        nav.classList.toggle('open');
+    }
 }
