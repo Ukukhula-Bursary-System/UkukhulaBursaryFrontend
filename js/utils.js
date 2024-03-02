@@ -1,4 +1,4 @@
-const apiBaseUrl = "https://ukukhulabursaryfrontend.onrender.com"
+const apiBaseUrl = "https://ukukhulabbdbursaryapi.onrender.com"
 
 
 function isLoggedIn(role) {
