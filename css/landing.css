@@ -24,6 +24,7 @@ section h1 {
 
 .logo img {
   width: 150px;
+  
 }
 
 .login-buttons {
@@ -33,13 +34,7 @@ section h1 {
 
 }
 
-.button-sign-in,
-.button-apply {
-  text-decoration: none;
-  margin: 0 0.4em;
-  color: rgb(255, 255, 255);
-  padding: 0.2em;
-}
+
 
 .button-apply {
   border-radius: 14px;
@@ -63,28 +58,17 @@ section p {
 
 .bottom-logins {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   margin-top: 1.8em;
 }
 
-.bottom-apply {
-  padding: 10px;
-  gap: 10px;
-  width: 45%;
-  background: #CF2E2E;
-  border: 1px solid #000000;
-  border-radius: 100px;
-  color: honeydew;
-  z-index: 2;
-  cursor: pointer;
-}
+
 
 .bottom-signin {
   padding: 10px;
   gap: 10px;
   width: 45%;
-  background: #ffffff;
-  border: 1px solid #fffdfd;
+  
   border-radius: 100px;
   z-index: 2;
   cursor: pointer;

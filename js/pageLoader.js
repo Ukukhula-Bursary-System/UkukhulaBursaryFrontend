@@ -1,20 +1,3 @@
-// function activeNav(nav) {
-//     let navs = ["funding", "institutes", "students", "admins", "applications"];
-
-//     for (let i=0; i < navs.length; i++) {
-//         if (nav === navs[i]) {
-//             document.getElementById(`${nav}-nav`)
-//                     .classList
-//                     .add("active");
-//         } else {
-//             let nav =  document.getElementById(`${navs[i]}-nav`);
-            
-//             if (nav !== null) {
-//                 nav.classList.remove("active");
-//             }
-//         }
-//     }
-// }
 
 
 function dropdown() {
