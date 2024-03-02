@@ -1,4 +1,4 @@
-const apiBaseUrl = "https://ukukhulabbdbursaryapi.onrender.com";
+const apiBaseUrl = "http://localhost:8080";
 
 
 function isLoggedIn(role) {
@@ -44,7 +44,6 @@ function getLoginDetails() {
 
 
 function showMessage(message, status) {
-    console.log(message);
     let popup = document.getElementById("popup");
 
     if (popup.classList !== null) {

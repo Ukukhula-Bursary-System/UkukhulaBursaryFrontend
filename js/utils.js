@@ -1,4 +1,4 @@
-const apiBaseUrl = "https://ukukhulabbdbursaryapi.onrender.com"
+const apiBaseUrl = "http://localhost:8080"
 
 
 function isLoggedIn(role) {

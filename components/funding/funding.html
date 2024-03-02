@@ -5,65 +5,98 @@
     <title>Institutes Page</title>
     <link rel="stylesheet" href="./funding.css">
     <link rel="stylesheet" href="../../css/admin_table.css">
+    <link rel="stylesheet" href="../../css/message.css">
 </head>
 
 <body>
     <section id="popup">
     </section>
-    <section id="header">
-    </section>
-    <section id="add-institute-section">
-        <button id="add-funding-button" class="add-button"><img src="../../img/134224_add_plus_new_icon.png"
-                alt="plus icon" /> NEW FUNDING</button>
-        <!-- <article id="amount">
-            <h3>Fund Amount: <span id="fund-amount">R 1 000 000.00</span></h3>
-            <h3>Remainning: <span id="remaining-fund">R 2 000.00</span></h3>
-        </article> -->
-    </section>
-    <section class="filter-section">
-        <h2>FUNDED INSTITUTES</h2>
-        <section class="line"></section>
-        <section class="filter">
-            <label for="search-input">Search:</label>
-            <input type="text" id="search-input" placeholder="Search student...">
-            <label for="money-range">Amount:</label>
-            <input type="range" id="money-range" min="0" max="125000" value="50000" oninput="displayValue(this.value)">
-            <output id="display-value">50000</output>
-            <label for="filter-options">Status:</label>
-            <select name="filter-options" id="filter-options">
-                <option value="All">All</option>
-                <option value="Approved">Approved</option>
-                <option value="Rejected">Rejected</option>
-                <option value="Pending">Pending</option>
-            </select>
+    <section id="funding-page">
+        
+        <section id="header">
+        </section>
+        <section id="add-institute-section">
+            <button id="add-funding-button" onclick="toggleElement('add-funding')" class="add-button"><img src="../../img/134224_add_plus_new_icon.png"
+                    alt="plus icon" /> NEW FUNDING</button>
+        </section>
+        <section class="filter-section">
+            <h2>FUNDED INSTITUTES</h2>
+            <section class="line"></section>
+            <section class="filter">
+                <label for="search-input">Search:</label>
+                <input type="text" id="search-input" placeholder="Search student...">
+                <label for="money-range">Amount:</label>
+                <input type="range" id="money-range" min="0" max="125000" value="50000" oninput="displayValue(this.value)">
+                <output id="display-value">50000</output>
+                <label for="filter-options">Status:</label>
+                <select name="filter-options" id="filter-options">
+                    <option value="All">All</option>
+                    <option value=2024>2024</option>
+                    <option value=2023>2023</option>
+                    <option value=2022>2022</option>
+                    <option value=2021>2021</option>
+                    <option value=2020>2020</option>
+                </select>
+            </section>
+        </section>
+        <section id="institutes">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Institute</th>
+                        <th scope="col">Allocated Amount</th>
+                        <th scope="col">Remaining Amount</th>
+                        <th scope="col">Financial Date</th>
+                    </tr>
+                </thead>
+                <tbody id="results">
+                    <tr class="table-rows">
+                        <td data-label="Institute">No record was found.</td>
+                        <td data-label="Allocated Amount"></td>
+                        <td data-label="Remaining Amount"></td>
+                        <td data-label="Financial Date"></td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
     </section>
-    <section id="institutes">
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">Institute</th>
-                    <th scope="col">Allocated Amount</th>
-                    <th scope="col">Remaining Amount</th>
-                    <th scope="col">Financial Date</th>
-                </tr>
-            </thead>
-            <tbody id="results">
-                <tr class="table-rows">
-                    <td data-label="Institute">No record was found.</td>
-                    <td data-label="Allocated Amount"></td>
-                    <td data-label="Remaining Amount"></td>
-                    <td data-label="Financial Date"></td>
-                </tr>
-            </tbody>
-        </table>
+
+    <section id="add-funding">
+    <section class="filter-section">
+        <h2>Fund an Institute</h2>
+        <section class="line"></section>
     </section>
+        <form id="add-funding-form">
+            <input id="funding-amount" placeholder="Amount..." type="number" min="0"/>
+            <select id="universities">
+                <option value="-1">Choose institute</option>
+            </select>
+            <input type="submit" value="ALLOCATE" />
+        </form>
+    </section>
+</section>
 </body>
 <script type="module">
-    import { fetchAllInstitutesAllocatedFunds } from './funding.js';
+    import { fetchAllInstitutesAllocatedFunds, setupPage, fetchAllApprovedUniversities, addFunding } from './funding.js';
 
     document.addEventListener('DOMContentLoaded', function () {
+        setupPage();
         fetchAllInstitutesAllocatedFunds();
+        fetchAllApprovedUniversities();
+
+        let filterOptions = document.getElementById("filter-options")
+        filterOptions.onchange = () => {
+            if (filterOptions.value !== "All") {
+                fetchAllInstitutesAllocatedFunds(undefined, filterOptions.value);
+            } else {
+                fetchAllInstitutesAllocatedFunds();
+            }
+        };
+
+        document.getElementById("add-funding-form").onsubmit = (e) => {
+            e.preventDefault();
+            addFunding();
+        }
     });
 </script>
 <script>
