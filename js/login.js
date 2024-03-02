@@ -7,6 +7,7 @@ function login(response) {
             Authorization: `Bearer ${response.credential}`
         }
     }).then(res => {
+        console.log(res["authorities"]);
         if (res.status == 403) {
             alert("Invalid login!");
             return;
