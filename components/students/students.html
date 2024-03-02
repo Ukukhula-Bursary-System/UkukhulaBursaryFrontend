@@ -20,17 +20,17 @@
         <section class="line"></section>
         <section class="filter">
             <label for="search-input">Search</label>
-            <input type="text" id="search-input" placeholder="Search student...">
+            <input type="text" id="search-input" placeholder="Search student..." >
             <label for="money-range">Amount</label>
-            <input type="range" id="money-range" min="0" max="125000" value="50000" oninput="displayValue(this.value)">
+            <input type="range" id="money-range" min="0" max="125000" value="125000" oninput="displayValue(this.value)">
             <output id="display-value">50000</output>
             <label for="filter-options">Status</label>
             <select name="filter-options" id="filter-options">
                 <option value="All">All</option>
-                <option value="2">Approved</option>
-                <option value="3">Rejected</option>
-                <option value="1">Pending</option>
-                <option value="4">Documents</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Pending">Pending</option>
+                <option value="Documents">Documents</option>
             </select>
         </section>
     </section>
@@ -61,14 +61,26 @@
     </section>
 </body>
 <script type="module">
-    import { fetchStudents } from './students.js';
+    import { fetchStudents, filterStudents, filterStudentsByAmount, searchStudents } from './students.js';
 
     document.addEventListener('DOMContentLoaded', function () {
         fetchStudents();
 
-        document.getElementById("filter-options").onchange = (e) => {
-            console.log("sup");
+        document.getElementById("money-range").oninput = (e) => {
+            filterStudentsByAmount(e.target.value);
+           
         }
+
+        document.getElementById("filter-options").onchange = (e) => {
+            fetchStudents(undefined,e.target.value,undefined );
+            
+        }
+
+        document.getElementById("search-input").onchange = (e) => {
+           fetchStudents(undefined,undefined,e.target.value);
+        }
+
+
     });
 </script>
 <script>

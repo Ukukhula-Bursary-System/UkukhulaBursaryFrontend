@@ -1,5 +1,7 @@
 import * as Utility from "../../js/admin_dashboard_utility.js";
 
+let allStudents ={};
+
 function appendStudents(data) {
     let results = document.getElementById("results");
 
@@ -23,7 +25,51 @@ function appendStudents(data) {
     }
 }
 
-function fetchStudents(){
+
+
+function filterStudents(status, students) {
+    if (status === "All") {
+        appendStudents(students);
+        return;
+    }
+
+   let studentsbystatus = students.filter(student => student.status === status);
+    if (students.length === 0) {
+        appendStudents(students);
+        return;
+    }
+    appendStudents(studentsbystatus);
+}
+
+
+function filterStudentsByAmount(amount) {
+    let students = allStudents;
+    let studentsbyamount = students.filter(student => student.bursaryAmount <= amount);
+    if (students.length === 0) {
+        appendStudents(students);
+        return;
+    }
+    appendStudents(studentsbyamount);
+}
+
+
+function searchStudents(searchWord, students){
+    
+    let studentsbysearch = students.filter(student => student.firstName
+            .toLowerCase().includes(searchWord.toLowerCase()) 
+        || student.lastName
+            .toLowerCase().includes(searchWord.toLowerCase()));
+    if (students.length === 0) {
+        appendStudents(students);
+        return;
+    }
+    appendStudents(studentsbysearch);
+}
+
+
+
+
+function fetchStudents(amount , status, searchWord){
     let loginDetails = Utility.getLoginDetails();
     let apiBaseUrl = Utility.apiBaseUrl;
 
@@ -44,7 +90,25 @@ function fetchStudents(){
         return Utility.handleErrorResponse(response);
     }).then(data => {
         if (data !== undefined) {
+            allStudents = data;
+            if (amount !== undefined) {
+                filterStudentsByAmount(amount,data);
+                return;
+            }
+            else if (status !== undefined) {
+                filterStudents(status,data);
+                return;
+            }
+            else if (searchWord !== undefined) {
+                searchStudents(searchWord, data);
+                return;
+            }
+
+            else {
             appendStudents(data);
+            return;
+            }
+            
         }
     }).catch(error => {
         Utility.showMessage(error.message, "error");
@@ -56,4 +120,4 @@ function displayValue(value) {
 
 window.displayValue = displayValue
 
-export {fetchStudents}
+export {fetchStudents , appendStudents, filterStudents, filterStudentsByAmount, searchStudents}
