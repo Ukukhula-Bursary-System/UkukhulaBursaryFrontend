@@ -17,6 +17,7 @@
     </section>
     <section class="filter-section">
         <h2>Students Application</h2>
+        <span id="alert" class="alert">This is an alert!</span>
         <section class="line"></section>
         <section class="filter">
             <label for="search-input">Search</label>
@@ -59,6 +60,63 @@
         </table>
     </section>
     </section>
+
+    <section id="registrationForm">
+        <h1>Bursary Application</h1>
+        <section class="cardbar">
+    
+        <fieldset class="card">
+            <legend>Budget</legend>
+            <label class="big-number">R1 000 000</label>
+        </fieldset>
+        <fieldset class="card">
+            <legend>Balance</legend>
+            <label class="big-number red">R200 000</label>
+        </fieldset>
+        </section>
+    
+        <form id="applicatonForm" action="submit_application.php" method="post">
+            <fieldset>
+                <legend>Personal Details</legend>
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+    
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+    
+                <label for="IdentityNumber">Identity Number:</label>
+                <input type="number" maxlength="13" minlength="13" id="IdentityNumber" name="IdentityNumber" required>
+            
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+    
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="text" id="phoneNumber" name="phoneNumber" required>
+    
+                <label for="Race">Race:</label>
+                <select class="selectUniversity" name="Race">
+                    <option value="1">Black</option>
+                    <option value="2">White</option>
+                    <option value="3">Indian</option>
+                    <option value="4">Coloured</option>
+                </select>
+            </fieldset>
+            <fieldset>     
+                <legend>Bursary</legend>
+                   <label for="phoneNumber">Phone Number:</label>
+                   <input type="text" id="phoneNumber" name="phoneNumber" required>
+                   <label for="contactBursaryAmount">Bursary Amount:</label>
+                   <input type="number" id="contactBursaryAmount" name="contactBursaryAmount" required>
+           </fieldset>
+            <fieldset>
+            <button id="submit" type="submit">Submit</button>
+            <button id="cancel" type="submit">Cancel</button>
+            </fieldset>
+            
+        </form>
+    </section>
+
+
 </body>
 <script type="module">
     import { fetchStudents, filterStudentsByAmount } from './students.js';
@@ -67,13 +125,31 @@
         fetchStudents();
 
         document.getElementById("filter-options").onchange = (e) => {
-            fetchStudents(e.target.value);
+            fetchStudents(e.target.value, undefined);
         }
         document.getElementById("search-input").oninput = (e) => {
             fetchStudents(undefined, e.target.value);
         }
         document.getElementById("money-range").oninput = (e) => {
+            displayValue(e.target.value);
             filterStudentsByAmount(e.target.value);
+        }
+        document.getElementById("cancel").onclick = (e) => {
+            e.preventDefault();
+            document.getElementById("registrationForm").style.display = "none";
+            document.getElementById("header").style.display = "block";
+            
+        }
+        document.getElementById("submit").onclick = (e) => {
+            e.preventDefault();
+            document.getElementById("registrationForm").style.display = "none";
+            document.getElementById("header").style.display = "block";
+            fetchStudents();
+        }
+        document.getElementById("add-admin-button").onclick = (e) => {
+            e.preventDefault();
+            document.getElementById("registrationForm").style.display = "block";
+            document.getElementById("header").style.display = "none";
         }
     });
 </script>

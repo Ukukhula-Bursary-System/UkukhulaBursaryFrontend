@@ -34,7 +34,7 @@ function filterStudents(status, students) {
     }
 
    let studentsbystatus = students.filter(student => student.status === status);
-    if (students.length === 0) {
+    if (studentsbystatus.length === 0) {
         appendStudents(students);
         return;
     }
@@ -45,7 +45,8 @@ function filterStudents(status, students) {
 function filterStudentsByAmount(amount) {
     let students = allStudents;
     let studentsbyamount = students.filter(student => student.bursaryAmount <= amount);
-    if (students.length === 0) {
+    if (studentsbyamount.length === 0) {
+        showAlert(`No students found with the amount R${amount} or less.`);
         appendStudents(students);
         return;
     }
@@ -59,7 +60,7 @@ function searchStudents(searchWord, students){
             .toLowerCase().includes(searchWord.toLowerCase()) 
         || student.lastName
             .toLowerCase().includes(searchWord.toLowerCase()));
-    if (students.length === 0) {
+    if (studentsbysearch.length === 0) {
         appendStudents(students);
         return;
     }
@@ -91,11 +92,7 @@ function fetchStudents(status, searchWord){
     }).then(data => {
         if (data !== undefined) {
             allStudents = data;
-            if (amount !== undefined) {
-                filterStudentsByAmount(amount,data);
-                return;
-            }
-            else if (status !== undefined) {
+            if (status !== undefined) {
                 filterStudents(status,data);
                 return;
             }
@@ -111,7 +108,7 @@ function fetchStudents(status, searchWord){
             
         }
     }).catch(error => {
-        Utility.showMessage(error.message, "error");
+        showAlert(error.message);
     })
 }
 function displayValue(value) {
@@ -119,5 +116,19 @@ function displayValue(value) {
 }
 
 window.displayValue = displayValue
+
+
+function showAlert(message) {
+    var alertElement = document.getElementById('alert');
+    alertElement.innerText = message;
+    alertElement.classList.add('show');
+    setTimeout(function()
+        {
+         alertElement.classList.remove('show');
+        }, 3000);
+  }
+  
+  
+
 
 export {fetchStudents , filterStudentsByAmount}

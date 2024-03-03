@@ -19,3 +19,110 @@ table td {
     padding: 15px;
     text-align: left;
 }
+
+.alert {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.6s;
+    border-radius: 2px;
+  }
+  
+  .alert.show {
+    opacity: 1; 
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #edf2f3;
+     background-color: rgba(0, 0, 0, 0.1);
+}
+#registrationForm {
+    border-radius: 5px;
+    margin: auto;
+    max-width: 800px;
+    display: none;
+}
+fieldset {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: white;
+    
+}
+legend {
+    font-weight: bold;
+}
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="number"], 
+input[type="email"],
+.selectUniversity {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+button:hover {
+    background-color: #0056b3;
+}
+#cancel {
+    margin-right: 10px;
+    background-color: red;
+}
+
+
+.card {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 400px;
+                
+}
+.cardbar {
+    margin: 0 auto;
+    max-width: 800px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content:space-evenly;
+    padding: 10px;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: left !important;
+
+}
+
+.big-number {
+    font-size: 15px;
+    font-weight: bold;
+    color: #2ed914;
+    margin: auto;
+}
+.red {
+    color: red;
+}
+
+#registaionForm.show {
+    display: block;
+}
