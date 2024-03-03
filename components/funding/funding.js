@@ -56,6 +56,41 @@ function appendInstituteApplication(data) {
 }
 
 
+function appendBursaryFund(data) {
+    let fundAmount = document.getElementById("fund-amount");
+    let fundRemainingAmount = document.getElementById("fund-remaining-amount");
+    let fundDate = document.getElementById("fund-date");
+
+    fundAmount.innerText = `${MzansiRand.format(data["fundAmount"])}`;
+    fundRemainingAmount.innerText = `${MzansiRand.format(data["fundRemainingAmount"])}`;
+    fundDate.innerText = data["financialDate"];
+}
+
+
+function fetchBursaryFund() {
+    let loginDetails = Utility.getLoginDetails();
+    let apiBaseUrl = Utility.apiBaseUrl;
+
+    let date = new Date();
+    apiBaseUrl += "/bursary-fund/" + date.getFullYear();
+
+    fetch(apiBaseUrl, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: 'application/json',
+            Authorization: `Bearer ${loginDetails.loginToken}`
+        }
+    }).then(response => {
+        return Utility.handleErrorResponse(response);
+    }).then(data => {
+        appendBursaryFund(data);
+    }).catch(error => {
+        Utility.showMessage(error.message, "error");
+    })
+}
+
+
 function fetchAllInstitutesAllocatedFunds(instituteId, year) {
     let loginDetails = Utility.getLoginDetails();
     let apiBaseUrl = Utility.apiBaseUrl;
@@ -186,4 +221,4 @@ function setupPage() {
 window.addFunding = addFunding
 window.toggleElement = toggleElement
 
-export { fetchAllInstitutesAllocatedFunds, addFunding, toggleElement, setupPage, fetchAllApprovedUniversities }
+export { fetchAllInstitutesAllocatedFunds, addFunding, toggleElement, setupPage, fetchAllApprovedUniversities, fetchBursaryFund }
