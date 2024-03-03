@@ -34,9 +34,6 @@ function appendInstitutes(data) {
                     <td data-label="Institute">${name}</td>
                     <td data-label="Reviewer">${data[i]["email"]}</td>
                     <td data-label="Status" class="approved">${status}</td>
-                    <td>
-                        <a class="fund" href="#">Fund</a>
-                    </td>
                 </tr>
             `;
         }
@@ -46,9 +43,6 @@ function appendInstitutes(data) {
             <td data-label="Institute">No record was found.</td>
             <td data-label="Reviewer"></td>
             <td data-label="Status" class="approved"></td>
-            <td>
-                <a class="fund" href="#"></a>
-            </td>
         </tr>
         `
     }
