@@ -4,7 +4,10 @@ let allStudents ={};
 
 function appendStudents(data) {
     let results = document.getElementById("results");
-
+    let ZarFormatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'ZAR',
+    }); 
     results.innerHTML = "";
     for (let i = 0; i < data.length; i++) {
         let student = data[i];
@@ -15,7 +18,7 @@ function appendStudents(data) {
                 <input type="hidden" value=${student["studentID"]}>
                 <td data-label="LastName">${student["lastName"]}</td>
                 <td data-label="University">${student["university"]}</td>
-                <td data-label="BursaryAmount">R${student["bursaryAmount"]}</td>
+                <td data-label="BursaryAmount">  ${ZarFormatter.format( student["bursaryAmount"])}  </td>
                 <td data-label="status" class="approved">${student["status"]}</td>
                 <td class="viewButton">
                     <a  class="viewdetails" href="#"><i class="fa fa-user" aria-hidden="true"></i></a>

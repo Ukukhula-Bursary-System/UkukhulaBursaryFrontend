@@ -59,11 +59,13 @@ function showMessage(message, status) {
 
     setTimeout(() => {
         popup.style.display = "none";
-    }, 2000);
+    }, 4000);
 
     popup.innerText = message;
     popup.style.display = "block";
 }
+
+
 function handleErrorResponse(response) {
     if (response.status == 403 || response.status == 401) {
         showMessage("Please login!", "error");

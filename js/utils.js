@@ -1,4 +1,27 @@
-const apiBaseUrl = "https://ukukhulabbdbursaryapi.onrender.com"
+const apiBaseUrl = "https://ukukhulabbdbursaryapi.onrender.com";
+
+
+function showMessage(message, status) {
+    let popup = document.getElementById("popup");
+
+    if (popup.classList !== null) {
+        popup.classList.remove("success");
+        popup.classList.remove("error");
+    }
+
+    if (status === "error") {
+        popup.classList.add("error");
+    } else {
+        popup.classList.add("success");
+    }
+
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 4000);
+
+    popup.innerText = message;
+    popup.style.display = "block";
+}
 
 
 function isLoggedIn(role) {
@@ -64,10 +87,12 @@ function redirectAfterLogin(role) {
         alert("Uknown role!");
     }
 }
-function handleErrorResponse(response) {
+function handleErrorResponse(response, page) {
     if (response.status == 403 || response.status == 401) {
-        showMessage("Please login!", "error");
-        redirectToLoginPage();
+        showMessage("Please login with valid credentials!", "error");
+        if (page !== "login") {
+            redirectToLoginPage();
+        }
         return;
     } else if (response.status == 500) {
         showMessage("Server is offline!", "error");
