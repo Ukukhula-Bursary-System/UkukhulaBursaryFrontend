@@ -64,6 +64,8 @@ function showMessage(message, status) {
     popup.innerText = message;
     popup.style.display = "block";
 }
+
+
 function handleErrorResponse(response) {
     if (response.status == 403 || response.status == 401) {
         showMessage("Please login!", "error");

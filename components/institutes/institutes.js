@@ -239,7 +239,7 @@ function updateInstitute(instituteId, statusId) {
         }).then(response => {
             return Utility.handleErrorResponse(response);
         }).then(data => {
-            Utility.showMessage(`Institute status updated to "${data["status"]}"`);
+            Utility.showMessage(`Institute "${data["instituteName"]}" status updated to "${data["status"]}"`);
         }).catch(error => {
             Utility.showMessage(error.message, "error");
         });

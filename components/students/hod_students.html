@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Institutes Page</title>
+        <link rel="stylesheet" href="./students.css">
+        <link rel="stylesheet" href="../../css/admin_table.css">
+    </head>
+
+    <body>
+        <section id="popup">
+        </section>  
+        <section id="header" class="students">
+        <section class="filter-section">
+            <h2>Students Application</h2>
+            <section class="line"></section>
+            <section class="filter">
+                <label for="search-input">Search</label>
+                <input type="text" id="search-input" placeholder="Search student...">
+                <label for="money-range">Amount</label>
+                <input type="range" id="money-range" min="0" max="125000" value="50000" oninput="displayValue(this.value)">
+                <output id="display-value">50000</output>
+                <label for="filter-options">Status</label>
+                <select name="filter-options" id="filter-options">
+                    <option value="All">All</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Rejected">Rejected</option>
+                    <option value="Pending">Pending</option>
+                </select>
+            </section>
+        </section>
+        <section id="students">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">FirstName</th>
+                        <th scope="col">LastName</th>
+                        <th scope="col">University</th>
+                        <th scope="col">BursaryAmount</th>
+                        <th scope="col">status</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="results">
+
+                </tbody>
+            </table>
+        </section>
+        </section>
+    </body>
+    <script type="module">
+        import { fetchStudents } from './students.js';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            fetchStudents();
+        });
+    </script>
+</html>
