@@ -5,6 +5,7 @@
     <title>Institutes Page</title>
     <link rel="stylesheet" href="./students.css">
     <link rel="stylesheet" href="../../css/admin_table.css">
+    
 </head>
 
 <body>
@@ -44,7 +45,7 @@
                     <th scope="col">University</th>
                     <th scope="col">BursaryAmount</th>
                     <th scope="col">status</th>
-                    <th scope="col"></th>
+                  
                 </tr>
             </thead>
             <tbody id="results">
@@ -116,6 +117,56 @@
         </form>
     </section>
 
+    <section id="details" class="students">
+        <section class="details">
+           <h2>Student Details</h2>
+           <section class="line"></section>
+           <fieldset class="student-details">
+            <legend>student details</legend>
+               <label for="firstName">First Name:</label>
+               <label id="firstName">John</label>
+               <label for="lastName">Last Name:</label>
+               <label id="lastName">Doe</label>
+               <label for="IdentityNumber">Identity Number:</label>
+               <label id="IdentityNumber">1234567890123</label>
+               <label for="email">Email:</label>
+               <label id="email">fgdffsf@</label>
+                <label for="phoneNumber">Phone Number:</label>
+                <label id="phoneNumber">1234567890</label>
+           </fieldset>
+           </section>
+              <fieldset>
+                <legend>Bursary</legend>
+                <label for="university">University:</label>
+                <label id="university">Wits</label>
+                <label for="contactBursaryAmount">Bursary Amount:</label>
+                <label id="contactBursaryAmount">R50000</label>
+                <label for="status">Status:</label>
+                <label id="status" class="approved">Approved</label>
+              </fieldset>
+            <fieldset>
+                <legend>Documents</legend>
+                <section class="student-details">
+                    <label for="document1">CV:</label>
+                    <a href="documents/cv.pdf" id="document1" target="_blank">View</a>
+                    <label for="document2">Identity Document:</label>
+                    <a href="documents/id.pdf" id="document2" target="_blank">View</a>
+                    <label for="document3">Academic Record:</label>
+                    <a href="documents/academic.pdf" id="document3" target="_blank">View</a>
+                </section>
+            </fieldset>
+            <fieldset>
+                <legend>Approval</legend>
+                <section class="student-details">
+                    <button id="approve" class="approve">Approve</button>
+                    <button id="reject" class="reject">Reject</button>
+                    <button id="cancel" class="cancel">Cancel</button>
+                </section>
+            </fieldset>
+        </section>
+    </section>
+
+
 
 </body>
 <script type="module">
@@ -138,19 +189,23 @@
             e.preventDefault();
             document.getElementById("registrationForm").style.display = "none";
             document.getElementById("header").style.display = "block";
+            document.getElementById("details").style.display = "none";
             
         }
         document.getElementById("submit").onclick = (e) => {
             e.preventDefault();
             document.getElementById("registrationForm").style.display = "none";
             document.getElementById("header").style.display = "block";
+            document.getElementById("details").style.display = "none";
             fetchStudents();
         }
         document.getElementById("add-admin-button").onclick = (e) => {
             e.preventDefault();
             document.getElementById("registrationForm").style.display = "block";
             document.getElementById("header").style.display = "none";
+            document.getElementById("details").style.display = "none";
         }
+        
     });
 </script>
 <script>

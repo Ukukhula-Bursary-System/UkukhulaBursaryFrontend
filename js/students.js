@@ -77,7 +77,7 @@ export function StudentDetailsView(student) {
               <button id="Approve">Approve <i class="fa fa-check fa-2x"></i></button>
               <button id="reject">Reject <i class="fa fa-times fa-2x"></i></button>
           </section>
-    </section>`;
+    </section>`
 
     document.getElementById("Approve").addEventListener("click", function () {
         student.status = "Approved";

@@ -20,15 +20,33 @@ function appendStudents(data) {
                 <td data-label="University">${student["university"]}</td>
                 <td data-label="BursaryAmount">  ${ZarFormatter.format( student["bursaryAmount"])}  </td>
                 <td data-label="status" class="approved">${student["status"]}</td>
-                <td class="viewButton">
-                    <a  class="viewdetails" href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
-                </td>
             </tr>`
 
     }
+    document.querySelectorAll('.table-rows').forEach(item => {
+        item.addEventListener('click', event => {
+            event.preventDefault();
+            let studentID = item.querySelector('input').value;
+            let student = data.find(student => student.studentID == studentID);
+            StudentDetailsView(student);
+        })
+    });
 }
 
+function StudentDetailsView(student) {
 
+    document.getElementById("details").style.display = "block";
+    document.getElementById("registrationForm").style.display = "none";
+    document.getElementById("header").style.display = "none";
+
+    document.getElementById("Approve").addEventListener("click", function () {
+        student.status = "Approved";
+    }
+    )
+    document.getElementById("reject").addEventListener("click", function () {
+        student.status = "Rejected";
+    });
+}
 
 function filterStudents(status, students) {
     if (status === "All") {
@@ -69,8 +87,6 @@ function searchStudents(searchWord, students){
     }
     appendStudents(studentsbysearch);
 }
-
-
 
 
 function fetchStudents(status, searchWord){
@@ -114,6 +130,7 @@ function fetchStudents(status, searchWord){
         showAlert(error.message);
     })
 }
+
 function displayValue(value) {
     document.getElementById('display-value').value = value;
 }
@@ -129,7 +146,16 @@ function showAlert(message) {
         {
          alertElement.classList.remove('show');
         }, 3000);
-  }
+}
+
+
+function newStudent() {
+    let loginDetails = Utility.getLoginDetails();
+    let apiBaseUrl = Utility.apiBaseUrl;
+
+    apiBaseUrl += "/student/all-applications";
+
+}
   
   
 
