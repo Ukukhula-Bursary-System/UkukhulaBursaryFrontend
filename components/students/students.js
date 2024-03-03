@@ -69,7 +69,7 @@ function searchStudents(searchWord, students){
 
 
 
-function fetchStudents(amount , status, searchWord){
+function fetchStudents(status, searchWord){
     let loginDetails = Utility.getLoginDetails();
     let apiBaseUrl = Utility.apiBaseUrl;
 
@@ -120,4 +120,4 @@ function displayValue(value) {
 
 window.displayValue = displayValue
 
-export {fetchStudents , appendStudents, filterStudents, filterStudentsByAmount, searchStudents}
+export {fetchStudents , filterStudentsByAmount}
