@@ -131,12 +131,30 @@ window.displayValue = displayValue
 
 
 function getValuesForNewInstitute() {
+    const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const validPhoneNumber = /^\d{10}$/;
+
     if (status.value < 1) {
-        throw "Status id can't be less than 1.";
+        throw "Please select a status.";
     }
 
     if (reviewerId.value < 1) {
-        throw "Reviewer id can't be less than 1."
+        throw "Please select a reviewer.";
+    }
+
+    if (!repEmail.value.match(validRegex)) {
+        throw "Please enter a valid email address.";
+    }
+
+    if(!repPhoneNumber.value.match(validPhoneNumber) || repPhoneNumber.value.trim() == "") {
+        throw "Please enter a valid phone number.";
+    }
+
+    if (instituteName.value.trim() == "" ||
+        repFirstName.value.trim() == "" ||
+        repLastName.value.trim() == ""
+        ) {
+        throw "Please make sure that there are no empty fields."
     }
 
     return {

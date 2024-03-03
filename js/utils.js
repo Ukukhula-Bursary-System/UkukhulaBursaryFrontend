@@ -17,7 +17,7 @@ function showMessage(message, status) {
 
     setTimeout(() => {
         popup.style.display = "none";
-    }, 2000);
+    }, 4000);
 
     popup.innerText = message;
     popup.style.display = "block";
