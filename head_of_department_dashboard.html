@@ -1,60 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+    <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
         <link rel="stylesheet" href="./css/admin_dashboad.css">
+        <link rel="stylesheet" href="./css/funding.css">
+        <link rel="stylesheet" href="./css/admin_table.css">
+
         <title>BBD Ukukhula Bursary - ADMIN</title>
     </head>
-    <header>
-        <nav>
-            <section class="logo">
-                <section><img src="img/download.png" alt="Logo"><img onclick="toggleNav()" id="nav-close"
-                        src="./img/3671740_close_icon.png" alt=""></section>
-                <img onclick="toggleNav()" class="hamburger-menu" src="./img/134216_menu_lines_hamburger_icon.png" alt="">
-                <section class="line"></section>
-            </section>
-            <section class="account-details">
-                <h3 id="logged-user">test@email</h3>
-                <h6>My Account</h6>
-                <section class="line"></section>
-            </section>
-            <section class="menu">
-                <h3>Menu</h3>
-                <section onclick="toggleIframe('funding')"><img
-                        src="img/11019410_dollar_donation_fundraising_charity_donate money_icon.png" alt="Funding"
-                        srcset="">
-                    <h5>Funding</h5>
-                </section>
-                <section onclick="toggleIframe('students')"><img src="img/9035473_people_outline_icon.png"
-                        alt="Students" srcset="">
-                    <h5>Students</h5>
-                </section>
-            </section>
-            </section>
-            <section class="line"></section>
-            <section onclick="logout()" class="logout"><img src="img/1564506_close_exit_logout_power_icon.png" alt="Logout" srcset="">
-                <h5>Logout</h5>
-            </section>
-        </nav>
-    </header>
-
     <body>
-        <img src="./img/12.jpg" class="background-image">
+        <header>
+            <nav id="navbar">
+                <section class="logo">
+                    <img src="img/logo.png" alt="Logo">
+                    <section class="line"></section>
+                </section>
+                <section class="account-details">
+                    <h6>My Account</h6>
+                    <h3 id="logged-user">test@email</h3>
+                    <section class="line"></section>
+                </section>
+                <section class="menu">
+                    <h3>Menu</h3>
+                    <section id="funding-nav">
+                        <img src="img/11019410_dollar_donation_fundraising_charity_donate money_icon.png" alt="University" srcset="">
+                        <h5>Funding</h5>
+                    </section>
+                    <section  id="applications-nav">
+                        <img src="img/9035473_people_outline_icon.png" alt="Admin" srcset="">
+                        <h5>Applications</h5>
+                    </section>
+                    <section class="line"></section>
+                    <section id="logout-nav">
+                        <img src="img/1564506_close_exit_logout_power_icon.png" alt="Admin" srcset="">
+                        <h5>Logout</h5>
+                    </section>
+                </section>
+            </nav>
+        </header>
+        <img src="./img/23.jpg" class="background-image">
 
         <section class="data-display" id="main-section">
-            <iframe id="funding" src="./components/funding/hod_funding.html" frameborder="0" width="100%" height="100%"></iframe>
-            <iframe id="students" src="./components/students/students.html" frameborder="0" width="100%" height="100%"></iframe>
+
+            <!-- Funding -->
+            <section id="funding" style="width: 100%; height: 100%; margin: 0;">
+                <section id="popup">
+                </section> 
+                <section id="header">
+                </section>
+                <section id="add-institute-section">
+                    <span></span>
+                    <article id="amount">
+                        <h3>Fund Amount: <span id="fund-amount">R 1 000 000.00</span></h3>
+                        <h3>Remaining: <span id="remaining-fund">R 2 000.00</span></h3>
+                    </article>
+                </section>
+                <section class="filter-section">
+                    <h2 id="institute-name"></h2>
+                    <section class="line"></section>
+                </section>
+                <section id="institutes">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Institute</th>
+                                <th scope="col">Allocated Amount</th>
+                                <th scope="col">Remaining Amount</th>
+                                <th scope="col">Financial Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results">
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+
             
+            <!-- Applications -->
+            <section id="applications" style="width: 100%; height: 100%; margin: 0;">
+                <section id="popup">
+                </section> 
+                <section id="header">
+                </section>
+                <section id="add-institute-section">
+                    <button id="add-application-button" class="add-button"><i class="fa fa-plus" aria-hidden="true"></i> Student Application</button>
+                </section>
+                <section class="filter-section">
+                    <h2>Student Applications</h2>
+                    <section class="line"></section>
+                    <section>
+                        <label for="filter-options">Filter:</label>
+                        <select name="filter-options" id="filter-options">
+                            <option value="volvo">All</option>
+                            <option value="saab">Approved</option>
+                            <option value="mercedes">Rejected</option>
+                            <option value="audi">Pending</option>
+                        </select>
+                    </section>
+                </section>
+                <section id="institutes">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Bursary Amount</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="funding-results">
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+
+
+            <!-- Add Application -->
+            <section id="add-application" style="width: 100%; height: 100%; margin: 0;">
+                <section id="popup">
+                </section> 
+                <section id="header">
+                </section>
+                <section id="add-institute-section">
+        
+                </section>
+   
+                <form id="add-admin-form">
+                    <h3>Create new student application.</h3>
+                    <article id="name-input-fields">
+                        <input id="first-name" placeholder="Firstname..." type="text"/>
+                        <input id="last-name" placeholder="Lastname..." type="text"/>
+                    </article>
+                    <input id="phone-number" placeholder="+27731561234" type="text"/>
+                    <input id="email" placeholder="email" type="email"/>
+                    <select id="role">
+                        <option value=2>Admin</option>
+                        <option value=4>Reviewer</option>
+                    </select>
+                    <input type="submit" value="SAVE"/>
+                </form>
+            </section>
         </section>
+        <script type="module" src="./head_of_department_dashboard.js"></script>
     </body>
-    <script src="./js/utils.js"></script>
-    <script src="./head_of_department_dashboard.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            ifNotloggedInRedirectToLoginPage("hod");
-            setupPage();
-        })
-    </script>
 </html>

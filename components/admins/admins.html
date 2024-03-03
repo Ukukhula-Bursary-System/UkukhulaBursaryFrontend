@@ -5,12 +5,13 @@
     <title>Institutes Page</title>
     <link rel="stylesheet" href="./admins.css">
     <link rel="stylesheet" href="../../css/admin_table.css">
+    <link rel="stylesheet" href="../../css/message.css">
 </head>
 
 <body>
+    <section id="popup">
+    </section>
     <section id="admin-page">
-        <section id="popup">
-        </section>
         <section id="header">
         </section>
         <section id="add-institute-section">
@@ -61,20 +62,26 @@
             <input id="phone-number" placeholder="+27731561234" type="text" />
             <input id="email" placeholder="email" type="email" />
             <select id="role">
+                <option value=-1>Select Role</option>
                 <option value=2>Admin</option>
                 <option value=4>Reviewer</option>
             </select>
-            <input type="submit" onclick="addAdmin()" value="SAVE" />
+            <input type="submit" value="SAVE" />
         </form>
     </section>
 
 </body>
 <script type="module">
-    import { fetchAllAdmins, setupPage } from './admins.js';
+    import { fetchAllAdmins, setupPage, addAdmin } from './admins.js';
 
     document.addEventListener('DOMContentLoaded', function () {
         setupPage();
         fetchAllAdmins();
+
+        document.getElementById("add-admin-form").onsubmit = (e) => {
+            e.preventDefault();
+            addAdmin();
+        };
     });
 </script>
 <script type="module" src="./admins.js"></script>

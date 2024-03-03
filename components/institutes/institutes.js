@@ -10,17 +10,30 @@ let repPhoneNumber = document.getElementById("institute-reprentative-phonenumber
 let repEmail = document.getElementById("institute-reprentative-email");
 
 
+//Future refactor
 function appendInstitutes(data) {
     let results = document.getElementById("results");
+    let ids = [];
 
     results.innerHTML = '';
     if (data !== undefined) {
         for (let i = 0; i < data.length; i++) {
+            let id = data[i]["instituteId"];
+            let name = data[i]["instituteName"];
+            let status = data[i]["status"];
+            let statusId = 2;
+            if (status.toLowerCase() == "pending") {
+                statusId = 1;
+            } else if (status.toLowerCase() == "rejected") {
+                statusId = 3;
+            }
+            ids.push(id);
+
             results.innerHTML += `
-                <tr class="table-rows">
-                    <td data-label="Institute">${data[i]["instituteName"]}</td>
+                <tr id="institute-${id}" data-name="${name}" data-status=${statusId} class="table-rows">
+                    <td data-label="Institute">${name}</td>
                     <td data-label="Reviewer">${data[i]["email"]}</td>
-                    <td data-label="Status" class="approved">${data[i]["status"]}</td>
+                    <td data-label="Status" class="approved">${status}</td>
                     <td>
                         <a class="fund" href="#">Fund</a>
                     </td>
@@ -38,6 +51,32 @@ function appendInstitutes(data) {
             </td>
         </tr>
         `
+    }
+    instituteUpdate(ids);
+}
+
+
+function instituteUpdate(ids) {
+    let updateInstituteName = document.getElementById("update-institute-name");
+    let updateInstituteStatus = document.getElementById("update-status");
+
+    for (let i = 0; i < ids.length; i++) {
+        let institute = document.getElementById("institute-" + ids[i]);
+        institute.onclick = () => {
+            toggleElement('update-institute')
+            updateInstituteName.value = institute.dataset.name;
+            updateInstituteStatus.value = institute.dataset.status;
+
+            document.getElementById("update-institute-form").onsubmit = (e) => {
+                e.preventDefault();
+                let updateStatus = document.getElementById("update-status").value;
+
+                if (updateStatus < 1) {
+                    throw "Please select status."
+                }
+                updateInstitute(ids[i], updateStatus);
+            };
+        }
     }
 }
 
@@ -92,12 +131,30 @@ window.displayValue = displayValue
 
 
 function getValuesForNewInstitute() {
+    const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const validPhoneNumber = /^\d{10}$/;
+
     if (status.value < 1) {
-        throw "Status id can't be less than 1.";
+        throw "Please select a status.";
     }
 
     if (reviewerId.value < 1) {
-        throw "Reviewer id can't be less than 1."
+        throw "Please select a reviewer.";
+    }
+
+    if (!repEmail.value.match(validRegex)) {
+        throw "Please enter a valid email address.";
+    }
+
+    if(!repPhoneNumber.value.match(validPhoneNumber) || repPhoneNumber.value.trim() == "") {
+        throw "Please enter a valid phone number.";
+    }
+
+    if (instituteName.value.trim() == "" ||
+        repFirstName.value.trim() == "" ||
+        repLastName.value.trim() == ""
+        ) {
+        throw "Please make sure that there are no empty fields."
     }
 
     return {
@@ -180,9 +237,40 @@ function addInstitute() {
 }
 
 
+function updateInstitute(instituteId, statusId) {
+    let loginDetails = Utility.getLoginDetails();
+    let apiBaseUrl = Utility.apiBaseUrl;
+
+    apiBaseUrl += "/institute/" + instituteId;
+    
+    try {
+        fetch(apiBaseUrl, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: 'application/json',
+                Authorization: `Bearer ${loginDetails.loginToken}`
+            },
+            body: JSON.stringify({
+                applicationStatusID: statusId
+            })
+        }).then(response => {
+            return Utility.handleErrorResponse(response);
+        }).then(data => {
+            Utility.showMessage(`Institute "${data["instituteName"]}" status updated to "${data["status"]}"`);
+        }).catch(error => {
+            Utility.showMessage(error.message, "error");
+        });
+    } catch(error) {
+        Utility.showMessage(error, "error");
+    }
+}
+
+
 function toggleElement(elment) {
     document.getElementById('institute-page').style.display = 'none';
     document.getElementById('add-institute').style.display = 'none';
+    document.getElementById('update-institute').style.display = 'none';
 
     document.getElementById(elment).style.display = 'block';
 }
@@ -190,6 +278,7 @@ function toggleElement(elment) {
 
 function setupPage() {
     document.getElementById('add-institute').style.display = 'none';
+    document.getElementById('update-institute').style.display = 'none';
 }
 
 

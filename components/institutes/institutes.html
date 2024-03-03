@@ -28,10 +28,10 @@
                 <input type="text" id="search-input" placeholder="Search institution...">
                 <label for="filter-options">Status:</label>
                 <select  name="filter-options" id="filter-options">
-                    <option value="All">All</option>
-                    <option value="Approved">Approved</option>
-                    <option value="Rejected">Rejected</option>
-                    <option value="Pending">Pending</option>
+                    <option value="-1">All</option>
+                    <option value=2>Approved</option>
+                    <option value=1>Pending</option>
+                    <option value=3>Rejected</option>
                 </select>
             </section>
 
@@ -70,7 +70,7 @@
             <form id="add-institute-form">
                 <input id="institute-name" placeholder="Institute name..." type="text"/>
                 <select id="status">
-                    <option value="-1">Choose Status</option>
+                    <option value="-1">Status</option>
                     <option value=2>Approved</option>
                     <option value=1>Pending</option>
                     <option value=3>Rejected</option>
@@ -86,6 +86,23 @@
             </form>
         </section>
     </section>
+
+    <section id="update-institute">
+        <section class="filter-section">
+            <h2>Update Institute Status</h2>
+            <section class="line"></section>
+        </section>
+            <form id="update-institute-form">
+                <input id="update-institute-name" readonly type="text"/>
+                <select id="update-status">
+                    <option value=2>Approved</option>
+                    <option value=1>Pending</option>
+                    <option value=3>Rejected</option>
+                </select>
+                <input type="submit" value="UPDATE" />
+            </form>
+        </section>
+    </section>
 </body>
 <script type="module">
     import { fetchAllInstitutes, setupPage, fetchAllReviewers, addInstitute } from './institutes.js';
@@ -98,6 +115,15 @@
         document.getElementById("add-institute-form").onsubmit = (e) => {
             e.preventDefault();
             addInstitute();
+        };
+
+        let statusOption = document.getElementById("filter-options");
+        statusOption.onchange = () => {
+            if (statusOption.value !== "-1") {
+                fetchAllInstitutes(statusOption.value);
+            } else {
+                fetchAllInstitutes();
+            }
         };
     });
 </script>
