@@ -14,3 +14,40 @@ function setupPage() {
 function logout() {
     window.location.replace("/");
 }
+
+function toggleNav() {
+    const nav = document.querySelector('nav');
+    const menu = document.querySelector('.hamburger-menu')
+    const display = document.querySelector('.data-display')
+    if (!nav.classList.contains("open")) {
+        menu.style.display = "none"
+        if (window.matchMedia("(max-width: 500px)").matches) {
+            display.style.display = "none";
+        } else {
+            display.style.width = "70vw"
+        }
+    } else {
+        menu.style.display = "block"
+        display.style.display = 'block'
+        display.style.width = "90vw"
+    }
+
+    nav.classList.toggle('open');
+}
+
+function toggleMobileNav() {
+    const nav = document.querySelector('nav');
+    const menu = document.querySelector('.hamburger-menu')
+    const display = document.querySelector('.data-display')
+    if (window.matchMedia("(max-width: 500px)").matches) {
+        if (!nav.classList.contains("open")) {
+            menu.style.display = "none"
+            display.style.display = "none";
+        }
+        else {
+            menu.style.display = "block"
+            display.style.display = 'block'
+        }
+        nav.classList.toggle('open');
+    }
+}
