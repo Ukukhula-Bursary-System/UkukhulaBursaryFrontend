@@ -156,7 +156,7 @@ function addInstitute() {
     
     try {
         let newInstitute = getValuesForNewInstitute();
-        console.log(newInstitute);
+       // console.log(newInstitute);
 
         fetch(apiBaseUrl, {
             method: "POST",
