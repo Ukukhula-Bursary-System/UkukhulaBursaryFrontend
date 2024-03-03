@@ -76,7 +76,7 @@ function fetchStudents(amount , status, searchWord){
     apiBaseUrl += "/student/all-applications";
 
     if (loginDetails.role.toLocaleLowerCase() === "hod") {
-        apiBaseUrl += "/hod/" + loginDetails.userEmail;
+        apiBaseUrl += "/hod/" + loginDetails.userEmail;   
     }
 
     fetch(apiBaseUrl, {
