@@ -129,6 +129,35 @@
    
     </section>
  <section id="student-details">
+
+        <section class="details-section">
+            <section id="students">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">FirstName</th>
+                            <th scope="col">LastName</th>
+                            <th scope="col">University</th>
+                            <th scope="col">BursaryAmount</th>
+                            <th scope="col">status</th>
+                          
+                        </tr>
+                    </thead>
+                    <tbody id="results">
+                        <tr class="table-rows">
+                            <td data-label="FirstName"></td>
+                            <td data-label="LastName"></td>
+                            <td data-label="University"></td>
+                            <td data-label="BursaryAmount"></td>
+                            <td data-label="status" class="approved"></td>
+                            <td class="viewButton"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </section>
+
+
         <section class="details-section">
           <h3>Personal Details</h3>
             <p id="name">Firstname: John Doe</p>
@@ -204,10 +233,11 @@
 
         //form submission
         document.getElementById("applicatonForm").onsubmit = (e) => {
-            e.preventDefault();
-            if (validateForm()){
+             e.preventDefault();
+            if (!validateForm()){
                 return;
             }
+          
             addHODNewStudent();
             setTimeout(() => {
                 fetchStudents();
