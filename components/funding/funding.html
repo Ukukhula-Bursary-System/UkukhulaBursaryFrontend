@@ -64,7 +64,7 @@
                         <td data-label="Financial Date"></td>
                     </tr>
                 </tbody>
-            </table>
+            </table>+
         </section>
     </section>
 
@@ -74,6 +74,7 @@
         <section class="line"></section>
     </section>
         <form id="add-funding-form">
+            <button id="back-button" style="background-color: rgb(245, 110, 21); color: white; border: none;padding: 15px 32px; cursor: pointer;  position: absolute; top: 10px; left: 10px;">Back</button>
             <input id="funding-amount" placeholder="Amount..." type="number" min="0"/>
             <select id="universities">
                 <option value="-1">Choose institute</option>
@@ -110,5 +111,12 @@
 <script>
 
 </script>
+
+<script>
+    document.getElementById('back-button').addEventListener('click', function() {
+    window.location.href = 'funding.html';
+});
+</script>
+
 
 </html>

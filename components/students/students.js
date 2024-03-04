@@ -13,18 +13,31 @@ function appendStudents(data) {
     results.innerHTML = "";
     for (let i = 0; i < data.length; i++) {
         let student = data[i];
+        let statusClass = '';
+        switch(student["status"]) {
+            case 'Approved':
+                statusClass = 'approved';
+                break;
+            case 'Rejected':
+                statusClass = 'rejected';
+                break;
+            case 'Pending':
+                statusClass = 'pending';
+                break;
+            default:
+                statusClass = '';
+        }
         results.innerHTML +=
-
-            ` <tr class="table-rows">
+            `<tr class="table-rows">
                 <td data-label="FirstName">${student["firstName"]}</td>
                 <input type="hidden" value=${student["studentID"]}>
                 <td data-label="LastName">${student["lastName"]}</td>
                 <td data-label="University">${student["university"]}</td>
-                <td data-label="BursaryAmount">  ${ZarFormatter.format(student["bursaryAmount"])}  </td>
-                <td data-label="status" class="approved">${student["status"]}</td>
-            </tr>`
-
+                <td data-label="BursaryAmount">${ZarFormatter.format(student["bursaryAmount"])}</td>
+                <td data-label="status" class="${statusClass}">${student["status"]}</td>
+            </tr>`;
     }
+    
     document.querySelectorAll('.table-rows').forEach(item => {
         item.addEventListener('click', event => {
             event.preventDefault();
