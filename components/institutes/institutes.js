@@ -35,7 +35,7 @@ function appendInstitutes(data) {
                 <tr id="institute-${id}" data-name="${name}" data-status=${statusId} class="table-rows">
                     <td data-label="Institute">${name}</td>
                     <td data-label="Reviewer">${data[i]["email"]}</td>
-                    <td data-label="Status" class="approved">${status}</td>
+                    <td data-label="Status" class="${status.toLowerCase()}">${status}</td> 
                 </tr>
             `;
         }
