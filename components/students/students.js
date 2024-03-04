@@ -100,7 +100,7 @@ function StudentDetailsView(student) {
         }).then(response => {
             return handleErrorResponse(response);
         }).then(data => {
-            Utility.showMessage(`S`)
+           Alert("Student status successfully" + status.toLowerCase() + "!");
         }).catch(error => {
             Utility.showMessage(error.message, "error");
         })
