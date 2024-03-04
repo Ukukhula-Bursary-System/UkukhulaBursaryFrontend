@@ -8,22 +8,11 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="index.html">email: philaningcamu18@gmail.com</a>
-        
-        
-        </a>
-      </div>
-
-
-
+    </div>
 
   <section class="container">
     <h1>Document Your Upload</h1>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        <label for="document1" class="form-group">
-            CV:
-            <input type="file" id="CV" required name="document1" accept=".pdf, .doc, .docx" onchange="checkFile(this)">
-        </label>
+    <form id="document-form" method="post" enctype="multipart/form-data">
         <label for="document2" class="form-group">
             Identity Document:
             <input type="file" id="Identitydocument" required name="document2" accept=".pdf, .doc, .docx">

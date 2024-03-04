@@ -34,18 +34,21 @@ function appendStudents(data) {
 }
 
 function StudentDetailsView(student) {
+    if (confirm(`Send link to upload documents to student "${student.firstName} ${student.lastName}?`)) {
+        requestDocumentUploadLinkForStudents(student["studentID"])
+    } else {
+        document.getElementById("details").style.display = "block";
+        document.getElementById("registrationForm").style.display = "none";
+        document.getElementById("header").style.display = "none";
 
-    document.getElementById("details").style.display = "block";
-    document.getElementById("registrationForm").style.display = "none";
-    document.getElementById("header").style.display = "none";
-
-    document.getElementById("Approve").addEventListener("click", function () {
-        student.status = "Approved";
+        document.getElementById("approve").addEventListener("click", function () {
+            student.status = "approved";
+        }
+        )
+        document.getElementById("reject").addEventListener("click", function () {
+            student.status = "rejected";
+        });
     }
-    )
-    document.getElementById("reject").addEventListener("click", function () {
-        student.status = "Rejected";
-    });
 }
 
 function filterStudents(status, students) {
@@ -86,6 +89,34 @@ function searchStudents(searchWord, students){
         return;
     }
     appendStudents(studentsbysearch);
+}
+
+
+function requestDocumentUploadLinkForStudents(studentId){
+    let loginDetails = Utility.getLoginDetails();
+    let apiBaseUrl = Utility.apiBaseUrl;
+
+    apiBaseUrl += "/student/generate-student-document-link/" + studentId;
+
+    try {
+        fetch(apiBaseUrl, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: 'application/json',
+                Authorization: `Bearer ${loginDetails.loginToken}`
+            }
+        }).then(response => {
+            return Utility.handleErrorResponse(response);
+        }).then(data => {
+            prompt("link successfully sent to student!", data["link"]);
+            // Utility.showMessage(data["message"]);
+        }).catch(error => {
+            showAlert(error.message);
+        })
+    } catch(error) {
+        Utility.showMessage(error, "error");
+    }
 }
 
 
@@ -210,14 +241,15 @@ function getNewStudentApplicationValues(loginDetails) {
     return {
         firstName: studentFirstName,
         lastName: studentLastName,
-        identityDocument: studentIdentityNumber,
         phoneNumber: studentPhoneNumber,
         email: studentEmail,
+        instituteId: loginDetails.institute,
+        identityDocument: studentIdentityNumber,
         race: studentRace,
-        headOfDepartment: loginDetails.userEmail,
-        motivation: studentMotivation,
+        bursaryAmount: studentBursaryAmount,
         averageMarks: studentAverageMarks,
-        bursaryAmount: studentBursaryAmount
+        motivation: studentMotivation,
+        headOfDepartment: loginDetails.userEmail
     }
 }
 
@@ -230,7 +262,8 @@ function addStudent(hodId) {
 
     try {
         let newStudentApplication = getNewStudentApplicationValues(loginDetails);
-        newStudentApplication["headOfDepartment"] = hodId;
+        newStudentApplication["headOfDepartmentId"] = hodId;
+        console.log(hodId);
 
         return fetch(apiBaseUrl, {
             method: "POST",

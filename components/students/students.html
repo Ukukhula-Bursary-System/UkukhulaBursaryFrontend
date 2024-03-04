@@ -5,6 +5,7 @@
     <title>Institutes Page</title>
     <link rel="stylesheet" href="./students.css">
     <link rel="stylesheet" href="../../css/admin_table.css">
+    <link rel="stylesheet" href="../../css/message.css">
     
 </head>
 
@@ -66,7 +67,7 @@
         <h1>Bursary Application</h1>
         <section class="cardbar">
     
-        <fieldset class="card">
+        <!-- <fieldset class="card">
             <legend>Budget</legend>
             <label class="big-number">R1 000 000</label>
         </fieldset>
@@ -74,7 +75,7 @@
             <legend>Balance</legend>
             <label class="big-number red">R200 000</label>
         </fieldset>
-        </section>
+        </section> -->
     
         <form id="applicatonForm">
             <fieldset>
@@ -96,12 +97,11 @@
     
                 <label for="race">Race:</label>
                 <select class="selectUniversity" id="race" name="race">
-                    <option value="Black">Black</option>
-                    <option value="White">White</option>
-                    <option value="Indian">Indian</option>
-                    <option value="Coloured">Coloured</option>
+                    <option value=2>Black</option>
+                    <option value=5>Indian</option>
+                    <option value=4>Coloured</option>
                 </select>
-                <label for="averageMarks">Bursary Amount:</label>
+                <label for="averageMarks">Average Marks:</label>
                 <input type="number" id="averageMarks" name="averageMarks" min="65" max="100" required>
             </fieldset>
             <fieldset>     
@@ -199,6 +199,9 @@
         document.getElementById("applicatonForm").onsubmit = (e) => {
             e.preventDefault();
             addHODNewStudent();
+            setTimeout(() => {
+                fetchStudents();
+            }, 2000);
             document.getElementById("registrationForm").style.display = "none";
             document.getElementById("header").style.display = "block";
             document.getElementById("details").style.display = "none";

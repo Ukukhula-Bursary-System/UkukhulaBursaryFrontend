@@ -166,9 +166,9 @@ function getValuesForNewInstitute() {
 function clearInputs() {
     instituteName.value = "";
     repFirstName.value = "";
-    repLastName,value = "";
-    repPhoneNumber = "";
-    repEmail = ""; 
+    repLastName.value = "";
+    repPhoneNumber.value = "";
+    repEmail.value = ""; 
 }
 
 
@@ -207,7 +207,6 @@ function addInstitute() {
     
     try {
         let newInstitute = getValuesForNewInstitute();
-        console.log(newInstitute);
 
         fetch(apiBaseUrl, {
             method: "POST",
