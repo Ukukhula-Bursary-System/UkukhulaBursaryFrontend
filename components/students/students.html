@@ -87,33 +87,34 @@
             <fieldset>
                 <legend>Personal Details</legend>
                 <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" name="firstName" required>
+                <input type="text" id="firstName" pattern="[a-zA-Z]+" name="firstName" placeholder="e.g. Sipho" required>
     
                 <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" name="lastName" required>
+                <input type="text" id="lastName" name="lastName" pattern="[a-zA-Z]+" placeholder="e.g. Khumalo" required>
     
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" placeholder="e.g. sipho@gmail.com" required>
                 
                 <label for="IdentityNumber">Identity Number:</label>
-                <input type="number" maxlength="13" id="IdentityNumber" name="IdentityNumber" required>
+                <input type="text" placeholder="e.g. 9908045784081" pattern="[0-9]+" minlength="13" maxlength="13" id="IdentityNumber" name="IdentityNumber" required>
                 
                 <label for="phoneNumber">Phone Number:</label>
-                <input type="number" id="phoneNumber" name="phoneNumber" required>
+                <input type="text" id="phoneNumber" placeholder="e.g. 0643188744" name="phoneNumber" required>
     
                 <label for="race">Race:</label>
-                <select class="selectUniversity" id="race" name="race">
+                <select class="selectUniversity" id="race"  name="race">
+                
                     <option value=2>Black</option>
                     <option value=5>Indian</option>
                     <option value=4>Coloured</option>
                 </select>
                 <label for="averageMarks">Average Marks:</label>
-                <input type="number" id="averageMarks" name="averageMarks" min="65" max="100" required>
+                <input type="number" id="averageMarks" placeholder="e.g. 65" pattern="[0-9]+" name="averageMarks" min="65" max="100" required>
             </fieldset>
             <fieldset>     
                 <legend>Bursary</legend>
                     <label for="bursaryAmount">Bursary Amount:</label>
-                    <input type="number" id="bursaryAmount" name="bursaryAmount" required>
+                    <input type="number" id="bursaryAmount" pattern="[0-9]+" name="bursaryAmount" min="500" max="125000" required>
                     <label for="Motivation">Motivation:</label>
                     <textarea id="motivation" name="motivation" required></textarea>
            </fieldset>
@@ -178,7 +179,7 @@
 
 </body>
 <script type="module">
-    import { fetchStudents, filterStudentsByAmount,hideHodButton, addStudent, addHODNewStudent  } from './students.js';
+    import { fetchStudents, filterStudentsByAmount,hideHodButton,validateForm, addStudent, addHODNewStudent } from './students.js';
 
     document.addEventListener('DOMContentLoaded', function () {
         fetchStudents();
@@ -204,6 +205,9 @@
         //form submission
         document.getElementById("applicatonForm").onsubmit = (e) => {
             e.preventDefault();
+            if (validateForm()){
+                return;
+            }
             addHODNewStudent();
             setTimeout(() => {
                 fetchStudents();
@@ -221,6 +225,10 @@
         }
       
     });
+
+
+
+
 </script>
 <script>
 
