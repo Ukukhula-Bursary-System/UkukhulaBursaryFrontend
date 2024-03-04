@@ -49,10 +49,14 @@ function StudentDetailsView(student) {
         document.getElementById("universityname").innerHTML = "University: " + student.university;
         document.getElementById("bursaryAmountdetails").innerHTML = "Bursary Amount: " + student.bursaryAmount;
         document.getElementById("status-details").innerHTML = "Status: " + student.status;
+   
+
         document.getElementById("link").addEventListener("click", function () { 
             if (confirm(`Are you sure you want to send a document upload link to ${student.firstName} ${student.lastName}?`)) {
                 requestDocumentUploadLinkForStudents(student.studentID);
             }});
+
+    
 
         let loginDetails = Utility.getLoginDetails();
         if (loginDetails.role.toLowerCase() === "hod") {
@@ -61,6 +65,7 @@ function StudentDetailsView(student) {
         }
         else {
             document.getElementById("sendApplication").style.display = "none";
+            document.getElementById("link").style.display = "none";
         }
 
 
@@ -332,10 +337,5 @@ function addStudent(hodId) {
         Utility.showMessage(error, "error");
     }
 }
-
-
-
   
-
-
 export {fetchStudents , filterStudentsByAmount, hideHodButton, addStudent, addHODNewStudent}
