@@ -49,10 +49,14 @@ function StudentDetailsView(student) {
         document.getElementById("universityname").innerHTML = "University: " + student.university;
         document.getElementById("bursaryAmountdetails").innerHTML = "Bursary Amount: " + student.bursaryAmount;
         document.getElementById("status-details").innerHTML = "Status: " + student.status;
+   
+
         document.getElementById("link").addEventListener("click", function () { 
             if (confirm(`Are you sure you want to send a document upload link to ${student.firstName} ${student.lastName}?`)) {
                 requestDocumentUploadLinkForStudents(student.studentID);
             }});
+
+    
 
         let loginDetails = Utility.getLoginDetails();
         if (loginDetails.role.toLowerCase() === "hod") {
@@ -61,6 +65,7 @@ function StudentDetailsView(student) {
         }
         else {
             document.getElementById("sendApplication").style.display = "none";
+            document.getElementById("link").style.display = "none";
         }
 
 
@@ -331,6 +336,31 @@ function addStudent(hodId) {
     } catch(error) {
         Utility.showMessage(error, "error");
     }
+}
+
+
+function getStudentDocuments(statusId, document)  {
+    let loginDetails = Utility.getLoginDetails();
+    let apiBaseUrl = Utility.apiBaseUrl;
+
+    apiBaseUrl += "/student/documents/" + statusId;
+
+    fetch(apiBaseUrl, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: 'application/json',
+            Authorization: `Bearer ${loginDetails.loginToken}`
+        }
+    }).then(response => {
+        return Utility.handleErrorResponse(response);
+    }).then(data => {
+        return fetch("https://https://ukukhulabbdbursaryapi.onrender.com/file/" + data[data["Transcript"]])
+    }).catch(response => {
+        return response.
+    }).catch(error => {
+        Utility.showMessage(error.message, "error");
+    })
 }
 
 
