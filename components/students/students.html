@@ -13,7 +13,7 @@
     </section>  
     <section id="header" class="students">
     <section id="add-institute-section">
-        <button onclick="toggleElement('add-admin')" id="add-admin-button" class="add-button"><img
+        <button  id="add-admin-button" class="add-button"><img
                 src="../../img/134224_add_plus_new_icon.png" alt="plus icon" /> STUDENT APPLICATION</button>
     </section>
     <section class="filter-section">
@@ -76,7 +76,7 @@
         </fieldset>
         </section>
     
-        <form id="applicatonForm" action="submit_application.php" method="post">
+        <form id="applicatonForm">
             <fieldset>
                 <legend>Personal Details</legend>
                 <label for="firstName">First Name:</label>
@@ -85,29 +85,31 @@
                 <label for="lastName">Last Name:</label>
                 <input type="text" id="lastName" name="lastName" required>
     
-                <label for="IdentityNumber">Identity Number:</label>
-                <input type="number" maxlength="13" minlength="13" id="IdentityNumber" name="IdentityNumber" required>
-            
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
-    
+                
+                <label for="IdentityNumber">Identity Number:</label>
+                <input type="number" maxlength="13" id="IdentityNumber" name="IdentityNumber" required>
+                
                 <label for="phoneNumber">Phone Number:</label>
-                <input type="text" id="phoneNumber" name="phoneNumber" required>
+                <input type="number" id="phoneNumber" name="phoneNumber" required>
     
-                <label for="Race">Race:</label>
-                <select class="selectUniversity" name="Race">
-                    <option value="1">Black</option>
-                    <option value="2">White</option>
-                    <option value="3">Indian</option>
-                    <option value="4">Coloured</option>
+                <label for="race">Race:</label>
+                <select class="selectUniversity" id="race" name="race">
+                    <option value="Black">Black</option>
+                    <option value="White">White</option>
+                    <option value="Indian">Indian</option>
+                    <option value="Coloured">Coloured</option>
                 </select>
+                <label for="averageMarks">Bursary Amount:</label>
+                <input type="number" id="averageMarks" name="averageMarks" min="65" max="100" required>
             </fieldset>
             <fieldset>     
                 <legend>Bursary</legend>
-                   <label for="phoneNumber">Phone Number:</label>
-                   <input type="text" id="phoneNumber" name="phoneNumber" required>
-                   <label for="contactBursaryAmount">Bursary Amount:</label>
-                   <input type="number" id="contactBursaryAmount" name="contactBursaryAmount" required>
+                    <label for="bursaryAmount">Bursary Amount:</label>
+                    <input type="number" id="bursaryAmount" name="bursaryAmount" required>
+                    <label for="Motivation">Motivation:</label>
+                    <textarea id="motivation" name="motivation" required></textarea>
            </fieldset>
             <fieldset>
             <button id="submit" type="submit">Submit</button>
@@ -170,11 +172,11 @@
 
 </body>
 <script type="module">
-    import { fetchStudents, filterStudentsByAmount } from './students.js';
+    import { fetchStudents, filterStudentsByAmount,hideHodButton, addStudent, addHODNewStudent  } from './students.js';
 
     document.addEventListener('DOMContentLoaded', function () {
         fetchStudents();
-
+      
         document.getElementById("filter-options").onchange = (e) => {
             fetchStudents(e.target.value, undefined);
         }
@@ -192,20 +194,23 @@
             document.getElementById("details").style.display = "none";
             
         }
-        document.getElementById("submit").onclick = (e) => {
+
+        //form submission
+        document.getElementById("applicatonForm").onsubmit = (e) => {
             e.preventDefault();
+            addHODNewStudent();
             document.getElementById("registrationForm").style.display = "none";
             document.getElementById("header").style.display = "block";
             document.getElementById("details").style.display = "none";
-            fetchStudents();
         }
+
         document.getElementById("add-admin-button").onclick = (e) => {
             e.preventDefault();
             document.getElementById("registrationForm").style.display = "block";
             document.getElementById("header").style.display = "none";
             document.getElementById("details").style.display = "none";
         }
-        
+        hideHodButton();
     });
 </script>
 <script>
