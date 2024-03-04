@@ -49,7 +49,11 @@ function StudentDetailsView(student) {
         document.getElementById("universityname").innerHTML = "University: " + student.university;
         document.getElementById("bursaryAmountdetails").innerHTML = "Bursary Amount: " + student.bursaryAmount;
         document.getElementById("status-details").innerHTML = "Status: " + student.status;
-        document.getElementById("link").href =  requestDocumentUploadLinkForStudents(student.studentID);
+        document.getElementById("link").addEventListener("click", function () { 
+            if (confirm(`Are you sure you want to send a document upload link to ${student.firstName} ${student.lastName}?`)) {
+                requestDocumentUploadLinkForStudents(student.studentID);
+            }});
+
         let loginDetails = Utility.getLoginDetails();
         if (loginDetails.role.toLowerCase() === "hod") {
             document.getElementById("approve").style.display = "none";
@@ -62,11 +66,39 @@ function StudentDetailsView(student) {
 
         document.getElementById("approve").addEventListener("click", function () {
             student.status = "approved";
+            approveOrDeclineStudents("Approved", student.studentID);    
         }
         )
         document.getElementById("reject").addEventListener("click", function () {
             student.status = "rejected";
+            approveOrDeclineStudents("Rejected", student.studentID);
         });
+        document.getElementById("sendApplication").addEventListener("click", function () {
+            approveOrDeclineStudents("Pending", student.studentID);
+        });
+    }
+
+    function approveOrDeclineStudents(status, studentID) {
+        let loginDetails = Utility.getLoginDetails();
+        let apiBaseUrl = Utility.apiBaseUrl;
+    
+        apiBaseUrl += `/student/update/${studentID}/${status}`;
+     
+    
+        fetch(apiBaseUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: 'application/json',
+                Authorization: `Bearer ${loginDetails.loginToken}`
+            }
+        }).then(response => {
+            return handleErrorResponse(response);
+        }).then(data => {
+            Utility.showMessage(`S`)
+        }).catch(error => {
+            Utility.showMessage(error.message, "error");
+        })
     }
 
 
@@ -129,7 +161,7 @@ function requestDocumentUploadLinkForStudents(studentId){
         }).then(response => {
             return Utility.handleErrorResponse(response);
         }).then(data => {
-            return data.json();
+            prompt("Link successfully sent to student", data["link"]);
             // Utility.showMessage(data["message"]);
         }).catch(error => {
             showAlert(error.message);
@@ -300,6 +332,8 @@ function addStudent(hodId) {
         Utility.showMessage(error, "error");
     }
 }
+
+
 
   
 
