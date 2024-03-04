@@ -72,20 +72,7 @@ function getLoginDetails() {
     }
 }
 
-function redirectAfterLogin(role) {
-    if (role == "HOD") {
-        //redirect to HOD dashboard
-        window.location.replace("/head_of_department_dashboard.html");
-    } else if (role == "Reviewer") {
-        //redirect to Reviewer dashboard
-        alert("Reviewer redirect!");
-    } else if (role == "Admin") {
-        //redirect to admin dashboard
-        window.location.replace("/admin_dashboard.html");
-    } else {
-        showMessage("Unknown role!", "error");
-    }
-}
+
 function handleErrorResponse(response, page) {
     if (response.status == 403 || response.status == 401) {
         showMessage("Please login with valid credentials!", "error");

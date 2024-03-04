@@ -22,3 +22,19 @@ function login(response) {
         showMessage(error, "error");
     }
 }
+
+
+function redirectAfterLogin(role) {
+    if (role == "HOD") {
+        //redirect to HOD dashboard
+        window.location.replace("/head_of_department_dashboard.html");
+    } else if (role == "Reviewer") {
+        //redirect to Reviewer dashboard
+        alert("Reviewer redirect!");
+    } else if (role == "Admin") {
+        //redirect to admin dashboard
+        window.location.replace("/admin_dashboard");
+    } else {
+        showMessage("Unknown role!", "error");
+    }
+}
