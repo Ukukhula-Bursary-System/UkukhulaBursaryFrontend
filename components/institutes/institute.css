@@ -62,4 +62,7 @@ form input[type="submit"]:hover {
     width: 48%; 
 }
 
+.table-rows {
+    cursor: pointer;
+}
 
