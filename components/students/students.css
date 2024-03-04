@@ -22,6 +22,11 @@ table td {
 
 tbody tr:nth-child(odd) {
     background-color: rgb(222, 215, 215);
+    cursor: pointer;
+}
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+    cursor: pointer;
 }
 
 .alert {
@@ -47,7 +52,7 @@ tbody tr:nth-child(odd) {
     background-color: #edf2f3;
      background-color: rgba(0, 0, 0, 0.1);
 }
-#registrationForm {
+#registrationForm,#details {
     border-radius: 5px;
     margin: auto;
     max-width: 800px;
@@ -59,6 +64,19 @@ fieldset {
     margin-bottom: 10px;
     background-color: white;
     
+}
+legend{
+    font-weight: bold;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
 }
 legend {
     font-weight: bold;
@@ -107,7 +125,6 @@ button:hover {
     max-width: 800px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content:space-between;
     padding: 10px;
     flex-wrap: wrap;
     border-radius: 5px;
@@ -130,7 +147,7 @@ button:hover {
     display: block;
 }
 
-#regitrationForm input[type="text"] {
+form , input[type="text"] {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;

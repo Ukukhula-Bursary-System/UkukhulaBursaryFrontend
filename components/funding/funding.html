@@ -24,6 +24,9 @@
         </section>
         <section class="filter-section">
             <h2>FUNDED INSTITUTES</h2>
+            <h3>Fund Total Amount: <span id="fund-amount"></span></h3>
+            <h3>Fund Remaining Amount: <span id="fund-remaining-amount"></span></h3>
+            <h3>Date: <span id="fund-date"></span></h3>
             <section class="line"></section>
             <section class="filter">
                 <label for="search-input">Search:</label>
@@ -80,10 +83,11 @@
 </section>
 </body>
 <script type="module">
-    import { fetchAllInstitutesAllocatedFunds, setupPage, fetchAllApprovedUniversities, addFunding } from './funding.js';
+    import { fetchAllInstitutesAllocatedFunds, setupPage, fetchAllApprovedUniversities, addFunding, fetchBursaryFund } from './funding.js';
 
     document.addEventListener('DOMContentLoaded', function () {
         setupPage();
+        fetchBursaryFund();
         fetchAllInstitutesAllocatedFunds();
         fetchAllApprovedUniversities();
 

@@ -83,8 +83,7 @@ function redirectAfterLogin(role) {
         //redirect to admin dashboard
         window.location.replace("/admin_dashboard.html");
     } else {
-        console.log(role);
-        alert("Uknown role!");
+        showMessage("Unknown role!", "error");
     }
 }
 function handleErrorResponse(response, page) {

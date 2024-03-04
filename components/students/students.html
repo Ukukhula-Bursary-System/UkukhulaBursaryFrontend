@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./students.css">
     <link rel="stylesheet" href="../../css/admin_table.css">
     <link rel="stylesheet" href="../../css/message.css">
+    
 </head>
 
 <body>
@@ -48,7 +49,7 @@
                     <th scope="col">University</th>
                     <th scope="col">BursaryAmount</th>
                     <th scope="col">status</th>
-                    <th scope="col"></th>
+                  
                 </tr>
             </thead>
             <tbody id="results">
@@ -69,7 +70,7 @@
         <h1>Bursary Application</h1>
         <section class="cardbar">
     
-        <fieldset class="card">
+        <!-- <fieldset class="card">
             <legend>Budget</legend>
             <label class="big-number">R1 000 000</label>
         </fieldset>
@@ -77,9 +78,9 @@
             <legend>Balance</legend>
             <label class="big-number red">R200 000</label>
         </fieldset>
-        </section>
+        </section> -->
     
-        <form id="applicatonForm" action="submit_application.php" method="post">
+        <form id="applicatonForm">
             <fieldset>
                 <legend>Personal Details</legend>
                 <label for="firstName">First Name:</label>
@@ -88,29 +89,30 @@
                 <label for="lastName">Last Name:</label>
                 <input type="text" id="lastName" name="lastName" required>
     
-                <label for="IdentityNumber">Identity Number:</label>
-                <input type="number" maxlength="13" minlength="13" id="IdentityNumber" name="IdentityNumber" required>
-            
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
-    
+                
+                <label for="IdentityNumber">Identity Number:</label>
+                <input type="number" maxlength="13" id="IdentityNumber" name="IdentityNumber" required>
+                
                 <label for="phoneNumber">Phone Number:</label>
-                <input type="text" id="phoneNumber" name="phoneNumber" required>
+                <input type="number" id="phoneNumber" name="phoneNumber" required>
     
-                <label for="Race">Race:</label>
-                <select class="selectUniversity" name="Race">
-                    <option value="1">Black</option>
-                    <option value="2">White</option>
-                    <option value="3">Indian</option>
-                    <option value="4">Coloured</option>
+                <label for="race">Race:</label>
+                <select class="selectUniversity" id="race" name="race">
+                    <option value=2>Black</option>
+                    <option value=5>Indian</option>
+                    <option value=4>Coloured</option>
                 </select>
+                <label for="averageMarks">Average Marks:</label>
+                <input type="number" id="averageMarks" name="averageMarks" min="65" max="100" required>
             </fieldset>
             <fieldset>     
                 <legend>Bursary</legend>
-                   <label for="phoneNumber">Phone Number:</label>
-                   <input type="text" id="phoneNumber" name="phoneNumber" required>
-                   <label for="contactBursaryAmount">Bursary Amount:</label>
-                   <input type="number" id="contactBursaryAmount" name="contactBursaryAmount" required>
+                    <label for="bursaryAmount">Bursary Amount:</label>
+                    <input type="number" id="bursaryAmount" name="bursaryAmount" required>
+                    <label for="Motivation">Motivation:</label>
+                    <textarea id="motivation" name="motivation" required></textarea>
            </fieldset>
             <fieldset>
             <button id="submit" type="submit">Submit</button>
@@ -120,14 +122,64 @@
         </form>
     </section>
 
+    <section id="details" class="students">
+        <section class="details">
+           <h2>Student Details</h2>
+           <section class="line"></section>
+           <fieldset class="student-details">
+            <legend>student details</legend>
+               <label for="firstName">First Name:</label>
+               <label id="firstName">John</label>
+               <label for="lastName">Last Name:</label>
+               <label id="lastName">Doe</label>
+               <label for="IdentityNumber">Identity Number:</label>
+               <label id="IdentityNumber">1234567890123</label>
+               <label for="email">Email:</label>
+               <label id="email">fgdffsf@</label>
+                <label for="phoneNumber">Phone Number:</label>
+                <label id="phoneNumber">1234567890</label>
+           </fieldset>
+           </section>
+              <fieldset>
+                <legend>Bursary</legend>
+                <label for="university">University:</label>
+                <label id="university">Wits</label>
+                <label for="contactBursaryAmount">Bursary Amount:</label>
+                <label id="contactBursaryAmount">R50000</label>
+                <label for="status">Status:</label>
+                <label id="status" class="approved">Approved</label>
+              </fieldset>
+            <fieldset>
+                <legend>Documents</legend>
+                <section class="student-details">
+                    <label for="document1">CV:</label>
+                    <a href="documents/cv.pdf" id="document1" target="_blank">View</a>
+                    <label for="document2">Identity Document:</label>
+                    <a href="documents/id.pdf" id="document2" target="_blank">View</a>
+                    <label for="document3">Academic Record:</label>
+                    <a href="documents/academic.pdf" id="document3" target="_blank">View</a>
+                </section>
+            </fieldset>
+            <fieldset>
+                <legend>Approval</legend>
+                <section class="student-details">
+                    <button id="approve" class="approve">Approve</button>
+                    <button id="reject" class="reject">Reject</button>
+                    <button id="cancel" class="cancel">Cancel</button>
+                </section>
+            </fieldset>
+        </section>
+    </section>
+
+
 
 </body>
 <script type="module">
-    import { fetchStudents, filterStudentsByAmount } from './students.js';
+    import { fetchStudents, filterStudentsByAmount,hideHodButton, addStudent, addHODNewStudent  } from './students.js';
 
     document.addEventListener('DOMContentLoaded', function () {
         fetchStudents();
-
+      
         document.getElementById("filter-options").onchange = (e) => {
             fetchStudents(e.target.value, undefined);
         }
@@ -142,19 +194,29 @@
             e.preventDefault();
             document.getElementById("registrationForm").style.display = "none";
             document.getElementById("header").style.display = "block";
+            document.getElementById("details").style.display = "none";
             
         }
-        document.getElementById("submit").onclick = (e) => {
+
+        //form submission
+        document.getElementById("applicatonForm").onsubmit = (e) => {
             e.preventDefault();
+            addHODNewStudent();
+            setTimeout(() => {
+                fetchStudents();
+            }, 2000);
             document.getElementById("registrationForm").style.display = "none";
             document.getElementById("header").style.display = "block";
-            fetchStudents();
+            document.getElementById("details").style.display = "none";
         }
+
         document.getElementById("add-admin-button").onclick = (e) => {
             e.preventDefault();
             document.getElementById("registrationForm").style.display = "block";
             document.getElementById("header").style.display = "none";
+            document.getElementById("details").style.display = "none";
         }
+        hideHodButton();
     });
 </script>
 <script>

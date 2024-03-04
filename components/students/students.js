@@ -22,15 +22,36 @@ function appendStudents(data) {
                 <td data-label="University">${student["university"]}</td>
                 <td data-label="BursaryAmount">  ${ZarFormatter.format(student["bursaryAmount"])}  </td>
                 <td data-label="status" class="approved">${student["status"]}</td>
-                <td class="viewButton">
-                    <a  class="viewdetails" href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
-                </td>
             </tr>`
 
     }
+    document.querySelectorAll('.table-rows').forEach(item => {
+        item.addEventListener('click', event => {
+            event.preventDefault();
+            let studentID = item.querySelector('input').value;
+            let student = data.find(student => student.studentID == studentID);
+            StudentDetailsView(student);
+        })
+    });
 }
 
+function StudentDetailsView(student) {
+    if (confirm(`Send link to upload documents to student "${student.firstName} ${student.lastName}?`)) {
+        requestDocumentUploadLinkForStudents(student["studentID"])
+    } else {
+        document.getElementById("details").style.display = "block";
+        document.getElementById("registrationForm").style.display = "none";
+        document.getElementById("header").style.display = "none";
 
+        document.getElementById("approve").addEventListener("click", function () {
+            student.status = "approved";
+        }
+        )
+        document.getElementById("reject").addEventListener("click", function () {
+            student.status = "rejected";
+        });
+    }
+}
 
 function filterStudents(status, students) {
     if (status === "All") {
@@ -73,9 +94,35 @@ function searchStudents(searchWord, students) {
 }
 
 
+function requestDocumentUploadLinkForStudents(studentId){
+    let loginDetails = Utility.getLoginDetails();
+    let apiBaseUrl = Utility.apiBaseUrl;
+
+    apiBaseUrl += "/student/generate-student-document-link/" + studentId;
+
+    try {
+        fetch(apiBaseUrl, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: 'application/json',
+                Authorization: `Bearer ${loginDetails.loginToken}`
+            }
+        }).then(response => {
+            return Utility.handleErrorResponse(response);
+        }).then(data => {
+            prompt("link successfully sent to student!", data["link"]);
+            // Utility.showMessage(data["message"]);
+        }).catch(error => {
+            showAlert(error.message);
+        })
+    } catch(error) {
+        Utility.showMessage(error, "error");
+    }
+}
 
 
-function fetchStudents(status, searchWord) {
+function fetchStudents(status, searchWord){
     let loginDetails = Utility.getLoginDetails();
     let apiBaseUrl = Utility.apiBaseUrl;
 
@@ -118,6 +165,7 @@ function fetchStudents(status, searchWord) {
         showAlert(error.message);
     })
 }
+
 function displayValue(value) {
     document.getElementById('display-value').value = value;
 }
@@ -129,12 +177,112 @@ function showAlert(message) {
     var alertElement = document.getElementById('alert');
     alertElement.innerText = message;
     alertElement.classList.add('show');
-    setTimeout(function () {
-        alertElement.classList.remove('show');
-    }, 3000);
+    setTimeout(function()
+        {
+         alertElement.classList.remove('show');
+        }, 3000);
 }
 
 
+function hideHodButton() {
+    if (Utility.getLoginDetails().role.toLowerCase() === "hod") {
+        document.getElementById("accept").style.display = "none";
+        document.getElementById("reject").style.display = "none";
+        return;
+    }
+    else{
+        document.getElementById("add-admin-button").style.display = "none";
+    }
+}
+
+function newStudent() {
+    let loginDetails = Utility.getLoginDetails();
+    let apiBaseUrl = Utility.apiBaseUrl;
+
+    apiBaseUrl += "/student/all-applications";
+
+}
 
 
-export { fetchStudents, filterStudentsByAmount }
+function addHODNewStudent() {
+    let loginDetails = Utility.getLoginDetails();
+    let apiBaseUrl = Utility.apiBaseUrl;
+
+    apiBaseUrl += "/student/getHodIdByEmail/" + loginDetails.userEmail;
+
+    fetch(apiBaseUrl, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: 'application/json',
+            Authorization: `Bearer ${loginDetails.loginToken}`
+        }
+    }).then(response => {
+        return Utility.handleErrorResponse(response);
+    }).then(data => {
+        return addStudent(data);
+    }).then(response => {
+        return Utility.handleErrorResponse(response);
+    }).then(data => {
+        Utility.showMessage(`Student successfully added!`);
+    }).catch(error => {
+        Utility.showMessage(error.message, "error");
+    })
+}
+
+
+function getNewStudentApplicationValues(loginDetails) {
+    let studentFirstName = document.getElementById("firstName").value;
+    let studentLastName = document.getElementById("lastName").value;
+    let studentEmail = document.getElementById("email").value;
+    let studentIdentityNumber = document.getElementById("IdentityNumber").value;
+    let studentPhoneNumber = document.getElementById("phoneNumber").value;
+    let studentRace = document.getElementById("race").value;
+    let studentAverageMarks = document.getElementById("averageMarks").value;
+    let studentBursaryAmount = document.getElementById("bursaryAmount").value;
+    let studentMotivation = document.getElementById("motivation").value;
+
+    return {
+        firstName: studentFirstName,
+        lastName: studentLastName,
+        phoneNumber: studentPhoneNumber,
+        email: studentEmail,
+        instituteId: loginDetails.institute,
+        identityDocument: studentIdentityNumber,
+        race: studentRace,
+        bursaryAmount: studentBursaryAmount,
+        averageMarks: studentAverageMarks,
+        motivation: studentMotivation,
+        headOfDepartment: loginDetails.userEmail
+    }
+}
+
+
+function addStudent(hodId) {
+    let loginDetails = Utility.getLoginDetails();
+    let apiBaseUrl = Utility.apiBaseUrl;
+
+    apiBaseUrl += "/student/newStudentApplication";
+
+    try {
+        let newStudentApplication = getNewStudentApplicationValues(loginDetails);
+        newStudentApplication["headOfDepartmentId"] = hodId;
+        console.log(hodId);
+
+        return fetch(apiBaseUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: 'application/json',
+                Authorization: `Bearer ${loginDetails.loginToken}`
+            },
+            body: JSON.stringify(newStudentApplication)
+        });
+    } catch(error) {
+        Utility.showMessage(error, "error");
+    }
+}
+  
+
+
+export {fetchStudents , filterStudentsByAmount, hideHodButton, addStudent, addHODNewStudent}
