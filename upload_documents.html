@@ -1,39 +1,30 @@
  <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Upload Page</title>
-    <link rel="stylesheet" href="./css/upload_document.css">
-</head>
-<body>
-    <div class="navbar">
-    </div>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document Upload Page</title>
+      <link rel="stylesheet" href="./css/upload_document.css">
+  </head>
+  <body>
+      <div class="navbar">
+      </div>
 
-  <section class="container">
-    <h1>Document Your Upload</h1>
-    <form id="document-form" method="post" enctype="multipart/form-data">
-        <label for="document2" class="form-group">
-            Identity Document:
-            <input type="file" id="Identitydocument" required name="document2" accept=".pdf, .doc, .docx">
-        </label>
-        <label for="document3" class="form-group">
-            Academic Record:
-            <input type="file" id="academicRecord" required name="document3" accept=".pdf, .doc, .docx">
-        </label>
-        <button type="submit">Upload</button>
-    </form>
-</section>
-<script >
-
-function checkFile(input) {
-    console.log("happend");
-  if (input.files.length > 0) {
-    input.classList.add('border-green');
-  } else {
-    input.classList.remove('border-green');
-  }
-}
-</script>
+    <section class="container">
+      <h1>Document Your Upload</h1>
+      <form id="document-form" method="post" enctype="multipart/form-data">
+          <label for="IdentityDocument" class="form-group">
+              Identity Document:
+              <input type="file" id="IdentityDocument" required name="IdentityDocument" accept=".pdf, .doc, .docx">
+          </label>
+          <label for="Transcript" class="form-group">
+              Academic Record:
+              <input type="file" id="Transcript" required name="Transcript" accept=".pdf, .doc, .docx">
+          </label>
+          <button id="Upload-btn" type="submit">Upload</button>
+      </form>
+  </section>
+  <script src="./js/utils.js"></script>
+  <script src="./js/upload_documents.js"></script>
 </body>
 </html> 
