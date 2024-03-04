@@ -107,9 +107,17 @@ button {
 button:hover {
     background-color: #0056b3;
 }
-#cancel {
+#reject {
     margin-right: 10px;
     background-color: red;
+}
+
+#approve {
+    background-color: green;
+}
+
+#back{
+    background-color: blue;
 }
 
 
@@ -156,3 +164,40 @@ form , input[type="text"] {
     margin-top: 6px;
     margin-bottom: 16px;
 }
+
+#student-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    gap: 10px;
+    padding: 10px;
+    display: none;
+    
+  }
+  .details-section {
+    border: 1px solid grey;
+    box-shadow: 0 0 10px rgba(16, 16, 16, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+  }
+  h3 {
+    margin-top: 0;
+  }
+  h3 {
+    margin-top: 0;
+    color: black;
+  }
+  p {
+    margin: 0.5em 0;
+  }
+  .document {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .document-icon {
+    margin-right: 10px;
+  }
+
+  

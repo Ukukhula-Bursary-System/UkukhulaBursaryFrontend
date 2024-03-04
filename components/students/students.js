@@ -34,12 +34,29 @@ function appendStudents(data) {
 }
 
 function StudentDetailsView(student) {
-    if (confirm(`Send link to upload documents to student "${student.firstName} ${student.lastName}?`)) {
-        requestDocumentUploadLinkForStudents(student["studentID"])
-    } else {
-        document.getElementById("details").style.display = "block";
+    console.log(student);
+    
+        document.getElementById("student-details").style.display = "block";
         document.getElementById("registrationForm").style.display = "none";
         document.getElementById("header").style.display = "none";
+        document.getElementById("name").innerHTML = "Firstname: " + student.lastName;
+        document.getElementById("lname").innerHTML = "Lastname: " + student.firstName;
+        document.getElementById("mail").innerHTML = student.email;
+        document.getElementById("phone").innerHTML ="Phone Number"+ student.phoneNumber;
+        document.getElementById("id").innerHTML = "Identity Number: " + student.identityDocument;
+        document.getElementById("universityname").innerHTML = "University: " + student.university;
+        document.getElementById("bursaryAmountdetails").innerHTML = "Bursary Amount: " + student.bursaryAmount;
+        document.getElementById("status-details").innerHTML = "Status: " + student.status;
+        document.getElementById("link").href =  requestDocumentUploadLinkForStudents(student.studentID);
+        let loginDetails = Utility.getLoginDetails();
+        if (loginDetails.role.toLowerCase() === "hod") {
+            document.getElementById("approve").style.display = "none";
+            document.getElementById("reject").style.display = "none";
+        }
+        else {
+            document.getElementById("sendApplication").style.display = "none";
+        }
+
 
         document.getElementById("approve").addEventListener("click", function () {
             student.status = "approved";
@@ -49,7 +66,8 @@ function StudentDetailsView(student) {
             student.status = "rejected";
         });
     }
-}
+
+
 
 function filterStudents(status, students) {
     if (status === "All") {
@@ -109,7 +127,7 @@ function requestDocumentUploadLinkForStudents(studentId){
         }).then(response => {
             return Utility.handleErrorResponse(response);
         }).then(data => {
-            prompt("link successfully sent to student!", data["link"]);
+            return data.json();
             // Utility.showMessage(data["message"]);
         }).catch(error => {
             showAlert(error.message);
@@ -278,6 +296,7 @@ function addStudent(hodId) {
         Utility.showMessage(error, "error");
     }
 }
+
   
 
 
