@@ -24,6 +24,10 @@ function setupPage() {
 }
 
 function logout() {
+    localStorage.removeItem("loginToken");
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("role");
+    localStorage.removeItem("institute");
     window.location.replace("/");
 }
 
