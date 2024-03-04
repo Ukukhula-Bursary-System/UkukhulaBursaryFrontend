@@ -36,7 +36,7 @@ function appendStudents(data) {
 }
 
 function StudentDetailsView(student) {
-    console.log(student);
+   
     
         document.getElementById("student-details").style.display = "block";
         document.getElementById("registrationForm").style.display = "none";
@@ -337,5 +337,47 @@ function addStudent(hodId) {
         Utility.showMessage(error, "error");
     }
 }
+
+
+function validateForm() {
+    let IdentityNumber = document.forms["applicationForm"]["IdentityNumber"].value;
+    if (!validateForm(IdentityNumber)){
+        showAlert("Invalid Identity Number!")
+        return false;
+    }
+    let phoneNumber =  document.forms["applicationForm"]["phoneNumber"].value
+    if (!validateSACellPhone(phoneNumber))
+    {
+        showAlert("Invalid cellphone number!")
+        return false;
+    }
+    return true
+    }
+
+    function validateSACellPhone(number) {
+        const numberCleaned = number.replace(/\D/g, '');
+
+        const regex = /^(?:\+27|0)[67-8]\d{7}$/;
+        return regex.test(numberCleaned);
+    }
+
+    function validateSAID(idNumber) {
+      
+        const cleanedId = idNumber.replace(/\D/g, '');
+        if (cleanedId.length !== 13) {
+            return false;
+        }
+    
+        //Luhn Algorithm
+        let sum = 0;
+        for (let i = 0; i < 12; i++) {
+            const digit = parseInt(cleanedId.charAt(i), 10);
+            sum += (i % 2 === 0) ? digit : (digit * 2 > 9) ? digit * 2 - 9 : digit * 2;
+        }
+    
+        const checkDigit = parseInt(cleanedId.charAt(12), 10);
+        return (sum + checkDigit) % 10 === 0;
+    }
+
   
-export {fetchStudents , filterStudentsByAmount, hideHodButton, addStudent, addHODNewStudent}
+export {fetchStudents , filterStudentsByAmount, hideHodButton, addStudent, addHODNewStudent, validateForm}
