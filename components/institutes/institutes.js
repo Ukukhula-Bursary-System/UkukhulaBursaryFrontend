@@ -13,6 +13,8 @@ let repEmail = document.getElementById("institute-reprentative-email");
 //Future refactor
 function appendInstitutes(data) {
     let results = document.getElementById("results");
+    const popup = document.querySelector(".popup")
+    popup.classList.add("slide-out")
     let ids = [];
 
     results.innerHTML = '';
@@ -102,22 +104,23 @@ function fetchAllInstitutes(statusId) {
     }
 
     try {
-    fetch(apiBaseUrl, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            Accept: 'application/json',
-            Authorization: `Bearer ${loginDetails.loginToken}`
-        }
-    }).then(response => {
-        return Utility.handleErrorResponse(response);
-    }).then(data => {
-        appendInstitutes(data);
-    }).catch(error => {
-        //   console.log(error)
-        Utility.showMessage(error.message, "error");
-    });
-    } catch(error) {
+        fetch(apiBaseUrl, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: 'application/json',
+                Authorization: `Bearer ${loginDetails.loginToken}`
+            }
+        }).then(response => {
+            return Utility.handleErrorResponse(response);
+        }).then(data => {
+            appendInstitutes(data);
+        }).catch(error => {
+            Utility.showMessage(error.message, "error");
+        });
+    } catch (error) {
+        const popup = document.querySelector(".popup")
+        popup.classList.add("slide-out")
         Utility.showMessage(error);
     }
 }
@@ -146,14 +149,14 @@ function getValuesForNewInstitute() {
         throw "Please enter a valid email address.";
     }
 
-    if(!repPhoneNumber.value.match(validPhoneNumber) || repPhoneNumber.value.trim() == "") {
+    if (!repPhoneNumber.value.match(validPhoneNumber) || repPhoneNumber.value.trim() == "") {
         throw "Please enter a valid phone number.";
     }
 
     if (instituteName.value.trim() == "" ||
         repFirstName.value.trim() == "" ||
         repLastName.value.trim() == ""
-        ) {
+    ) {
         throw "Please make sure that there are no empty fields."
     }
 
@@ -172,9 +175,9 @@ function getValuesForNewInstitute() {
 function clearInputs() {
     instituteName.value = "";
     repFirstName.value = "";
-    repLastName,value = "";
+    repLastName, value = "";
     repPhoneNumber = "";
-    repEmail = ""; 
+    repEmail = "";
 }
 
 
@@ -199,7 +202,7 @@ function fetchAllReviewers() {
         }).catch(error => {
             Utility.showMessage(error.message, "error");
         });
-    } catch(error) {
+    } catch (error) {
         Utility.showMessage(error, "error");
     }
 }
@@ -210,10 +213,10 @@ function addInstitute() {
     let apiBaseUrl = Utility.apiBaseUrl;
 
     apiBaseUrl += "/institute";
-    
+
     try {
         let newInstitute = getValuesForNewInstitute();
-       // console.log(newInstitute);
+        // console.log(newInstitute);
 
         fetch(apiBaseUrl, {
             method: "POST",
@@ -231,7 +234,7 @@ function addInstitute() {
         }).catch(error => {
             Utility.showMessage(error.message, "error");
         });
-    } catch(error) {
+    } catch (error) {
         Utility.showMessage(error, "error");
     }
 }
@@ -242,7 +245,7 @@ function updateInstitute(instituteId, statusId) {
     let apiBaseUrl = Utility.apiBaseUrl;
 
     apiBaseUrl += "/institute/" + instituteId;
-    
+
     try {
         fetch(apiBaseUrl, {
             method: "PUT",
@@ -261,7 +264,7 @@ function updateInstitute(instituteId, statusId) {
         }).catch(error => {
             Utility.showMessage(error.message, "error");
         });
-    } catch(error) {
+    } catch (error) {
         Utility.showMessage(error, "error");
     }
 }

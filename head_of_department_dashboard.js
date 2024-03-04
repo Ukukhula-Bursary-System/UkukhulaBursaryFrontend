@@ -1,9 +1,18 @@
-function toggleIframe(iframeId) {
+function toggleIframe(event, iframeId) {
     document.getElementById('funding').style.display = 'none';
     document.getElementById('students').style.display = 'none';
+    const activeIframe = document.getElementById(iframeId)
+    const activeElement = event.target
+    
+    activeIframe.contentDocument.location.reload(true);
+    activeIframe.style.display = 'block';
+    let outermostParent = activeElement;
+    while (outermostParent.tagName.toLowerCase() !== 'section') {
+        outermostParent = outermostParent.parentElement;
+    }
 
-    document.getElementById(iframeId).contentDocument.location.reload(true); //reload iframe
-    document.getElementById(iframeId).style.display = 'block';
+    document.querySelector('.active').classList.remove("active");
+    outermostParent.classList.add("active");
 }
 
 function setupPage() {

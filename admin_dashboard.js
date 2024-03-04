@@ -1,11 +1,20 @@
-function toggleIframe(iframeId) {
+function toggleIframe(event, iframeId) {
     document.getElementById('institutes').style.display = 'none';
     document.getElementById('funding').style.display = 'none';
     document.getElementById('students').style.display = 'none';
     document.getElementById('admins').style.display = 'none';
+    const activeIframe = document.getElementById(iframeId)
+    const activeElement = event.target
 
-    document.getElementById(iframeId).contentDocument.location.reload(true);
-    document.getElementById(iframeId).style.display = 'block';
+    activeIframe.contentDocument.location.reload(true);
+    activeIframe.style.display = 'block';
+    let outermostParent = activeElement;
+    while (outermostParent.tagName.toLowerCase() !== 'section') {
+        outermostParent = outermostParent.parentElement;
+    }
+
+    document.querySelector('.active').classList.remove("active");
+    outermostParent.classList.add("active");
 }
 
 function setupPage() {
