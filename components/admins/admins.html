@@ -58,6 +58,7 @@
         </section>
 
         <form id="add-admin-form">
+            <button id="back-button" style="background-color: rgb(235, 115, 17); color: white; border: none; padding: 15px 32px; cursor: pointer; position: absolute; top: 10px; left: 10px;">Back</button>
             <h3>Create new admin user.</h3>
             <article id="name-input-fields">
                 <input id="first-name" placeholder="Firstname..." type="text" />
@@ -89,5 +90,10 @@
     });
 </script>
 <script type="module" src="./admins.js"></script>
+<script>
+    document.getElementById('back-button').addEventListener('click', function() {
+    window.location.href = 'admins.html';
+});
+</script>
 
 </html>
