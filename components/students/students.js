@@ -337,35 +337,5 @@ function addStudent(hodId) {
         Utility.showMessage(error, "error");
     }
 }
-
-
-function getStudentDocuments(statusId, document)  {
-    let loginDetails = Utility.getLoginDetails();
-    let apiBaseUrl = Utility.apiBaseUrl;
-
-    apiBaseUrl += "/student/documents/" + statusId;
-
-    fetch(apiBaseUrl, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            Accept: 'application/json',
-            Authorization: `Bearer ${loginDetails.loginToken}`
-        }
-    }).then(response => {
-        return Utility.handleErrorResponse(response);
-    }).then(data => {
-        return fetch("https://https://ukukhulabbdbursaryapi.onrender.com/file/" + data[data["Transcript"]])
-    }).catch(response => {
-        return response.
-    }).catch(error => {
-        Utility.showMessage(error.message, "error");
-    })
-}
-
-
-
   
-
-
 export {fetchStudents , filterStudentsByAmount, hideHodButton, addStudent, addHODNewStudent}
