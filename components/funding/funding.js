@@ -8,6 +8,8 @@ const MzansiRand = new Intl.NumberFormat('en-US', {
 
 function appendFunds(data) {
     let results = document.getElementById("results");
+    const popup = document.querySelector(".popup")
+    popup.classList.add("slide-out")
 
     results.innerHTML = '';
     if (data != undefined) {
@@ -121,6 +123,8 @@ function fetchAllInstitutesAllocatedFunds(instituteId, year) {
             appendFunds(data);
         }
     }).catch(error => {
+        const popup = document.querySelector(".popup")
+        popup.classList.add("slide-out")
         Utility.showMessage(error.message, "error");
     })
 }
@@ -180,7 +184,7 @@ function addFunding() {
     let apiBaseUrl = Utility.apiBaseUrl;
 
     apiBaseUrl += "/institute/funds";
-    
+
     try {
         let newFunding = getValuesForNewFunding();
 
@@ -199,7 +203,7 @@ function addFunding() {
         }).catch(error => {
             Utility.showMessage(error.message, "error");
         });
-    } catch(error) {
+    } catch (error) {
         Utility.showMessage(error, "error");
     }
 }

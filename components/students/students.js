@@ -1,13 +1,15 @@
 import * as Utility from "../../js/admin_dashboard_utility.js";
 
-let allStudents ={};
+let allStudents = {};
 
 function appendStudents(data) {
     let results = document.getElementById("results");
+    const popup = document.querySelector(".popup")
+    popup.classList.add("slide-out")
     let ZarFormatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'ZAR',
-    }); 
+    });
     results.innerHTML = "";
     for (let i = 0; i < data.length; i++) {
         let student = data[i];
@@ -18,7 +20,7 @@ function appendStudents(data) {
                 <input type="hidden" value=${student["studentID"]}>
                 <td data-label="LastName">${student["lastName"]}</td>
                 <td data-label="University">${student["university"]}</td>
-                <td data-label="BursaryAmount">  ${ZarFormatter.format( student["bursaryAmount"])}  </td>
+                <td data-label="BursaryAmount">  ${ZarFormatter.format(student["bursaryAmount"])}  </td>
                 <td data-label="status" class="approved">${student["status"]}</td>
             </tr>`
 
@@ -57,7 +59,7 @@ function filterStudents(status, students) {
         return;
     }
 
-   let studentsbystatus = students.filter(student => student.status === status);
+    let studentsbystatus = students.filter(student => student.status === status);
     if (studentsbystatus.length === 0) {
         appendStudents(students);
         return;
@@ -78,10 +80,10 @@ function filterStudentsByAmount(amount) {
 }
 
 
-function searchStudents(searchWord, students){
-    
+function searchStudents(searchWord, students) {
+
     let studentsbysearch = students.filter(student => student.firstName
-            .toLowerCase().includes(searchWord.toLowerCase()) 
+        .toLowerCase().includes(searchWord.toLowerCase())
         || student.lastName
             .toLowerCase().includes(searchWord.toLowerCase()));
     if (studentsbysearch.length === 0) {
@@ -127,7 +129,7 @@ function fetchStudents(status, searchWord){
     apiBaseUrl += "/student/all-applications";
 
     if (loginDetails.role.toLocaleLowerCase() === "hod") {
-        apiBaseUrl += "/hod/" + loginDetails.userEmail;   
+        apiBaseUrl += "/hod/" + loginDetails.userEmail;
     }
 
     fetch(apiBaseUrl, {
@@ -143,7 +145,7 @@ function fetchStudents(status, searchWord){
         if (data !== undefined) {
             allStudents = data;
             if (status !== undefined) {
-                filterStudents(status,data);
+                filterStudents(status, data);
                 return;
             }
             else if (searchWord !== undefined) {
@@ -152,12 +154,14 @@ function fetchStudents(status, searchWord){
             }
 
             else {
-            appendStudents(data);
-            return;
+                appendStudents(data);
+                return;
             }
-            
+
         }
     }).catch(error => {
+        const popup = document.querySelector(".popup")
+        popup.classList.add("slide-out")
         showAlert(error.message);
     })
 }

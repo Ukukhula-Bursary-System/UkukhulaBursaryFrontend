@@ -19,6 +19,8 @@ function fetchAllAdmins() {
     }).then(data => {
         appendAdmin(data);
     }).catch(error => {
+        const popup = document.querySelector(".popup")
+        popup.classList.add("slide-out")
         Utility.showMessage(error.message, "error");
     })
 }
@@ -26,6 +28,8 @@ function fetchAllAdmins() {
 
 function appendAdmin(data) {
     let results = document.getElementById("results");
+    const popup = document.querySelector(".popup")
+    popup.classList.add("slide-out")
 
     results.innerHTML = '';
     for (let i = 0; i < data.length; i++) {
@@ -102,7 +106,7 @@ export function addAdmin() {
         }).catch(error => {
             Utility.showMessage(error.message, "error");
         });
-    } catch(error) {
+    } catch (error) {
         Utility.showMessage(error, "error");
     }
 }
