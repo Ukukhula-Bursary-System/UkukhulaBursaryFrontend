@@ -36,8 +36,7 @@ function appendStudents(data) {
 }
 
 function StudentDetailsView(student) {
-   
-    
+        document.getElementById("documents").style = "none";
         document.getElementById("student-details").style.display = "block";
         document.getElementById("registrationForm").style.display = "none";
         document.getElementById("header").style.display = "none";
@@ -56,6 +55,9 @@ function StudentDetailsView(student) {
                 requestDocumentUploadLinkForStudents(student.studentID);
             }});
 
+
+        //Add
+        fetchStudentDocuments(student);
     
 
         let loginDetails = Utility.getLoginDetails();
@@ -83,28 +85,29 @@ function StudentDetailsView(student) {
         });
     }
 
-    function approveOrDeclineStudents(status, studentID) {
-        let loginDetails = Utility.getLoginDetails();
-        let apiBaseUrl = Utility.apiBaseUrl;
+
+function approveOrDeclineStudents(status, studentID) {
+    let loginDetails = Utility.getLoginDetails();
+    let apiBaseUrl = Utility.apiBaseUrl;
+
+    apiBaseUrl += `/student/update/${studentID}/${status}`;
     
-        apiBaseUrl += `/student/update/${studentID}/${status}`;
-     
-    
-        fetch(apiBaseUrl, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: 'application/json',
-                Authorization: `Bearer ${loginDetails.loginToken}`
-            }
-        }).then(response => {
-            return handleErrorResponse(response);
-        }).then(data => {
-           Alert("Student status successfully" + status.toLowerCase() + "!");
-        }).catch(error => {
-            Utility.showMessage(error.message, "error");
-        })
-    }
+
+    fetch(apiBaseUrl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: 'application/json',
+            Authorization: `Bearer ${loginDetails.loginToken}`
+        }
+    }).then(response => {
+        return handleErrorResponse(response);
+    }).then(data => {
+        Alert("Student status successfully" + status.toLowerCase() + "!");
+    }).catch(error => {
+        Utility.showMessage(error.message, "error");
+    })
+}
 
 
 
@@ -220,6 +223,75 @@ function fetchStudents(status, searchWord){
         showAlert(error.message);
     })
 }
+
+
+function fetchStudentDocuments(student) {
+    let loginDetails = Utility.getLoginDetails();
+    let apiBaseUrl = Utility.apiBaseUrl;
+
+    apiBaseUrl += "/student/documents/" + student.studentID;
+
+    fetch(apiBaseUrl, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: 'application/json',
+            Authorization: `Bearer ${loginDetails.loginToken}`
+        }
+    }).then(response => {
+        if (!response.ok) {
+            return;
+        }
+        return Utility.handleErrorResponse(response);
+    }).then(data => {
+        if (data !== undefined) {
+            document.getElementById("documents").style = "block";
+            document.getElementById("identityDocument").onclick = () => {
+                fileDownload(data["identityDocument"], "identityDocument");
+            }
+
+            document.getElementById("transcript").onclick = () => {
+                fileDownload(data["transcript"], "transcript");
+            }
+        }
+    }).catch(error => {
+        showAlert(error.message);
+    })
+}
+
+
+function fileDownload(filename, saveFileName) {
+    let loginDetails = Utility.getLoginDetails();
+    let apiBaseUrl = Utility.apiBaseUrl;
+
+    apiBaseUrl += "/student/file/" + filename;
+
+    fetch(apiBaseUrl, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: 'application/json',
+            Authorization: `Bearer ${loginDetails.loginToken}`
+        }
+    }).then(response => {
+        return response.blob();
+    }).then(data => {
+        let a = document.createElement("a");
+
+        let url = window.URL.createObjectURL(data);
+
+        a.href = url;
+        a.download = `${saveFileName}.pdf`;
+
+        document.body.appendChild(a);
+
+        a.click();
+    }).catch(error => {
+        showAlert(error.message);
+    })
+}
+
+
 
 function displayValue(value) {
     document.getElementById('display-value').value = value;

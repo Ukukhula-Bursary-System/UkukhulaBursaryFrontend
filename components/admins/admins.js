@@ -53,7 +53,7 @@ function getValuesForNewAdmin() {
     let role = document.getElementById("role");
 
     const validEmailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    const validPhoneNumber = /^\d{10}$/;
+    const validPhoneNumber =  /^0(6|7|8)[0-9][0-9]{7}$/;
 
     if (firstName.value.trim() == "" ||
         lastName.value.trim() == "") {

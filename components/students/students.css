@@ -201,4 +201,11 @@ form , input[type="text"] {
     margin-right: 10px;
   }
 
+
+  .document {
+    border: 1px solid #3333;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    background-color: #6f6f6f;
+  }
   
