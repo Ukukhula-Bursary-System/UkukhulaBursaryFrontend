@@ -27,6 +27,8 @@
     border-radius: 25px;
     cursor: pointer;
     border: none;
+    color: black;
+    font-weight: bolder;
 }
 
 .add-button img {
@@ -83,6 +85,9 @@ tr td {
 tbody tr:hover {
     background-color: #cccccc;
 }
+tbody tr:nth-child(odd){
+  background-color: rgb(162, 159, 159);
+}
 
 .fund:hover {
     text-decoration: underline;
@@ -102,9 +107,9 @@ tbody tr:hover {
 }
 
 #search-input {
-    padding: 0.4em;
-    border-radius: 5px;
-    border: none;
+    padding: 0.4em !important;
+    border-radius: 5px !important;
+    border: none !important;
 }
 
 .filter label,

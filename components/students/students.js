@@ -42,9 +42,9 @@ function StudentDetailsView(student) {
         document.getElementById("header").style.display = "none";
         document.getElementById("name").innerHTML = "Firstname: " + student.lastName;
         document.getElementById("lname").innerHTML = "Lastname: " + student.firstName;
-        document.getElementById("mail").innerHTML = student.email;
-        document.getElementById("phone").innerHTML ="Phone Number"+ student.phoneNumber;
-        document.getElementById("id").innerHTML = "Identity Number: " + student.identityDocument;
+        document.getElementById("mail").innerText = student.email;
+        document.getElementById("phone").innerText ="Phone Number   "+ student.phoneNumber;
+        document.getElementById("id").innerText = "Identity Number: " + student.identityDocument;
         document.getElementById("universityname").innerHTML = "University: " + student.university;
         document.getElementById("bursaryAmountdetails").innerHTML = "Bursary Amount: " + student.bursaryAmount;
         document.getElementById("status-details").innerHTML = "Status: " + student.status;
@@ -412,12 +412,12 @@ function addStudent(hodId) {
 
 
 function validateForm() {
-    let IdentityNumber = document.forms["applicationForm"]["IdentityNumber"].value;
-    if (!validateForm(IdentityNumber)){
+    let IdentityNumber = document.getElementById("IdentityNumber").value;
+    if (!validateSAID(IdentityNumber)){
         showAlert("Invalid Identity Number!")
         return false;
     }
-    let phoneNumber =  document.forms["applicationForm"]["phoneNumber"].value
+    let phoneNumber =  document.getElementById("phoneNumber").value
     if (!validateSACellPhone(phoneNumber))
     {
         showAlert("Invalid cellphone number!")
@@ -428,8 +428,7 @@ function validateForm() {
 
     function validateSACellPhone(number) {
         const numberCleaned = number.replace(/\D/g, '');
-
-        const regex = /^(?:\+27|0)[67-8]\d{7}$/;
+        const regex = /^(?:\+27|0)[67-8]\d{8}$/;
         return regex.test(numberCleaned);
     }
 
