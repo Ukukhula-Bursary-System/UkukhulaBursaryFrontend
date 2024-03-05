@@ -36,6 +36,10 @@ function appendStudents(data) {
 }
 
 function StudentDetailsView(student) {
+    let ZarFormatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'ZAR',
+    });
         document.getElementById("documents").style = "none";
         document.getElementById("student-details").style.display = "block";
         document.getElementById("registrationForm").style.display = "none";
@@ -46,7 +50,7 @@ function StudentDetailsView(student) {
         document.getElementById("phone").innerText ="Phone Number   "+ student.phoneNumber;
         document.getElementById("id").innerText = "Identity Number: " + student.identityDocument;
         document.getElementById("universityname").innerHTML = "University: " + student.university;
-        document.getElementById("bursaryAmountdetails").innerHTML = "Bursary Amount: " + student.bursaryAmount;
+        document.getElementById("bursaryAmountdetails").innerHTML = "Bursary Amount: " + ZarFormatter.format(student.bursaryAmount);
         document.getElementById("status-details").innerHTML = "Status: " + student.status;
    
 
@@ -245,7 +249,7 @@ function fetchStudentDocuments(student) {
         return Utility.handleErrorResponse(response);
     }).then(data => {
         if (data !== undefined) {
-            document.getElementById("documents").style = "block";
+            // document.getElementById("documents").style = "block";
             document.getElementById("identityDocument").onclick = () => {
                 fileDownload(data["identityDocument"], "identityDocument");
             }
