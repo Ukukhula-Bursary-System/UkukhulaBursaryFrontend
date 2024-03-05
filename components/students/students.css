@@ -1,3 +1,18 @@
+.approved {
+    color: rgba(11, 167, 11, 0.95);
+    font-weight: bold;
+    
+}
+
+.pending {
+    color: orange;
+    font-weight: bold;
+}
+
+.rejected {
+    color: red;
+    font-weight: bold;
+}
 
 header {
     background-color: #003366;

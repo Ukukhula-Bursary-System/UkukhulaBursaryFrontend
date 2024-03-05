@@ -21,7 +21,7 @@ function appendStudents(data) {
                 <td data-label="LastName">${student["lastName"]}</td>
                 <td data-label="University">${student["university"]}</td>
                 <td data-label="BursaryAmount">  ${ZarFormatter.format(student["bursaryAmount"])}  </td>
-                <td data-label="status" class="approved">${student["status"]}</td>
+                <td data-label="status" class="${student["status"].toLowerCase()}">${student["status"]}</td>
             </tr>`
 
     }
