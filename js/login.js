@@ -25,13 +25,13 @@ function login(response) {
 
 
 function redirectAfterLogin(role) {
-    if (role == "HOD") {
+    if (role.toLowerCase()  == "hod") {
         //redirect to HOD dashboard
         window.location.replace("/head-of-department-dashboard");
-    } else if (role == "Reviewer") {
+    } else if (role.toLowerCase() == "reviewer") {
         //redirect to Reviewer dashboard
-        alert("Reviewer redirect!");
-    } else if (role == "Admin") {
+        window.location.replace("/reviewer-dashboard");
+    } else if (role.toLowerCase()  == "admin") {
         //redirect to admin dashboard
         window.location.replace("/admin-dashboard");
     } else {
