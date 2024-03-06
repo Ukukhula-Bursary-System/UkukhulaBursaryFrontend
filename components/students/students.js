@@ -185,6 +185,7 @@ function requestDocumentUploadLinkForStudents(studentId){
 
 
 function fetchStudents(status, searchWord){
+    const popup = document.querySelector(".popup")
     let loginDetails = Utility.getLoginDetails();
     let apiBaseUrl = Utility.apiBaseUrl;
 
@@ -208,21 +209,18 @@ function fetchStudents(status, searchWord){
             allStudents = data;
             if (status !== undefined) {
                 filterStudents(status, data);
-                return;
             }
             else if (searchWord !== undefined) {
                 searchStudents(searchWord, data);
-                return;
             }
 
             else {
                 appendStudents(data);
-                return;
             }
 
         }
+        popup.classList.add("slide-out");
     }).catch(error => {
-        const popup = document.querySelector(".popup")
         popup.classList.add("slide-out")
         showAlert(error.message);
     })
